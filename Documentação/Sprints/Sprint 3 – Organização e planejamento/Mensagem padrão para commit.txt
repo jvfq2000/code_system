@@ -1,0 +1,9 @@
+* Motivo que deu origem a mudança;
+ - N/A
+
+* Nome do objeto alterado - Descrição dos itens alterados (incluídos, excluídos, modificados);
+ - N/A
+* Sinalização de outros objetos que podem ser impactados com a alteração;
+ - N/A
+* Observações para os próximos passos, para subsidiar o próximo profissional a alterar o respectivo objeto;
+ - N/A
