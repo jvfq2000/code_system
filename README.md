@@ -1,4 +1,4 @@
-<img style="text-align: center;" src="./logo_code_system.jpeg?w=300" height="300" whidth="300"/>
+<img src="./logo_code_system.jpeg?w=300" height="300" whidth="300"/>
 
 # Descrição do Software
 
