@@ -1,4 +1,4 @@
-![](./logo_code_system.jpeg)
+![](./logo_code_system.jpeg?w=500)
 
 # Descrição do Software
 
