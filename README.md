@@ -1,4 +1,4 @@
-![logo_code_system.jpeg](Projeto Code System)
+![](./logo_code_system.jpeg)
 
 # Descrição do Software
 
