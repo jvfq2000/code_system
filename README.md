@@ -1,6 +1,6 @@
 <img src="./logo_complementary_hours.jpeg?w=300" height="300" whidth="300"/>
 
-# Descrição do Software
+# Complememtary Hours: Sistema para automação e gerenciamento de atividades complementares.
 
   O, IFNMG - Campus Arinos, oferta vários cursos superiores, nos quais, com o intuito de alcançar a formação e adquirir conhecimento, os alunos devem participar de uma determinada quantidade de horas em atividades complementares, listando cada atividade, num formulário de Controle das Atividades Complementares.
 
