@@ -1,9 +1,12 @@
 * Motivo que deu origem a mudança;
- - N/A
+ - Pequeno ajuste na ordem requisitos funcionais.
+ - Insersão do requisito funcional "Sair do Sistema".
 
 * Nome do objeto alterado - Descrição dos itens alterados (incluídos, excluídos, modificados);
- - N/A
+ - Documentaçãoo/Sprints/Sprint 2 - Levantamento de requisitos/Tarefa 3 - Requisitos Funcionais.odt
+
 * Sinalização de outros objetos que podem ser impactados com a alteração;
- - N/A
+ - Nada
+
 * Observações para os próximos passos, para subsidiar o próximo profissional a alterar o respectivo objeto;
- - N/A
+ - Nada
