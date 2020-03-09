@@ -23,26 +23,55 @@
         }
       }
     </style>
-    <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
+
+  <link href="form-validation.css" rel="stylesheet">
   </head>
-  <body class="bg-primary">
-    <div class="container">
-    <div class="float-right col-lg-4">
-          <img src="<?php echo base_url('assets/img/logo.png');?>">
-        </div>
+  <body class="bg-white">
+    <img src="<?php echo base_url('assets/img/logo_ifnmg.jpg');?>" width=”20px” height=”40px”>
+  <br>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home</a> 
+      <a class="nav-item nav-link" href="#">Ajuda</a>
+      <a class="nav-item nav-link" href="#">Sobre</a>
+    </div>
+  </div>
+    <button type="button" class="col-lg-1 btn btn-outline-danger btn-sm float-right">Logar</button>
+    <p>
+      <div class="col-auto">
+      </div>
+    </p>
+    <button type="button" class="col-lg-1 btn btn-outline-success btn-sm float-right">Cadastrar</button>
+    
+  </nav>
+  <br>
+  <hr>
+  <br>
+      <div class="float-right col-lg-5">
+        <img src="<?php echo base_url('assets/img/logo.png');?>" width=”20%” height=”40%”>
+      </div>
     <div class="col-md-8 order-md-1">
-      <h1 class="mb-3">Cadastro</h1>
-      <form class="needs-validation" novalidate>
+
+
+
+    <div class="accordion" id="accordionExample">
+      <div class="card bg-white">
+        <div class="card-header" id="headingOne">
+
+      <form class="needs-validation form-group" novalidate>
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class="col-md-5 mb-3">
             <label for="nome">Nome</label>
             <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
-          <div class="col-md-6 mb-3">
+          <div class="col-md-5 mb-3">
             <label for="sobre_nome">Sobre nome</label>
             <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
             <div class="invalid-feedback">
@@ -52,14 +81,14 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class="col-md-5 mb-3">
             <label for="data_de_nascimento">Data de Nascimento</label>
             <input type="date" class="form-control" id="firstName" placeholder="" value="" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
-          <div class="col-md-6 mb-3">
+          <div class="col-md-5 mb-3">
             <label for="telefone">Telefone</label>
             <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
             <div class="invalid-feedback">
@@ -68,32 +97,36 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label for="campus">Campus</label>
-          <select class="custom-select">
-            <option selected>Selecione</option>
-            <option value="1">Intituto Federal do Norte de Minas Gerais Campus Arinos</option>
-            <option value="1">Intituto Federal do Norte de Minas Gerais Campus Januária</option>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="@aluno.ifnmg.edu.br">
-          <div class="invalid-feedback">
-            Please enter a valid email address for shipping updates.
+        <div class="row">
+          <div class="col-md-10 mb-2">
+            <label for="campus">Campus</label>
+            <select class="custom-select">
+              <option selected>Selecione</option>
+              <option value="1">Intituto Federal do Norte de Minas Gerais Campus Arinos</option>
+              <option value="2">Intituto Federal do Norte de Minas Gerais Campus Januária</option>
+            </select>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class="col-md-10 mb-2">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="@aluno.ifnmg.edu.br">
+            <div class="invalid-feedback">
+              Please enter a valid email address for shipping updates.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
             <label for="senha">Senha</label>
             <input type="password" class="form-control" id="senha" placeholder="" value="" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
-          <div class="col-md-6 mb-3">
+          <div class="col-md-5 mb-3">
             <label for="repetir_senha">Repetir Senha</label>
             <input type="password" class="form-control" id="lastName" placeholder="" value="" required>
             <div class="invalid-feedback">
@@ -113,6 +146,9 @@
           </div>  
         </div>
       </form>
+      </div>
+      </div>
+      </div>
     </div>
   </div>
 
