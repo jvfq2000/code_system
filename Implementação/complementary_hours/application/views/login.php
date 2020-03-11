@@ -23,18 +23,36 @@
           font-size: 3.5rem;
         }
       }
+      body{
+        background: url("assets/img/fundo_login.png") no-repeat;
+      }
     </style>
-    
+
+</style>
     <link href="floating-labels.css" rel="stylesheet">
   </head>
   <body>
   <div class="col-12">
   <br>
   <br>
-  <div class="accordion" id="accordionExample">
-
-    <div class="card-header rounded mx-auto col-4" id="headingOne">
-    <img src="<?php echo base_url('assets/img/logo_complementary_hours.png');?>" class="rounded mx-auto d-block"/>
+  <div>
+      
+  </div>
+  <p class="col text-white font-italic">Organize suas horas complementares!</p>
+  <hr>
+  <div class="accordion col-12 row" id="accordionExample">
+    <h1 class="col-6 text-white font-weight-bold">
+      <p class="text-justify"> 
+        <br>
+        <br>
+        O Complementary Hours veio para facilitar sua vida.
+        <br>
+        <br>
+        Utilize agora e se organize! 
+      </p>
+    </h1>
+    <div class="card-header rounded mx-auto col-4 bg-white float-right" id="headingOne">
+    <img src="<?php echo base_url('assets/img/logo.jpg');?>"width="170" height="170" class="rounded mx-auto d-block"/>
   <form>
       <div class="row">
         <div class="col-md-12 mb-2">
@@ -66,11 +84,9 @@
   </div>
   
   </div>
-  
+    <footer class="mx-auto d-block my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2020 Code System</p>
+    </footer>
   </div>
-  
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2020 Code System</p>
-  </footer>
 </body>
 </html>
