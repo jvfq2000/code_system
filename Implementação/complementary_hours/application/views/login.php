@@ -53,7 +53,7 @@
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="dropdownCheck">
           <label class="form-check-label" for="dropdownCheck">
-            Remember me
+            Mantenha-me conectado
           </label>
           <a class="float-right text-dark" href="#">Esqueceu a senha?</a>
         </div>

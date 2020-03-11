@@ -14,4 +14,8 @@ class Login extends CI_Controller {
 	public function cadastro(){
 		$this->load->view('cadastro');
 	}
+    
+    public function home(){
+		$this->load->view('home');
+	}
 }
