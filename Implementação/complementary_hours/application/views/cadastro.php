@@ -125,15 +125,16 @@
                     </div>
                             
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sim</button>
-                        <button type="button" class="btn btn-primary">Não</button>
+                        <a class="btn btn-primary"  href="<?php echo base_url('login');?>" role="button">Sim</a>
+                        <button type="button" class="btn btn-primary"  data-dismiss="modal">Não</button>
                     </div>
                 </div>
             </div>
         </div>
         
-        <script src="<?php echo base_url('assets/jquery.slim.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/jquery/jquery.slim.min.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js');?>"></script>
     </body>
 </html>
