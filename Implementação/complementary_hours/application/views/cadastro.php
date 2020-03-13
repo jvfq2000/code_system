@@ -25,6 +25,7 @@
         </style>
 
     </head>
+    
     <body class="bg-white">
         <div class="col-12">
             <img src="<?php echo base_url('assets/img/top-complementary_hours.png');?>" class="rounded mx-auto d-block"/>
@@ -36,11 +37,17 @@
                             <div class="col-md-6 mb-3">
                                 <label for="nome">Nome</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="" name="nome" value="" required>
+                                <div class="invalid-feedback">
+                                    Preencha o nome corretamente!
+                                </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="sobre_nome">Sobrenome</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="" name="sobrenome" value="" required>
+                                <div class="invalid-feedback">
+                                    Informe o sobrenome corretamente!
+                                </div>
                             </div>
                         </div>
 
@@ -48,11 +55,17 @@
                             <div class="col-md-6 mb-3">
                                 <label for="data_de_nascimento">Data de Nascimento</label>
                                 <input type="date" class="form-control" id="firstName" placeholder="" value="" name="dt_nascimento" required>
+                                <div class="invalid-feedback">
+                                    Informe uma data válida!
+                                </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="telefone">Telefone</label>
                                 <input type="text" class="form-control" id="telefone" placeholder="" name="telefone" value="">
+                                <div class="invalid-feedback">
+                                    Informe um telefone válido!
+                                </div>
                             </div>
                         </div>
 
@@ -70,6 +83,9 @@
                             <div class="col-md-12 mb-2">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" placeholder="@aluno.ifnmg.edu.br" name="email">
+                                <div class="invalid-feedback">
+                                    Informe um e-mail válido!
+                                </div>
                             </div>
                         </div>
 
@@ -77,11 +93,17 @@
                             <div class="col-md-6 mb-3">
                                 <label for="senha">Senha</label>
                                 <input type="password" class="form-control" id="senha" placeholder="" name="senha">
+                                <div class="invalid-feedback">
+                                    Informe corretamente a senha!
+                                </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="repetir_senha">Repetir Senha</label>
                                 <input type="password" class="form-control" id="lastName" placeholder="">
+                                <div class="invalid-feedback">
+                                    Informe corretamente a senha!
+                                </div>
                             </div>
                         </div>
                         
