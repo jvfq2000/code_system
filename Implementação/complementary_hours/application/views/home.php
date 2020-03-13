@@ -28,7 +28,7 @@
     <link href="jumbotron.css" rel="stylesheet">
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary col-12">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -45,19 +45,26 @@
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      <div class="dropleft">
+        <img src="<?php echo base_url('assets/img/perfil.jpg');?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+        <div class="dropdown-menu" style="width:18rem;">
+                <ul class="list-group list-group-flush">
+                    <div class="row">
+                        <img src="<?php echo base_url('assets/img/perfil.jpg');?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                        <a class="floar-right">
+                            Usuario<br>
+                            usuario@aluno.ifnmg.edu.br
+                        </a><br>
+                    </div>
+                    <li class="list-group-item">
+                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="<?php echo base_url('login')?>" type="button" data-toggle="modal" data-target="#confirmacao">Sair</a>
+                    </li>
+                </ul>
+        </div>
+      </div>
+        <!--<a class="btn btn-outline-success my-2 my-sm-0" href="<?php echo base_url('login')?>" type="button" data-toggle="modal" data-target="#confirmacao">logout</a>-->
   </div>
 </nav>
 
@@ -104,8 +111,32 @@
     <p class="mb-1">&copy; 2020 Code System</p>
   </footer>
 </main>
+       <div class="modal fade" id="confirmacao" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                            
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                            
+                    <div class="modal-body">
+                        Deseja realmente sair?
+                    </div>
+                            
+                    <div class="modal-footer">
+                        <a class="btn btn-primary"  href="<?php echo base_url('login');?>" role="button">Sim</a>
+                        <button type="button" class="btn btn-primary"  data-dismiss="modal">Não</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <script src="<?php echo base_url('assets/jquery/jquery.slim.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
+        <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js');?>"></script>
     </body>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
 </html>
