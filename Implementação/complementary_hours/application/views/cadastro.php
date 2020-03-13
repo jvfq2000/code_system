@@ -31,35 +31,35 @@
             <br>
             <div class="accordion" id="accordionExample">
                 <div class="card-header rounded mx-auto col-sm-7" id="headingOne">
-                    <form class="form-group" novalidate>
+                    <form class="form-group" action="Cadastro_usuario/cadastrar" method='POST' novalidate>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="nome">Nome</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="" name="nome" value="" required>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="sobre_nome">Sobrenome</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                <input type="text" class="form-control" id="lastName" placeholder="" name="sobrenome" value="" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="data_de_nascimento">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="firstName" placeholder="" value="" required>
+                                <input type="date" class="form-control" id="firstName" placeholder="" value="" name="dt_nascimento" required>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="telefone">Telefone</label>
-                                <input type="text" class="form-control" id="telefone" placeholder="" value="">
+                                <input type="text" class="form-control" id="telefone" placeholder="" name="telefone" value="">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="campus">Campus</label>
-                                <select class="custom-select">
+                                <select class="custom-select" name="campus">
                                     <option selected>Selecione</option>
                                     <option value="1">Instituto Federal do Norte de Minas Gerais Campus Arinos</option>
                                 </select>
@@ -69,19 +69,19 @@
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="@aluno.ifnmg.edu.br">
+                                <input type="email" class="form-control" id="email" placeholder="@aluno.ifnmg.edu.br" name="email">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="senha">Senha</label>
-                                <input type="password" class="form-control" id="senha" placeholder="" value="" required>
+                                <input type="password" class="form-control" id="senha" placeholder="" name="senha">
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="repetir_senha">Repetir Senha</label>
-                                <input type="password" class="form-control" id="lastName" placeholder="" value="" required>
+                                <input type="password" class="form-control" id="lastName" placeholder="">
                             </div>
                         </div>
                         
@@ -103,12 +103,6 @@
                 <p class="mb-1">&copy; 2020 Code System</p>
             </footer>
         </div>
-      
-      
-      
-      
-      
-      <!-- Modal -->
         <div class="modal fade" id="confirmacao" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
