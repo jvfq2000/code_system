@@ -32,13 +32,13 @@
             <br>
             <div class="accordion" id="accordionExample">
                 <div class="card-header rounded mx-auto col-sm-7" id="headingOne">
-                    <form class="form-group" action="Cadastro_usuario/cadastrar" method='POST' novalidate>
+                    <form class="form-group needs-validation" action="Cadastro_usuario/cadastrar" method='POST' novalidate>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="nome">Nome</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="" name="nome" value="" required>
                                 <div class="invalid-feedback">
-                                    Preencha o nome corretamente!
+                                    Campo obrigatorio!
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                                 <label for="sobre_nome">Sobrenome</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="" name="sobrenome" value="" required>
                                 <div class="invalid-feedback">
-                                    Informe o sobrenome corretamente!
+                                    Campo obrigatorio!
                                 </div>
                             </div>
                         </div>
@@ -56,35 +56,38 @@
                                 <label for="data_de_nascimento">Data de Nascimento</label>
                                 <input type="date" class="form-control" id="firstName" placeholder="" value="" name="dt_nascimento" required>
                                 <div class="invalid-feedback">
-                                    Informe uma data válida!
+                                    Campo obrigatorio!
                                 </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="telefone">Telefone</label>
-                                <input type="text" class="form-control" id="telefone" placeholder="" name="telefone" value="">
+                                <input type="text" class="form-control" id="telefone" placeholder="" name="telefone" value="" required>
                                 <div class="invalid-feedback">
-                                    Informe um telefone válido!
+                                    Campo obrigatorio!
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
+                            
                             <div class="col-md-12 mb-2">
-                                <label for="campus">Campus</label>
-                                <select class="custom-select" name="campus">
-                                    <option selected>Selecione</option>
-                                    <option value="1">Instituto Federal do Norte de Minas Gerais Campus Arinos</option>
-                                </select>
+                              <label for="campus">Campus</label>
+                              <select class="custom-select" id="campus" required>
+                                <option selected disabled value="">Selecione</option>
+                                <option>Instituto Federal do Norte de Minas Gerais Campus Arinos</option>
+                              </select>
+                              <div class="invalid-feedback">
+                                Campo obrigatorio!
+                              </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="@aluno.ifnmg.edu.br" name="email">
+                                <input type="email" class="form-control" id="email" placeholder="@aluno.ifnmg.edu.br" name="email" required>
                                 <div class="invalid-feedback">
-                                    Informe um e-mail válido!
+                                    Campo obrigatorio!
                                 </div>
                             </div>
                         </div>
@@ -92,17 +95,17 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="senha">Senha</label>
-                                <input type="password" class="form-control" id="senha" placeholder="" name="senha">
+                                <input type="password" class="form-control" id="senha" placeholder="" name="senha" required>
                                 <div class="invalid-feedback">
-                                    Informe corretamente a senha!
+                                    Campo obrigatorio!
                                 </div>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="repetir_senha">Repetir Senha</label>
-                                <input type="password" class="form-control" id="lastName" placeholder="">
+                                <input type="password" class="form-control" id="lastName" placeholder="" required>
                                 <div class="invalid-feedback">
-                                    Informe corretamente a senha!
+                                    Campo obrigatorio!
                                 </div>
                             </div>
                         </div>
@@ -147,7 +150,26 @@
                 </div>
             </div>
         </div>
-        
+        <script>
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+        </script>
         <script src="<?php echo base_url('assets/jquery/jquery.slim.min.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
