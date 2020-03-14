@@ -73,15 +73,34 @@
                             
                             <div class="col-md-12 mb-2">
                               <label for="campus">Campus</label>
-                              <select class="custom-select" id="campus" required>
+                              <select class="custom-select" name="campus"required>
                                 <option selected disabled value="">Selecione</option>
-                                <option>Instituto Federal do Norte de Minas Gerais Campus Arinos</option>
+                                <option value="1">Instituto Federal do Norte de Minas Gerais Campus Arinos</option>
                               </select>
                               <div class="invalid-feedback">
                                 Campo obrigatorio!
                               </div>
                             </div>
                         </div>
+                        
+                        <div class="row">
+                            
+                            <div class="col-md-12 mb-2">
+                              <label for="campus">Curso</label>
+                              <select class="custom-select" name="curso"required>
+                                <option selected disabled value="">Selecione</option>
+                                <option value="1">Bacharelado em Administração</option>
+                                <option value="2">Bacharelado em Agronomia</option>
+                                <option value="3">Bacharelado em Sistemas de Informação</option>
+                                <option value="4">Tecnologia em Gestão Ambiental</option>
+                                <option value="5">Tecnologia em Produção de Grãos</option>
+                              </select>
+                              <div class="invalid-feedback">
+                                Campo obrigatorio!
+                              </div>
+                            </div>
+                        </div>
+                        
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="email">Email</label>
@@ -124,9 +143,6 @@
                     </form>
                 </div>
             </div>
-            <footer class="my-5 pt-5 text-muted text-center text-small">
-                <p class="mb-1">&copy; 2020 Code System</p>
-            </footer>
         </div>
         <div class="modal fade" id="confirmacao" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
