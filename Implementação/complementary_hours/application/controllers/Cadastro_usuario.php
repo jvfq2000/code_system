@@ -16,11 +16,12 @@ class Cadastro_usuario extends CI_Controller {
         if(!$this->cadastro_model->verificarEmail($cadastrar_usuario['usuario_email'])){
             $usuario_id = $this->cadastro_model->salvarUsuario($cadastrar_usuario);
             $cadastrar_pessoa = array(
-                'usuario_id'  			 => $usuario_id,
-                'pessoa_nome' 			 => $this->input->post("nome"),
-                'pessoa_sobre_nome' 	 => $this->input->post("sobrenome"),
+                'usuario_id'  		 => $usuario_id,
+                'pessoa_nome' 		 => $this->input->post("nome"),
+                'pessoa_sobrenome' 	 => $this->input->post("sobrenome"),
                 'pessoa_data_nascimento' => $this->input->post("dt_nascimento"),
-                'pessoa_telefone' 		 => $this->input->post("telefone")
+                'pessoa_telefone' 	 => $this->input->post("telefone"),
+                'pessoa_campus' 	 => $this->input->post("campus")
             );
             $this->cadastro_model->salvarPessoa($cadastrar_pessoa);
             $this->load->view('sucesso');

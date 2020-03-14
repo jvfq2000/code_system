@@ -31,7 +31,6 @@
         <link href="floating-labels.css" rel="stylesheet">
     </head>
     <body>
-        
         <div class="col-12">
             <br>
             <br>
@@ -48,11 +47,11 @@
                 </h1>
                 <div class="card-header rounded mx-auto col-4 bg-white float-right" id="headingOne">
                     <img src="<?php echo base_url('assets/img/logo_reduzida.jpg');?>" width="200" height="150" class="rounded mx-auto d-block"/>
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" novalidate action="login/autenticar" method="POST">
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+                                <input type="email" class="form-control" name="email" placeholder="email@example.com" required>
                                 <div class="invalid-feedback">
                                     Informe um e-mail válido!
                                 </div>
@@ -62,7 +61,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="senha">Senha</label>
-                                <input type="password" class="form-control" id="senha" placeholder="Password"  required>
+                                <input type="password" class="form-control" name="senha" placeholder="Password"  required>
                                 <div class="invalid-feedback">
                                     Informe uma senha!
                                 </div>
