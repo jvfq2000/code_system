@@ -1,5 +1,5 @@
 <?php if($tentou){ ?>		
-	<script>
+	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#modal_generico').modal('show');
 		});

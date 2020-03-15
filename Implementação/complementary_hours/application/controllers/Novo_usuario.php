@@ -25,6 +25,7 @@ class Novo_usuario extends CI_Controller {
 		$this->usuario->setUsuario_senha($this->input->post('senha'));
 
 		if(!$this->usuario->email_existe()){
+            
 			$usuario_cadastrado = $this->usuario->cadastrar();
 		
 			if($usuario_cadastrado){
@@ -35,21 +36,22 @@ class Novo_usuario extends CI_Controller {
 				$this->pessoa->setPessoa_sobrenome($this->input->post("sobrenome"));
 				$this->pessoa->setPessoa_data_nascimento($this->input->post("dt_nascimento"));
 				$this->pessoa->setPessoa_telefone($this->input->post("telefone"));
-				$pessoa_cadastrada = $this->pessoa->cadastrar();
+			
+                $pessoa_cadastrada = $this->pessoa->cadastrar();
 
 				if($pessoa_cadastrada){
 					$dados = array(
 						"tentou"   => TRUE,
-						"mensagem" => "Cadastro realizado com sucesso!",
+						"mensagem" => "Cadastro realizado com sucesso!"
 					);
 				}
 			}
-
-			$dados = array(
+		}else {
+            $dados = array(
 				"tentou"   => TRUE,
-				"mensagem" => "Este usuário já foi cadastrado!",
+				"mensagem" => "Este usuário já foi cadastrado!"
 			);
-		}
+        }
 		$this->load->view('novo_usuario', $dados);
 	}
 }
