@@ -21,6 +21,7 @@ class Cadastro_usuario extends CI_Controller {
                 'pessoa_sobrenome' 	 => $this->input->post("sobrenome"),
                 'pessoa_data_nascimento' => $this->input->post("dt_nascimento"),
                 'pessoa_telefone' 	 => $this->input->post("telefone"),
+                'pessoa_curso' 	     => $this->input->post("curso"),
                 'pessoa_campus' 	 => $this->input->post("campus")
             );
             $this->cadastro_model->salvarPessoa($cadastrar_pessoa);
