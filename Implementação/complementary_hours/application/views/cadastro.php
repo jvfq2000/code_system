@@ -86,7 +86,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="telefone">Telefone</label>
-                                <input type="text" class="form-control" id="telefone" name="telefone" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" required>
+                                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(00) 00000-0000" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
