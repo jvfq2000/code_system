@@ -46,8 +46,6 @@ CREATE TABLE IF NOT EXISTS `campus` (
 -- Copiando dados para a tabela complementary_hours.campus: ~1 rows (aproximadamente)
 DELETE FROM `campus`;
 /*!40000 ALTER TABLE `campus` DISABLE KEYS */;
-INSERT INTO `campus` (`campus_id`, `campus_descricao`, `campus_cidade`, `campus_estado`) VALUES
-	(1, 'IFNMG - Campus Arinos', 'Arinos', 'Minas Gerais');
 /*!40000 ALTER TABLE `campus` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela complementary_hours.curso

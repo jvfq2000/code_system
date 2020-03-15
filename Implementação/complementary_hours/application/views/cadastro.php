@@ -24,6 +24,18 @@
 
         </style>
         <script type="text/javascript">
+			function validarSenha(){
+				var senha = document.getElementById('senha').value;
+				var repetir_senha = document.getElementById('repetir_senha').value;
+				
+				if(senha == "" || senha.length <= 5){
+					alert('Preencha o campo senha com minimo 6 caracteres');
+                    event.preventDefault();
+				}else if(repetir_senha != senha){
+					alert('Senhas não compativeis!');
+                    event.preventDefault();
+				}
+			}
             function mascara(telefone){ 
                 if(telefone.value.length == 0){
                     telefone.value = '(' + telefone.value; 
@@ -44,7 +56,7 @@
             <br>
             <div class="accordion" id="accordionExample">
                 <div class="card-header rounded mx-auto col-sm-7" id="headingOne">
-                    <form name="formuser" class="form-group needs-validation" action="Novo_usuario/cadastrar" method='POST' novalidate>
+                    <form name="formuser" class="form-group needs-validation" action="Cadastro_usuario/cadastrar" method='POST' novalidate>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="nome">Nome</label>
@@ -124,20 +136,6 @@
                         </div>
 
                         <div class="row">
-                            <script type="text/javascript">
-                                function validarSenha(){
-                                    var senha = document.getElementById('senha').value;
-                                    var repetir_senha = document.getElementById('repetir_senha').value;
-
-                                    if(senha == "" || senha.length <= 5){
-                                        alert('Preencha o campo senha com minimo 6 caracteres');
-                                        event.preventDefault();
-                                    }else if(repetir_senha != senha){
-                                        alert('Senhas não compativeis!');
-                                        event.preventDefault();
-                                    }
-                                }
-                            </script>
                             <div class="col-md-6 mb-3">
                                 <label for="senha">Senha</label>
                                 <input type="password" class="form-control" placeholder="" legth="6" name="senha" id="senha" required>
@@ -159,71 +157,39 @@
                         
                         <div class="row">
                             <div class="col-6 mb-5">
-                                <button class="col-12 btn btn-primary btn-lg" data-toggle="modal" type="submit" data-toggle="modal" data-target="#modal_generico" onclick="validarSenha();">Salvar</button>
+                                <button class="col-12 btn btn-primary btn-lg" type="submit"  onclick="validarSenha();">Salvar</button>
                             </div>
+                          
                             <div class="col-6 mb-5">
-                                <button class="col-12 btn btn-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_generico">Cancelar</button>
+                                <button class="col-12 btn btn-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#confirmacao">Cancelar</button>
                             </div>  
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="modal fade" name="modal_generico" id="modal_generico" tabindex="-1" role="dialog">
+        <div class="modal fade" id="confirmacao" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                             
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span>&times;</span>
                         </button>
                     </div>
                             
-		          <div class="modal-body">
-                        <?php
-                            if($tentou){
-                                echo $mensagem;
-                            } else {
-                        ?>
-                                Deseja realmente cancelar?
-                        <?php   } ?>
+                    <div class="modal-body">
+                        Deseja realmente cancelar?
                     </div>
                             
                     <div class="modal-footer">
-			             <a class="btn btn-primary"  href="<?php echo base_url('novo_usuario');?>" role="button">
-                            <?php
-                                if($tentou){
-                                    echo "Efetuar Login";
-                                } else {
-                            ?>
-                                    Sim
-                            <?php   } ?>
-                        </a>
-                        <button type="button" class="btn btn-primary"  data-dismiss="modal">
-                            <?php
-                                if($tentou){
-                                    echo "Voltar";
-                                } else {
-                            ?>
-                                    Não
-                            <?php   } ?>
-                        </button>
+                        <a class="btn btn-primary"  href="<?php echo base_url('login');?>" role="button">Sim</a>
+                        <button type="button" class="btn btn-primary"  data-dismiss="modal">Não</button>
                     </div>
                 </div>
             </div>
         </div>
-        <?php 
-            if($tentou){ 
-        ?>		
-                <script type="text/javascript">
-                    $(document).ready(function(){
-                        $('#modal_generico').modal('show');
-                    });
-                </script>
-        <?php 
-            } 
-        ?>
         <script>
                         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
