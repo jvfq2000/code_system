@@ -67,6 +67,7 @@ class Pessoa_model extends CI_Model {
 	public function getPessoa_telefone(){
 		return $this->pessoa_telefone;
 	}
+    
 	public function setPessoa_telefone($pessoa_telefone){
 		$this->pessoa_telefone = $pessoa_telefone;
 	}
@@ -81,6 +82,6 @@ class Pessoa_model extends CI_Model {
 			"pessoa_data_nascimento" => $this->getPessoa_data_nascimento(),
 			"pessoa_telefone"        => $this->getPessoa_telefone()
 		);
-		return $this->bd->insert("pessoa", $dados_pessoa);
+        return $this->db->insert("pessoa", $dados_pessoa);
 	}
 }
