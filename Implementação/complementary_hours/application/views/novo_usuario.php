@@ -32,18 +32,6 @@
 
         </style>
         <script type="text/javascript">
-			function validarSenha(){
-				var senha = document.getElementById('senha').value;
-				var repetir_senha = document.getElementById('repetir_senha').value;
-				
-				if(senha == "" || senha.length <= 5){
-					alert('Preencha o campo senha com minimo 6 caracteres');
-                    event.preventDefault();
-				}else if(repetir_senha != senha){
-					alert('Senhas não compativeis!');
-                    event.preventDefault();
-				}
-			}
             function mascara(telefone){ 
                 if(telefone.value.length == 0){
                     telefone.value = '(' + telefone.value; 
@@ -64,7 +52,7 @@
             <br>
             <div class="accordion" id="accordionExample">
                 <div class="card-header rounded mx-auto col-sm-7" id="headingOne">
-                    <form name="formuser" class="form-group needs-validation" action="Novo_usuario/cadastro" method='POST' novalidate>
+                    <form name="formuser" class="form-group needs-validation" action="Novo_usuario/cadastrar" method='POST' novalidate>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="nome">Nome</label>
@@ -144,6 +132,20 @@
                         </div>
 
                         <div class="row">
+                            <script type="text/javascript">
+                                function validarSenha(){
+                                    var senha = document.getElementById('senha').value;
+                                    var repetir_senha = document.getElementById('repetir_senha').value;
+
+                                    if(senha == "" || senha.length <= 5){
+                                        alert('Preencha o campo senha com minimo 6 caracteres');
+                                        event.preventDefault();
+                                    }else if(repetir_senha != senha){
+                                        alert('Senhas não compativeis!');
+                                        event.preventDefault();
+                                    }
+                                }
+                            </script>
                             <div class="col-md-6 mb-3">
                                 <label for="senha">Senha</label>
                                 <input type="password" class="form-control" placeholder="" legth="6" name="senha" id="senha" required>

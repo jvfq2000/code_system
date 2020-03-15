@@ -48,7 +48,7 @@ class Usuario_model extends CI_Model {
 	}
 
 	public function get_id_ultimo_cadastro(){
-		return $this->db->insert_id;
+		return $this->db->insert_id();
 	}
 	
 	public function email_existe(){

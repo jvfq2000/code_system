@@ -79,8 +79,8 @@ class Pessoa_model extends CI_Model {
 			"pessoa_nome"            => $this->getPessoa_nome(),
 			"pessoa_sobrenome"       => $this->getPessoa_sobrenome(),
 			"pessoa_data_nascimento" => $this->getPessoa_data_nascimento(),
-			"pessoa_telefone"        => $this->getPessoa_telefone(),
+			"pessoa_telefone"        => $this->getPessoa_telefone()
 		);
-		return $this->bd->insert("pessoa", dados_pessoa);
+		return $this->bd->insert("pessoa", $dados_pessoa);
 	}
 }
