@@ -51,17 +51,17 @@
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="email@example.com" required>
+                                <input type="email" class="form-control" name="email" placeholder="email@example.com" required autofocus>
                                 <div class="invalid-feedback">
                                     Informe um e-mail válido!
                                 </div>
                             </div>
-                        </div>
-
+                        </div>   
+                        
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="senha">Senha</label>
-                                <input type="password" class="form-control" name="senha" placeholder="Password"  required>
+                                <input type="password" class="form-control" name="senha" placeholder="Password"  required autofocus>
                                 <div class="invalid-feedback">
                                     Informe uma senha!
                                 </div>
@@ -104,9 +104,6 @@
                     <a class="text-center rounded mx-auto d-block col-12 text-dark" href="<?php echo base_url('cadastro')?>">Novo por aqui?             Cadastre-se!</a>
                 </div>
             </div>
-            <footer class="mx-auto d-block my-5 pt-5 text-muted text-center text-small">
-                <p class="mb-1">&copy; 2020 Code System</p>
-            </footer>
         </div>
     </body>
 </html>

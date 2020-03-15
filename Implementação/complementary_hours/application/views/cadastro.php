@@ -23,6 +23,30 @@
             }
 
         </style>
+        <script type="text/javascript">
+			function validarSenha(){
+				var senha = document.getElementById('senha').value;
+				var repetir_senha = document.getElementById('repetir_senha').value;
+				
+				if(senha == "" || senha.length <= 5){
+					alert('Preencha o campo senha com minimo 6 caracteres');
+                    event.preventDefault();
+				}else if(repetir_senha != senha){
+					alert('Senhas não compativeis!');
+                    event.preventDefault();
+				}
+			}
+            function mascara(telefone){ 
+                if(telefone.value.length == 0){
+                    telefone.value = '(' + telefone.value; 
+                }
+                if(telefone.value.length == 3){
+                    telefone.value = telefone.value + ') '; 
+                }
+                if(telefone.value.length == 8){
+                    telefone.value = telefone.value + '-';
+                }
+		</script>
 
     </head>
     
@@ -32,7 +56,7 @@
             <br>
             <div class="accordion" id="accordionExample">
                 <div class="card-header rounded mx-auto col-sm-7" id="headingOne">
-                    <form class="form-group needs-validation" action="Cadastro_usuario/cadastrar" method='POST' novalidate>
+                    <form name="formuser" class="form-group needs-validation" action="Cadastro_usuario/cadastrar" method='POST' novalidate>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="nome">Nome</label>
@@ -62,7 +86,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="telefone">Telefone</label>
-                                <input type="text" class="form-control" id="telefone" placeholder="" name="telefone" value="" required>
+                                <input type="text" class="form-control" id="telefone" name="telefone" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
@@ -114,7 +138,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="senha">Senha</label>
-                                <input type="password" class="form-control" id="senha" placeholder="" name="senha" required>
+                                <input type="password" class="form-control" placeholder="" legth="6" name="senha" id="senha" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
@@ -122,7 +146,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="repetir_senha">Repetir Senha</label>
-                                <input type="password" class="form-control" id="lastName" placeholder="" required>
+                                <input type="password" class="form-control" placeholder="" legth="6" name="repetir_senha" id="repetir_senha" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
@@ -133,7 +157,7 @@
                         
                         <div class="row">
                             <div class="col-6 mb-5">
-                                <button class="col-12 btn btn-primary btn-lg" type="submit">Salvar</button>
+                                <button class="col-12 btn btn-primary btn-lg" type="submit"  onclick="validarSenha();">Salvar</button>
                             </div>
                           
                             <div class="col-6 mb-5">
@@ -187,6 +211,7 @@
         })();
         </script>
         <script src="<?php echo base_url('assets/jquery/jquery.slim.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/jquery/jquery.mask.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js');?>"></script>
