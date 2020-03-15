@@ -101,7 +101,7 @@
                         })();
                         </script>
                     <br>
-                    <a class="text-center rounded mx-auto d-block col-12 text-dark" href="<?php echo base_url('cadastro')?>">Novo por aqui?             Cadastre-se!</a>
+                    <a class="text-center rounded mx-auto d-block col-12 text-dark" href="<?php echo base_url('Novo_usuario')?>">Novo por aqui?             Cadastre-se!</a>
                 </div>
             </div>
         </div>

@@ -22,8 +22,8 @@ class Login extends CI_Controller {
                         $dados_sessao = array(
                                 'nome'      => $dados['pessoa_nome'],
                                 'sobrenome' => $dados['pessoa_sobrenome'],
-                                'campus'    => $dados['pessoa_campus'],
-                                'curso'     => $dados['pessoa_curso'],
+                                'campus'    => $dados['campus_descricao'],
+                                'curso'     => $dados['curso_descricao'],
                                 'telefone'  => $dados['pessoa_telefone'],
                                 'email'     => $dados['usuario_email'],
                                 'senha'     => $dados['usuario_senha'],
