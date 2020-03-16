@@ -9,23 +9,19 @@ class Novo_usuario extends CI_Controller {
 	}
 	
 	public function index(){
-		$dados = array(
-			"tentou" => FALSE
-		);
+		$dados['tentou'] = FALSE;
 		$this->load->view('novo_usuario', $dados);
 		$this->load->view('include/footer');
 	}
 
 	public function cadastrar(){
-		$dados = array(
-			"tentou"   => TRUE,
-			"mensagem" => "Erro ao cadastrar, tente novamente!",
-		);
+		$dados['tentou']   = TRUE;
+		$dados['mensagem'] = "Erro ao cadastrar, tente novamente!";
+
 		$this->usuario->setUsuario_email($this->input->post('email'));
 		$this->usuario->setUsuario_senha($this->input->post('senha'));
 
 		if(!$this->usuario->email_existe()){
-            
 			$usuario_cadastrado = $this->usuario->cadastrar();
 		
 			if($usuario_cadastrado){
@@ -37,21 +33,17 @@ class Novo_usuario extends CI_Controller {
 				$this->pessoa->setPessoa_data_nascimento($this->input->post("dt_nascimento"));
 				$this->pessoa->setPessoa_telefone($this->input->post("telefone"));
 			
-                $pessoa_cadastrada = $this->pessoa->cadastrar();
+				$pessoa_cadastrada = $this->pessoa->cadastrar();
 
 				if($pessoa_cadastrada){
-					$dados = array(
-						"tentou"   => TRUE,
-						"mensagem" => "Cadastro realizado com sucesso!"
-					);
+					$dados['tentou']   = TRUE;
+					$dados['mensagem'] = "Cadastro realizado com sucesso!";
 				}
 			}
 		}else {
-            $dados = array(
-				"tentou"   => TRUE,
-				"mensagem" => "Este usuário já foi cadastrado!"
-			);
-        }
+			$dados['tentou']   = TRUE;
+			$dados['mensagem'] = "Este usuário já foi cadastrado!";
+		}
 		$this->load->view('novo_usuario', $dados);
 	}
 }

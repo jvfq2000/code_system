@@ -35,18 +35,21 @@
             <br>
             <br>
             <div class="accordion col-12 row" id="accordionExample">
-                <h1 class="col-6 text-white font-weight-bold">
-                    <p class="text-justify"> 
-                        <br>
-                        <br>
-                        O Complementary Hours veio para facilitar sua vida.
-                        <br>
-                        <br>
-                        Utilize agora e se organize! 
-                    </p>
-                </h1>
-                <div class="card-header rounded mx-auto col-4 bg-white float-right" id="headingOne">
-                    <img src="<?php echo base_url('assets/img/logo_reduzida.jpg');?>" width="200" height="150" class="rounded mx-auto d-block"/>
+		<div class="float-left col-6">
+			<h1 class="text-white font-weight-bold">
+                    		<p class="text-left"></br></br> 
+					Complementary Hours, veio para facilitar sua vida!</br></br>
+                  		</p>
+                	</h1>
+                	<h4 class="text-white font-weight-bold">
+                    		<p class="text-left"> 
+					Chega de assinar formulários e imprimir certificados.</br></br>
+					Descomplique sua vida com a gente!
+                		</p>
+                	</h4>
+		</div>
+                <div class="card-header rounded mx-auto col-4 bg-white float-rigth" id="headingOne">
+                    <img src="<?php echo base_url('assets/img/logo.jpeg');?>" width="200" height="190" class="rounded mx-auto d-block"/>
                     <form class="needs-validation" novalidate action="login/autenticar" method="POST">
                         <div class="row">
                             <div class="col-md-12 mb-2">

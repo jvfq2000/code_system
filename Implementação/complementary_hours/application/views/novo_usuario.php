@@ -40,7 +40,7 @@
     
     <body class="bg-white">
         <div class="col-12">
-            <img src="<?php echo base_url('assets/img/top-complementary_hours.png');?>" class="rounded mx-auto d-block"/>
+	    <img src="<?php echo base_url('assets/img/logo_cadastro.jpg');?>" height="160" width="500" class="rounded mx-auto d-block"/>
             <br>
             <div class="accordion" id="accordionExample">
                 <div class="card-header rounded mx-auto col-sm-7" id="headingOne">
@@ -129,11 +129,8 @@
                                     var senha = document.getElementById('senha').value;
                                     var repetir_senha = document.getElementById('repetir_senha').value;
 
-                                    if(senha == "" || senha.length <= 5){
-                                        alert('Preencha o campo senha com minimo 6 caracteres');
-                                        event.preventDefault();
-                                    }else if(repetir_senha != senha){
-                                        alert('Senhas não compativeis!');
+                                    if(senha == "" || senha.length <= 5 || repetir_senha != senha){
+					$("#modal_senha").modal();
                                         event.preventDefault();
                                     }
                                 }
@@ -147,7 +144,7 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="repetir_senha">Repetir Senha</label>
+                                <label for="repetir_senha">Confirmar Senha</label>
                                 <input type="password" class="form-control" placeholder="" legth="6" name="repetir_senha" id="repetir_senha" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
@@ -159,7 +156,7 @@
                         
                         <div class="row">
                             <div class="col-6 mb-5">
-                                <button class="col-12 btn btn-primary btn-lg" data-toggle="modal" type="submit" data-toggle="modal" data-target="#modal_generico" onclick="validarSenha();">Salvar</button>
+                                <button class="col-12 btn btn-primary btn-lg" data-toggle="modal" type="submit" data-toggle="modal" onclick="validarSenha();">Salvar</button>
                             </div>
                             <div class="col-6 mb-5">
                                 <button class="col-12 btn btn-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_generico">Cancelar</button>
@@ -170,7 +167,7 @@
             </div>
         </div>
         <div class="modal fade" name="modal_generico" id="modal_generico" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                             
                     <div class="modal-header">
@@ -191,7 +188,7 @@
                     </div>
                             
                     <div class="modal-footer">
-			             <a class="btn btn-primary"  href="<?php echo base_url('novo_usuario');?>" role="button">
+			             <a class="btn btn-primary"  href="<?php echo base_url();?>" role="button">
                             <?php
                                 if($tentou){
                                     echo "Efetuar Login";
@@ -213,17 +210,29 @@
                 </div>
             </div>
         </div>
-        <?php 
-            if($tentou){ 
-        ?>		
-                <script type="text/javascript">
-                    $(document).ready(function(){
-                        $('#modal_generico').modal('show');
-                    });
-                </script>
-        <?php 
-            } 
-        ?>
+        <div class="modal fade" name="modal_senha" id="modal_senha" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                            
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Senha Inválida!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                            
+			<div class="modal-body">
+                                A senha deve possuir mais de 6 caracteres, verifique também se os campos "Senha" e "Confirmar Senha" estão iguais!
+			</div>
+                            
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary"  data-dismiss="modal">
+				Entendi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script>
                         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
@@ -249,5 +258,17 @@
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
         <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js');?>"></script>
+
+        <?php 
+            if($tentou){ 
+        ?>		
+                <script>
+                    $(document).ready(function(){
+                        $('#modal_generico').modal('show');
+                    });
+                </script>
+        <?php 
+            } 
+        ?>
     </body>
 </html>

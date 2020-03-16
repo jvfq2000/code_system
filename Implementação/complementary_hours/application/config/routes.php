@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['cadastro'] = 'Cadastro';
 $route['home'] = 'Home';
 $route['login'] = 'Login';
+$route['novo_usuario'] = 'Novo_usuario';
+$route['novo_usuario/cadastrar'] = 'Novo_usuario/cadastrar';

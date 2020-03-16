@@ -1,4 +1,4 @@
-<img src="./logo_complementary_hours.jpeg?w=300" height="300" whidth="300"/>
+<img src="./logo_complementary_hours.jpg?w=300" height="160" whidth="500"/>
 
 # Complementary Hours: Sistema para automação e gerenciamento de atividades complementares.
 
