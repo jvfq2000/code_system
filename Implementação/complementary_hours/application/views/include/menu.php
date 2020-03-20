@@ -11,7 +11,7 @@
 ?>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary col-12">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -39,7 +39,7 @@
         <div class="dropdown-menu" style="width:18rem;">
                 <ul class="list-group list-group-flush">
                     <div class="row">
-                        <img src="<?php echo base_url('assets/img/perfil.jpg');?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                        <img src="<?php echo base_url('assets/img/logo.jpeg');?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                         <a class="floar-right">
 			<?php echo "{$tipoUsuario}: {$_SESSION['nome']}"; ?><br>
 			<?php echo $_SESSION['email']; ?>

@@ -2,7 +2,7 @@
 
     <hr class="featurette-divider">
   </div><!-- /.container -->
-  <footer class="my-5 pt-5 text-muted text-center text-small">
+  <footer class="my-3 pt-3 text-muted text-center text-small">
     <p class="mb-1">&copy; 2020 Code System</p>
   </footer>
         <script src="<?php echo base_url('assets/jquery/jquery.slim.min.js');?>"></script>
