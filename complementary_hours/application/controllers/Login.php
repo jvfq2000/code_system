@@ -34,8 +34,8 @@ class Login extends CI_Controller {
 			redirect('Home');
 		} else {
                         echo "<script>alert('Acesso Negado');history.go(-1);</script>";
+			redirect(base_url());
                 }
-                $this->load->view('login');
         }
 
         function logout() {

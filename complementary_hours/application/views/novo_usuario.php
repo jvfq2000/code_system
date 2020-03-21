@@ -197,7 +197,7 @@
                                     Sim
                             <?php   } ?>
                         </a>
-                        <button type="button" class="btn btn-primary"  data-dismiss="modal">
+                        <a class="btn btn-primary"  href="<?php echo base_url('Novo_usuario');?>" role="button">
                             <?php
                                 if($tentou){
                                     echo "Voltar";
@@ -205,7 +205,7 @@
                             ?>
                                     Não
                             <?php   } ?>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

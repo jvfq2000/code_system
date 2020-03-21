@@ -2,21 +2,25 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Novo_usuario extends CI_Controller {
+	private $dados;
+
 	function __construct(){
 		parent::__construct();
 		$this->load->model('classes/Usuario_model', 'usuario');
 		$this->load->model('classes/Pessoa_model', 'pessoa');
+
+		$this->dados['tentou']   = FALSE;
+		$this->dados['mensagem'] = "Erro ao cadastrar, tente novamente!";
 	}
 	
 	public function index(){
-		$dados['tentou'] = FALSE;
-		$this->load->view('novo_usuario', $dados);
+		$this->load->view('novo_usuario', $this->dados);
 		$this->load->view('include/footer');
 	}
 
 	public function cadastrar(){
-		$dados['tentou']   = TRUE;
-		$dados['mensagem'] = "Erro ao cadastrar, tente novamente!";
+		$this->dados['tentou']   = TRUE;
+		$this->dados['mensagem'] = "Erro ao cadastrar, tente novamente!";
 
 		$this->usuario->setUsuario_email($this->input->post('email'));
 		$this->usuario->setUsuario_senha($this->input->post('senha'));
@@ -36,14 +40,14 @@ class Novo_usuario extends CI_Controller {
 				$pessoa_cadastrada = $this->pessoa->cadastrar();
 
 				if($pessoa_cadastrada){
-					$dados['tentou']   = TRUE;
-					$dados['mensagem'] = "Cadastro realizado com sucesso!";
+					$this->dados['tentou']   = TRUE;
+					$this->dados['mensagem'] = "Cadastro realizado com sucesso!";
 				}
 			}
 		}else {
-			$dados['tentou']   = TRUE;
-			$dados['mensagem'] = "Este usuário já foi cadastrado!";
+			$this->dados['tentou']   = TRUE;
+			$this->dados['mensagem'] = "Um usuário já foi cadastrado com esse email, verifique suas informações e tente novamente!";
 		}
-		$this->load->view('novo_usuario', $dados);
+		$this->index();
 	}
 }

@@ -6,7 +6,7 @@ class Home extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		if($_SESSION['logado'] !== TRUE){
-			redirect('Login');
+			redirect(base_url());
 		}
 	}
 
