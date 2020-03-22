@@ -10,7 +10,7 @@ class Novo_usuario extends CI_Controller {
 		$this->load->model('classes/Pessoa_model', 'pessoa');
 
 		$this->dados['tentou']   = FALSE;
-		$this->dados['mensagem'] = "Erro ao cadastrar, tente novamente!";
+		$this->dados['mensagem'] = "";
 	}
 	
 	public function index(){
@@ -36,7 +36,6 @@ class Novo_usuario extends CI_Controller {
 				$this->pessoa->setPessoa_sobrenome($this->input->post("sobrenome"));
 				$this->pessoa->setPessoa_data_nascimento($this->input->post("dt_nascimento"));
 				$this->pessoa->setPessoa_telefone($this->input->post("telefone"));
-			
 				$pessoa_cadastrada = $this->pessoa->cadastrar();
 
 				if($pessoa_cadastrada){

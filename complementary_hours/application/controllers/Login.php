@@ -14,33 +14,34 @@ class Login extends CI_Controller {
 	}
 	
 	function autenticar() {
-                $usuario_email = $this->input->post('email',TRUE);
-                $usuario_senha = $this->input->post('senha',TRUE);
-                $result        = $this->Login_model->checar_usuario($usuario_email, $usuario_senha);
-                if($result->num_rows() > 0) {
-                        $dados     = $result->row_array();
-                        $dados_sessao = array(
-                                'nome'      => $dados['pessoa_nome'],
-                                'sobrenome' => $dados['pessoa_sobrenome'],
-                                'campus'    => $dados['campus_descricao'],
-                                'curso'     => $dados['curso_descricao'],
-                                'telefone'  => $dados['pessoa_telefone'],
-                                'email'     => $dados['usuario_email'],
-                                'senha'     => $dados['usuario_senha'],
-                                'nivel'     => $dados['usuario_nivel'],
-                                'logado'    => TRUE
-                        );
+		$usuario_email = $this->input->post('email',TRUE);
+		$usuario_senha = $this->input->post('senha',TRUE);
+		$result        = $this->Login_model->checar_usuario($usuario_email, $usuario_senha);
+		if($result->num_rows() > 0) {
+			$dados     = $result->row_array();
+			$dados_sessao = array(
+				'nome'      => $dados['pessoa_nome'],
+				'sobrenome' => $dados['pessoa_sobrenome'],
+				'campus'    => $dados['campus_descricao'],
+				'curso'     => $dados['curso_descricao'],
+				'telefone'  => $dados['pessoa_telefone'],
+				'email'     => $dados['usuario_email'],
+				'senha'     => $dados['usuario_senha'],
+				'nivel'     => $dados['usuario_nivel'],
+				'logado'    => TRUE
+			);
+	
 			$this->session->set_userdata($dados_sessao);
-			redirect('Home');
+			redirect(base_url('Home'));
+	
 		} else {
-                        echo "<script>alert('Acesso Negado');history.go(-1);</script>";
+			echo "<script>alert('Acesso Negado');history.go(-1);</script>";
 			redirect(base_url());
-                }
-        }
+		}
+	}
 
-        function logout() {
-                $this->session->sess_destroy();
-                redirect(base_url());
-        }
-
+	function logout() {
+		$this->session->sess_destroy();
+			redirect(base_url());
+	}
 }
