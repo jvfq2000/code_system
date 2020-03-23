@@ -2,14 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
+	private $dados;
 
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Login_model');
+
+		$this->dados['tentou']   = FALSE;
+		$this->dados['mensagem'] = "";
 	}
 
 	public function index(){
-		$this->load->view('login');
+		$this->load->view('login', $this->dados);
 		$this->load->view('include/footer');
 	}
 	
@@ -35,8 +39,9 @@ class Login extends CI_Controller {
 			redirect(base_url('Home'));
 	
 		} else {
-			echo "<script>alert('Acesso Negado');history.go(-1);</script>";
-			redirect(base_url());
+			$this->dados['tentou']   = TRUE;
+			$this->dados['mensagem'] = "Ops! Não te encontramos, tente novamente!";
+			$this->index();
 		}
 	}
 

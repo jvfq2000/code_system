@@ -26,8 +26,11 @@
                 }
             }
             body{
-                background: url("assets/img/fundo_login.png") no-repeat;
-        }
+			background-image:url("<?php echo base_url('assets/img/fundo_login.png'); ?>");
+				background-attachment:fixed;
+				background-size:100%;
+				background-repeat:no-repeat;
+        	}
         </style>
 
         <link href="floating-labels.css" rel="stylesheet">
@@ -53,7 +56,14 @@
 		<div class="card-header rounded mx-auto col-4 bg-white float-rigth" id="headingOne">
         	<img src="<?php echo base_url('assets/img/logo.jpeg');?>" width="200" height="190" class="rounded mx-auto d-block"/>
 
-            <form class="needs-validation" novalidate action="login/autenticar" method="POST">
+			<?php if($tentou){ ?>
+				<div class="alert alert-danger" role="alert">
+					<?php
+						echo $mensagem;
+					?>
+				</div>
+			<?php } ?>
+            <form class="needs-validation" novalidate action="<?php echo base_url('Login/autenticar');?>" method="POST">
             	<div class="row">
                 	<div class="col-md-12 mb-2">
                 		<label for="email">Email</label>
@@ -84,7 +94,9 @@
 					</div>
                 </div>
                 <br>
-                <button type="submit" class="rounded mx-auto d-block btn btn-primary col-6">Login</button>
+				<button type="submit" class="rounded mx-auto d-block btn btn-primary col-6">
+					Login
+				</button>
 			</form>
             <script>
             (function() {
