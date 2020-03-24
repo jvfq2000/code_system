@@ -14,3 +14,4 @@
 
   É interessante, mas não essencial, que o sistema forneça também um recurso para assinaturas digitais, visando automatizar ainda mais o processo, eliminando 100% o uso de papel.
 
+<img src="./logo_code_system.jpeg?w=300" height="300" whidth="300"/>
