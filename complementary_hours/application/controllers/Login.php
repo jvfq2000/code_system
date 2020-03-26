@@ -40,7 +40,7 @@ class Login extends CI_Controller {
 	
 		} else {
 			$this->dados['tentou']   = TRUE;
-			$this->dados['mensagem'] = "Ops! Não te encontramos, tente novamente!";
+			$this->dados['mensagem'] = "Ops! Não conseguimos te encontrar, tente novamente!";
 			$this->index();
 		}
 	}

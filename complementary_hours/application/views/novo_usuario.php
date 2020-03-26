@@ -40,7 +40,7 @@
     
     <body class="bg-white">
         <div class="col-12">
-	    <img src="<?php echo base_url('assets/img/logo_cadastro.jpg');?>" height="160" width="500" class="rounded mx-auto d-block"/>
+	    <img src="<?php echo base_url('assets/img/logo_cadastro.png');?>" height="160" width="500" class="rounded mx-auto d-block"/>
             <br>
             <div class="accordion" id="accordionExample">
                 <div class="card-header rounded mx-auto col-sm-7" id="headingOne">
