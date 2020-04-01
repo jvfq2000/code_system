@@ -23,18 +23,77 @@
             }
 
         </style>
+
+        <script src="<?php echo base_url('assets/jquery/jquery.min.js');?>"></script>
         <script type="text/javascript">
-            function mascara(telefone){ 
-                if(telefone.value.length == 0){
-                    telefone.value = '(' + telefone.value; 
-                }
-                if(telefone.value.length == 3){
-                    telefone.value = telefone.value + ') '; 
-                }
-                if(telefone.value.length == 8){
-                    telefone.value = telefone.value + '-';
-                }
-		</script>
+		function mascara(telefone){ 
+                	if(telefone.value.length == 0){
+                    		telefone.value = '(' + telefone.value; 
+                	}
+                	if(telefone.value.length == 3){
+                		telefone.value = telefone.value + ') '; 
+                	}
+                	if(telefone.value.length == 8){
+                		telefone.value = telefone.value + '-';
+                	}
+		}
+
+		function validarSenha(){
+			var senha = document.getElementById('senha').value;
+			var repetir_senha = document.getElementById('repetir_senha').value;
+
+			if(senha == "" || senha.length <= 5 || repetir_senha != senha){
+				$("#modal_senha").modal();
+				event.preventDefault();
+			}
+		}
+
+		$(function(){
+			$("#campus").change(function(){
+				let campus_id = $("#campus").val();
+				let urlMostrarCursos = "<?php echo base_url('Novo_usuario/ajax_mostrar_cursos');?>";
+				
+				console.log(urlMostrarCursos);
+				console.log(campus_id);
+				
+				$.ajax({
+					url        : urlMostrarCursos,
+					type       : "POST",
+					data       : {id : campus_id},
+
+					beforeSend : function(){
+						$("#curso").html("<option value=\"\">Carregando cursos ...</option>");
+					}
+				})
+				.done(function(cursos){
+					$("#curso").html(cursos);
+					$("#curso").removeAttr("disabled");
+				})
+				.fail(function(){
+					$("#curso").html("Ops! Houve um erro ao carregar.");
+				});
+			});
+                });
+                            
+		(function() {
+		    'use strict';
+		    window.addEventListener('load', function() {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.getElementsByClassName('needs-validation');
+			// Loop over them and prevent submission
+			var validation = Array.prototype.filter.call(forms, function(form) {
+			    form.addEventListener('submit', function(event) {
+				if (form.checkValidity() === false) {
+				    event.preventDefault();
+				    event.stopPropagation();
+				}
+				form.classList.add('was-validated');
+			    }, false);
+			});
+		    }, false);
+		})();
+                            
+	</script>
 
     </head>
     
@@ -43,7 +102,7 @@
 	    <img src="<?php echo base_url('assets/img/logo_cadastro.png');?>" height="160" width="500" class="rounded mx-auto d-block"/>
             <br>
             <div class="accordion" id="accordionExample">
-                <div class="card-header rounded mx-auto col-sm-7" id="headingOne">
+                <div class="shadow card-header rounded mx-auto col-sm-7" id="headingOne">
                     <form name="formuser" class="form-group needs-validation" action="Novo_usuario/cadastrar" method='POST' novalidate>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -66,7 +125,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="data_de_nascimento">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="firstName" placeholder="" value="" name="dt_nascimento" required>
+                                <input type="date" class="form-control" id="dt_nascimento" placeholder="" value="" name="dt_nascimento" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
@@ -82,12 +141,10 @@
                         </div>
 
                         <div class="row">
-                            
                             <div class="col-md-12 mb-2">
                               <label for="campus">Campus</label>
-                              <select class="custom-select" name="campus"required>
-                                <option selected disabled value="">Selecione</option>
-                                <option value="1">Instituto Federal do Norte de Minas Gerais Campus Arinos</option>
+                              <select class="custom-select" id="campus" name="campus" required>
+					<?php echo $campus_options; ?>
                               </select>
                               <div class="invalid-feedback">
                                 Campo obrigatorio!
@@ -96,16 +153,10 @@
                         </div>
                         
                         <div class="row">
-                            
                             <div class="col-md-12 mb-2">
                               <label for="campus">Curso</label>
-                              <select class="custom-select" name="curso"required>
-                                <option selected disabled value="">Selecione</option>
-                                <option value="1">Bacharelado em Administração</option>
-                                <option value="2">Bacharelado em Agronomia</option>
-                                <option value="3">Bacharelado em Sistemas de Informação</option>
-                                <option value="4">Tecnologia em Gestão Ambiental</option>
-                                <option value="5">Tecnologia em Produção de Grãos</option>
+                              <select class="custom-select" id="curso" name="curso" required disabled>
+					<option value="">Selecione o campus acima</option>
                               </select>
                               <div class="invalid-feedback">
                                 Campo obrigatorio!
@@ -124,17 +175,6 @@
                         </div>
 
                         <div class="row">
-                            <script type="text/javascript">
-                                function validarSenha(){
-                                    var senha = document.getElementById('senha').value;
-                                    var repetir_senha = document.getElementById('repetir_senha').value;
-
-                                    if(senha == "" || senha.length <= 5 || repetir_senha != senha){
-					$("#modal_senha").modal();
-                                        event.preventDefault();
-                                    }
-                                }
-                            </script>
                             <div class="col-md-6 mb-3">
                                 <label for="senha">Senha</label>
                                 <input type="password" class="form-control" placeholder="" legth="6" name="senha" id="senha" required>
@@ -155,11 +195,11 @@
                         <hr class="mb-4">
                         
                         <div class="row">
-                            <div class="col-6 mb-5">
-                                <button class="col-12 btn btn-primary btn-lg" data-toggle="modal" type="submit" data-toggle="modal" onclick="validarSenha();">Salvar</button>
+                            <div class="col-6 mb-1">
+                                <button class="shadow-sm col-12 btn btn-primary btn-lg" data-toggle="modal" type="submit" data-toggle="modal" onclick="validarSenha();">Salvar</button>
                             </div>
-                            <div class="col-6 mb-5">
-                                <button class="col-12 btn btn-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_generico">Cancelar</button>
+                            <div class="col-6 mb-1">
+                                <button class="shadow-sm col-12 btn btn-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_generico">Cancelar</button>
                             </div>  
                         </div>
                     </form>
@@ -233,31 +273,6 @@
                 </div>
             </div>
         </div>
-        <script>
-                        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-        </script>
-        <script src="<?php echo base_url('assets/jquery/jquery.slim.min.js');?>"></script>
-        <script src="<?php echo base_url('assets/jquery/jquery.mask.js');?>"></script>
-        <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
-        <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
-        <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js');?>"></script>
 
         <?php 
             if($tentou){ 
@@ -270,5 +285,5 @@
         <?php 
             } 
         ?>
-    </body>
-</html>
+
+        <script src="<?php echo base_url('assets/jquery/jquery.mask.js');?>"></script>

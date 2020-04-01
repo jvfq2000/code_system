@@ -4,6 +4,12 @@
     	<meta charset="utf-8">
     	<title>Home</title>
     	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <script src="<?php echo base_url('assets/jquery/jquery.min.js');?>"></script>
+    	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.js');?>"></script>
+    	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
+    	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js');?>"></script>
+
     	<style>
       		.bd-placeholder-img {
         		font-size: 1.125rem;

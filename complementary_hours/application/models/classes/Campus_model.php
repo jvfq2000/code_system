@@ -47,4 +47,22 @@ class Campus_model extends CI_Model {
 		);
 		return $this->db->insert("campus",$dados_campus);
 	}
+	
+	public function listar_campus(){
+		$this->db->select('campus_id, campus_descricao');
+		$this->db->from('campus');
+		$this->db->order_by('campus_descricao');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function montar_options_campus(){
+		$options = "<option value=\"\">Selecione</option>";
+		$campus_lista = $this->listar_campus();
+
+		foreach($campus_lista->result() as $campus){
+			$options .= "<option value=\"{$campus->campus_id}\">{$campus->campus_descricao}</option>";
+		}
+		return $options;
+	}
 }

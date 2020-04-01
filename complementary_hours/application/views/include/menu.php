@@ -35,7 +35,7 @@
     		</ul>
       		<div class="dropleft">
         		<img src="<?php echo base_url('assets/img/logo.jpeg');?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
-        		<div class="dropdown-menu" style="width:18rem;">
+        		<div class="dropdown-menu dropdown-menu-right" style="width:18rem;">
                 <ul class="list-group list-group-flush">
                     <div class="row">
                         <img src="<?php echo base_url('assets/img/logo.jpeg');?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>

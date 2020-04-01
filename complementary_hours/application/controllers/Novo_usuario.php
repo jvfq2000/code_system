@@ -8,14 +8,22 @@ class Novo_usuario extends CI_Controller {
 		parent::__construct();
 		$this->load->model('classes/Usuario_model', 'usuario');
 		$this->load->model('classes/Pessoa_model', 'pessoa');
+		$this->load->model('classes/Campus_model', 'campus');
+		$this->load->model('classes/Curso_model', 'curso');
 
-		$this->dados['tentou']   = FALSE;
-		$this->dados['mensagem'] = "";
+		$this->dados['campus_options'] = $this->campus->montar_options_campus();
+		$this->dados['tentou']       = FALSE;
+		$this->dados['mensagem']     = "";
 	}
 	
 	public function index(){
 		$this->load->view('novo_usuario', $this->dados);
 		$this->load->view('include/footer');
+	}
+
+	public function ajax_mostrar_cursos(){
+		$campus_id = $this->input->post('id');
+		echo $this->curso->montar_options_curso($campus_id);
 	}
 
 	public function cadastrar(){

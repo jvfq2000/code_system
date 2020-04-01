@@ -94,7 +94,7 @@
 					</div>
                 </div>
                 <br>
-				<button type="submit" class="rounded mx-auto d-block btn btn-primary col-6">
+				<button type="submit" class="shadow rounded mx-auto d-block btn btn-primary col-md-6">
 					Login
 				</button>
 			</form>
