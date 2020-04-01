@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'mysql380.umbler.com',
 	'username' => 'code_system',
-	'password' => 'complementary_hours',
-	'database' => 'complementary_hours',
+	'password' => 'cschad123',
+	'database' => 'code_system',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

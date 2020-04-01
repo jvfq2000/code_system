@@ -196,10 +196,10 @@
                         
                         <div class="row">
                             <div class="col-6 mb-1">
-                                <button class="shadow-sm col-12 btn btn-primary btn-lg" data-toggle="modal" type="submit" data-toggle="modal" onclick="validarSenha();">Salvar</button>
+                                <button class="shadow-sm col-12 btn btn-outline-primary btn-lg" data-toggle="modal" type="submit" data-toggle="modal" onclick="validarSenha();">Salvar</button>
                             </div>
                             <div class="col-6 mb-1">
-                                <button class="shadow-sm col-12 btn btn-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_generico">Cancelar</button>
+                                <button class="shadow-sm col-12 btn btn-outline-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_generico">Cancelar</button>
                             </div>  
                         </div>
                     </form>
