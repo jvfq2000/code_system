@@ -45,10 +45,10 @@ class Login extends CI_Controller {
 				$this->session->set_userdata($dados_sessao);
 				redirect(base_url('Home'));
 			} else {
-				$this->falha_na_autenticacao;
+				$this->falha_na_autenticacao();
 			}
 		} else {
-			$this->falha_na_autenticacao;
+			$this->falha_na_autenticacao();
 		}
 	}
 
