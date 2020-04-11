@@ -7,14 +7,13 @@ class Login_model extends CI_Model {
 		parent::__construct();
 	}
 
-	public function checar_usuario($usuario_email, $usuario_senha){
+	public function checar_usuario($usuario_email){
 		$this->db->select('*');
 		$this->db->from('usuario');
 		$this->db->join('pessoa', 'pessoa.usuario_id = usuario.usuario_id');
 		$this->db->join('curso', 'pessoa.curso_id = curso.curso_id');
 		$this->db->join('campus', 'pessoa.campus_id = campus.campus_id');
 		$this->db->where('usuario_email', $usuario_email);
-		$this->db->where('usuario_senha', $usuario_senha);
 		$query = $this->db->get();
 		return $query;
 	}
