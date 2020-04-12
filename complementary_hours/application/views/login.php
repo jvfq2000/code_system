@@ -61,6 +61,7 @@
 					<?php
 						echo $mensagem;
 					?>
+                    <img src="<?php echo base_url('assets/img/emoji/monoculo.png');?>" width="35" height="35"/>
 				</div>
 			<?php } ?>
             <form class="needs-validation" novalidate action="<?php echo base_url('Login/autenticar');?>" method="POST">

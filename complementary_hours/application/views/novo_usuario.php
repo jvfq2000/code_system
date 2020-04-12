@@ -38,51 +38,68 @@
                 	}
 		}
 
-		function validarSenha(){
-			var senha = document.getElementById('senha').value;
-			var repetir_senha = document.getElementById('repetir_senha').value;
-
-			if(senha == "" || senha.length <= 5 || repetir_senha != senha){
-				$("#modal_senha").modal();
-				event.preventDefault();
-			}
-		}
-
-		//função para carregar os cursos de acordo com o campus selecionado, utilizando ajax
+        //função para carregar os cursos de acordo com o campus selecionado, utilizando ajax
 		$(function(){
 			$("#campus").change(function(){
 				let campus_id = $("#campus").val();
 				let urlMostrarCursos = "<?php echo base_url('Novo_usuario/ajax_mostrar_cursos');?>";
 				
-				$.ajax({
-					url        : urlMostrarCursos,
-					type       : "POST",
-					data       : {id : campus_id},
+                if (campus_id == '') {
+                    $("#curso").html("<option value=\"\">Selecione o campus acima!</option>");
+                    $("#curso").attr("disabled");
+                
+                } else {
+    				$.ajax({
+    					url        : urlMostrarCursos,
+    					type       : "POST",
+    					data       : {id : campus_id},
 
-					beforeSend : function(){
-						$("#curso").html("<option value=\"\">Carregando cursos ...</option>");
-					}
-				})
-				.done(function(cursos){
-					$("#curso").html(cursos);
-					$("#curso").removeAttr("disabled");
-				})
-				.fail(function(){
-					$("#curso").html("Ops! Houve um erro ao carregar.");
-				});
+    					beforeSend : function(){
+    						$("#curso").html("<option value=\"\">Carregando cursos ...</option>");
+    					}
+    				})
+    				.done(function(cursos){
+                        $("#curso").html(cursos);
+                        $("#curso").removeAttr("disabled");
+    				})
+    				.fail(function(){
+    					$("#curso").html("Ops! Houve um erro ao carregar.");
+    				});
+                }
 			});
-                });
+        });
                             
 		(function() {
 		    'use strict';
 		    window.addEventListener('load', function() {
 			var forms = document.getElementsByClassName('needs-validation');
-			var validation = Array.prototype.filter.call(forms, function(form) {
+            var validation = Array.prototype.filter.call(forms, function(form) {
 			    form.addEventListener('submit', function(event) {
-				if (form.checkValidity() === false) {
+                var senha = $("#senha").val();
+                var repetir_senha = $("#repetir_senha").val();
+				
+                if (form.checkValidity() === false) {
 				    event.preventDefault();
 				    event.stopPropagation();
-				}
+				}else if(senha == "" || senha.length <= 5){
+                    $("#alerts_ficam_aqui").html(
+                        "<div class=\"alert alert-danger\" role=\"alert\">"
+                        +"A senha deve ter no mínimo 6 caracteres!"
+                        +"<img src=\"<?php echo base_url('assets/img/emoji/doido.png');?>\" width=\"35\" height=\"35\"/>"
+                        +"</div>"
+                    );
+                    event.preventDefault();
+                    event.stopPropagation();
+                } else if(repetir_senha != senha){
+                    $("#alerts_ficam_aqui").html(
+                        "<div class=\"alert alert-danger\" role=\"alert\">"
+                        +"Ops! Acho que os campos \"Senha\" e \"Confirmar Senha\" <b>não</b> estão iguais!"
+                        +"<img src=\"<?php echo base_url('assets/img/emoji/pensando.png');?>\" width=\"35\" height=\"35\"/>"
+                        +"</div>"
+                    );
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
 				form.classList.add('was-validated');
 			    }, false);
 			});
@@ -99,11 +116,11 @@
             <br>
             <div class="accordion" id="accordionExample">
                 <div class="shadow card-header rounded mx-auto col-sm-7" id="headingOne">
-                    <form name="formuser" class="form-group needs-validation" action="Novo_usuario/cadastrar" method='POST' novalidate>
+                    <form name="formuser" class="form-group needs-validation" action="<?php echo base_url('Novo_usuario/cadastrar');?>" method='POST' novalidate>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="nome">Nome</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" name="nome" value="" required>
+                                <input type="text" class="form-control" id="firstName" name="nome" value="" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
@@ -111,7 +128,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="sobre_nome">Sobrenome</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" name="sobrenome" value="" required>
+                                <input type="text" class="form-control" id="lastName" name="sobrenome" value="" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
@@ -121,7 +138,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="data_de_nascimento">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="dt_nascimento" placeholder="" value="" name="dt_nascimento" required>
+                                <input type="date" class="form-control" id="dt_nascimento" value="" name="dt_nascimento" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
@@ -138,25 +155,25 @@
 
                         <div class="row">
                             <div class="col-md-12 mb-2">
-                              <label for="campus">Campus</label>
-                              <select class="custom-select" id="campus" name="campus" required>
-					<?php echo $campus_options; ?>
-                              </select>
-                              <div class="invalid-feedback">
-                                Campo obrigatorio!
-                              </div>
+                                <label for="campus">Campus</label>
+                                <select class="custom-select" id="campus" name="campus" required>
+					               <?php echo $campus_options; ?>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Campo obrigatorio!
+                                </div>
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-12 mb-2">
-                              <label for="campus">Curso</label>
-                              <select class="custom-select" id="curso" name="curso" required disabled>
-					<option value="">Selecione o campus acima</option>
-                              </select>
-                              <div class="invalid-feedback">
-                                Campo obrigatorio!
-                              </div>
+                                <label for="campus">Curso</label>
+                                <select class="custom-select" id="curso" name="curso" required disabled>
+    					           <option value="">Selecione o campus acima!</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Campo obrigatorio!
+                                </div>
                             </div>
                         </div>
                         
@@ -173,7 +190,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="senha">Senha</label>
-                                <input type="password" class="form-control" placeholder="" legth="6" name="senha" id="senha" required>
+                                <input type="password" class="form-control" name="senha" id="senha" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
@@ -181,101 +198,78 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="repetir_senha">Confirmar Senha</label>
-                                <input type="password" class="form-control" placeholder="" legth="6" name="repetir_senha" id="repetir_senha" required>
+                                <input type="password" class="form-control" placeholder="" name="repetir_senha" id="repetir_senha" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
                             </div>
+                        </div>
+
+                        <div id="alerts_ficam_aqui">
+
                         </div>
                         
                         <hr class="mb-4">
                         
                         <div class="row">
                             <div class="col-6 mb-1">
-                                <button class="shadow-sm col-12 btn btn-outline-primary btn-lg" data-toggle="modal" type="submit" data-toggle="modal" onclick="validarSenha();">Salvar</button>
+                                <button class="shadow-sm col-12 btn btn-outline-primary btn-lg" type="submit">Salvar</button>
                             </div>
                             <div class="col-6 mb-1">
-                                <button class="shadow-sm col-12 btn btn-outline-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_generico">Cancelar</button>
+                                <button class="shadow-sm col-12 btn btn-outline-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_cancelar">Cancelar</button>
                             </div>  
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="modal fade" name="modal_generico" id="modal_generico" tabindex="-1" role="dialog">
+
+        <div class="modal fade" name="modal_confirmar_email" id="modal_confirmar_email" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                            
+
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            <?php if ($sucesso){ ?>
+                                    <img src="<?php echo base_url('assets/img/icone/ok.png');?>" height="40" width="40"/>
+                                    Falta pouco <?php echo $nome ?>!
+                            <?php } else { ?>
+                                    <img src="<?php echo base_url('assets/img/icone/erro.png');?>" height="45" width="45"/>
+                                    Algo de errado, não está certo!
+                            <?php } ?>
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span>&times;</span>
                         </button>
                     </div>
                             
-		          <div class="modal-body">
-                        <?php
-                            if($tentou){
-                                echo $mensagem;
-                            } else {
+                    <div class="modal-body">
+                        <?php 
+                            echo $mensagem;
                         ?>
-                                Deseja realmente cancelar?
-                        <?php   } ?>
                     </div>
                             
                     <div class="modal-footer">
-			             <a class="btn btn-primary"  href="<?php echo base_url();?>" role="button">
-                            <?php
-                                if($tentou){
-                                    echo "Efetuar Login";
-                                } else {
-                            ?>
-                                    Sim
-                            <?php   } ?>
-                        </a>
-                        <a class="btn btn-primary"  href="<?php echo base_url('Novo_usuario');?>" role="button">
-                            <?php
-                                if($tentou){
-                                    echo "Voltar";
-                                } else {
-                            ?>
-                                    Não
-                            <?php   } ?>
-                        </a>
+                        <?php if ($sucesso){ ?>
+                                    <a class="btn btn-primary"  href="<?php echo base_url();?>" role="button">Efetuar Login</a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cadastrar Outro</button>
+                            <?php } else { ?>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Entendi</button>
+                            <?php } ?>
                     </div>
+                    
                 </div>
             </div>
         </div>
-        <div class="modal fade" name="modal_senha" id="modal_senha" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                            
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Senha Inválida!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                            
-			<div class="modal-body">
-                                A senha deve possuir mais de 6 caracteres, verifique também se os campos "Senha" e "Confirmar Senha" estão iguais!
-			</div>
-                            
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary"  data-dismiss="modal">
-				Entendi
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+        <?php  $this->load->view('include/modal_cancelar'); ?>
 
         <?php 
             if($tentou){ 
         ?>		
                 <script>
                     $(document).ready(function(){
-                        $('#modal_generico').modal('show');
+                        $('#modal_confirmar_email').modal('show');
                     });
                 </script>
         <?php 

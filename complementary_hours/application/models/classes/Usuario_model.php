@@ -52,10 +52,14 @@ class Usuario_model extends CI_Model {
 	}
 	
 	public function email_existe(){
-            $this->db->select('usuario_email');
-            $this->db->from('usuario');
-            $this->db->where('usuario_email',$this->getUsuario_email());
-            $query = $this->db->get();
+        $this->db->select('usuario_email');
+        $this->db->from('usuario');
+        $this->db->where('usuario_email',$this->getUsuario_email());
+        $query = $this->db->get();
 	    return ($query->num_rows() > 0); 
-        }
+    }
+
+    public function validar_email(){
+        $this->db->update_string('usuario', array('usuario_validou_email' => 'S'), 'usuario_id = '.$this->getUsuario_id());
+    }
 }

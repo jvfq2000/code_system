@@ -12,8 +12,9 @@ class Novo_usuario extends CI_Controller {
 		$this->load->model('classes/Curso_model', 'curso');
 
 		$this->dados['campus_options'] = $this->campus->montar_options_campus();
-		$this->dados['tentou']       = FALSE;
-		$this->dados['mensagem']     = "";
+		$this->dados['tentou']         = FALSE;
+		$this->dados['sucesso']        = FALSE;
+		$this->dados['mensagem']       = "";
 	}
 	
 	public function index(){
@@ -47,12 +48,25 @@ class Novo_usuario extends CI_Controller {
 				$pessoa_cadastrada = $this->pessoa->cadastrar();
 
 				if($pessoa_cadastrada){
+					$this->email->from('complementaryhours@gmail.com');
+					$this->email->to($this->usuario->getUsuario_email());
+					$this->email->subject('Confirmação de E-mail');
+					$this->email->message("Click <a href=\"<?php echo base_url('Validar_email/{$this->usuario->get_id_ultimo_cadastro()}/TRUE');?>\">aqui</a> para confirmar seu e-mail e finalizar o cadastro!");
+					$email_enviado = $this->email->send();
+
 					$this->dados['tentou']   = TRUE;
-					$this->dados['mensagem'] = "Cadastro realizado com sucesso!";
+					$this->dados['sucesso']  = TRUE;
+					$this->dados['nome']     = $this->pessoa->getPessoa_nome();
+					if ($email_enviado) {
+						$this->dados['mensagem'] = "Estamos quase lá! Para finalizar-mos o cadastro, acesse seu e-mail e click no link de confirmação enviado!";
+					} else {
+						$this->dados['mensagem'] = "Estamos quase lá! Infelizmente tentamos te enviar um email, mas o servidor parou, entre em contato com a gente atravéz do e-mail: complementaryhours@gmail.com! Se possível envie um print dessa tela e qual e-mail tentou cadastrar para liberarmos seu acesso!";
+					}
 				}
 			}
 		}else {
 			$this->dados['tentou']   = TRUE;
+			$this->dados['sucesso']  = FALSE;
 			$this->dados['mensagem'] = "Um usuário já foi cadastrado com esse email, verifique suas informações e tente novamente!";
 		}
 		$this->index();

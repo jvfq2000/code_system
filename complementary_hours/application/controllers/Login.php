@@ -19,7 +19,7 @@ class Login extends CI_Controller {
 
 	private function falha_na_autenticacao(){
 		$this->dados['tentou']   = TRUE;
-		$this->dados['mensagem'] = "Ops! email ou senha incorretos, tente novamente!";
+		$this->dados['mensagem'] = "Email ou senha incorretos, tente novamente!";
 		$this->index();
 	}
 	
