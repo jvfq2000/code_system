@@ -48,10 +48,22 @@ class Novo_usuario extends CI_Controller {
 				$pessoa_cadastrada = $this->pessoa->cadastrar();
 
 				if($pessoa_cadastrada){
-					$this->email->from('complementaryhours@gmail.com');
+				    $this->load->library('email');
+				    $config['protocol']='smtp';
+                    $config['smtp_host']='ssl://smtp.googlemail.com';
+                    $config['smtp_port']='465';
+                    $config['smtp_timeout']='60';
+                    $config['smtp_user']='complementaryhours.codesystem@gmail.com';
+                    $config['smtp_pass']='cschad123';
+                    $config['charset']='utf-8';
+                    $config['newline']="\r\n";
+                    $config['mailtype'] = 'html';
+                    
+                    $this->email->initialize($config);
+					$this->email->from('complementaryhours.codesystem@gmail.com', 'Complementary Hours');
 					$this->email->to($this->usuario->getUsuario_email());
 					$this->email->subject('Confirmação de E-mail');
-					$this->email->message("Click <a href=\"<?php echo base_url('Validar_email/{$this->usuario->get_id_ultimo_cadastro()}/TRUE');?>\">aqui</a> para confirmar seu e-mail e finalizar o cadastro!");
+					$this->email->message("Click <a href=\"".base_url('Validar_email/'.$this->usuario->get_id_ultimo_cadastro().'/true')."\">aqui</a> para confirmar seu e-mail e finalizar o cadastro!");
 					$email_enviado = $this->email->send();
 
 					$this->dados['tentou']   = TRUE;
@@ -60,7 +72,7 @@ class Novo_usuario extends CI_Controller {
 					if ($email_enviado) {
 						$this->dados['mensagem'] = "Estamos quase lá! Para finalizar-mos o cadastro, acesse seu e-mail e click no link de confirmação enviado!";
 					} else {
-						$this->dados['mensagem'] = "Estamos quase lá! Infelizmente tentamos te enviar um email, mas o servidor parou, entre em contato com a gente atravéz do e-mail: complementaryhours@gmail.com! Se possível envie um print dessa tela e qual e-mail tentou cadastrar para liberarmos seu acesso!";
+						$this->dados['mensagem'] = "Estamos quase lá! Infelizmente tentamos te enviar um email, mas o servidor parou, entre em contato com a gente atravéz do e-mail: complementaryhours.codesystem@gmail.com! Se possível envie um print dessa tela e qual e-mail tentou cadastrar para liberarmos seu acesso!";
 					}
 				}
 			}

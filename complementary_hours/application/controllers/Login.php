@@ -10,6 +10,7 @@ class Login extends CI_Controller {
 
 		$this->dados['tentou']   = FALSE;
 		$this->dados['mensagem'] = "";
+		$this->dados['icone']    = "";
 	}
 
 	public function index(){
@@ -19,7 +20,22 @@ class Login extends CI_Controller {
 
 	private function falha_na_autenticacao(){
 		$this->dados['tentou']   = TRUE;
+		$this->dados['icone']    = 'emoji/monoculo';
 		$this->dados['mensagem'] = "Email ou senha incorretos, tente novamente!";
+		$this->index();
+	}
+
+	private function email_valido(){
+		$this->dados['tentou']   = 'validou email';
+		$this->dados['icone']    = 'emoji/festa';
+		$this->dados['mensagem'] = "E-mail validado com sucesso!";
+		$this->index();
+	}
+
+	private function email_invalido(){
+		$this->dados['tentou']   = 'validou email';
+		$this->dados['icone']    = 'emoji/piscando';
+		$this->dados['mensagem'] = "Falta validar seu e-mail! Caso não tenha recebido o link de confirmação, ele já deve estar chegando!";
 		$this->index();
 	}
 	
@@ -27,10 +43,13 @@ class Login extends CI_Controller {
 		$usuario_email = $this->input->post('email',TRUE);
 		$usuario_senha = $this->input->post('senha',TRUE);
 		$result        = $this->Login_model->checar_usuario($usuario_email);
+
 		if ($result->num_rows() > 0) {
 			$dados = $result->row_array();
+			
 			if (password_verify($usuario_senha, $dados['usuario_senha'])) {
-				$dados_sessao = array(
+				if ($dados['usuario_validou_email'] === 'S') {
+					$dados_sessao = array(
 					'nome'      => $dados['pessoa_nome'],
 					'sobrenome' => $dados['pessoa_sobrenome'],
 					'campus'    => $dados['campus_descricao'],
@@ -44,12 +63,11 @@ class Login extends CI_Controller {
 		
 				$this->session->set_userdata($dados_sessao);
 				redirect(base_url('Home'));
-			} else {
-				$this->falha_na_autenticacao();
-			}
-		} else {
-			$this->falha_na_autenticacao();
-		}
+				} else { $this->email_invalido(); }
+
+			} else { $this->falha_na_autenticacao(); }
+
+		} else { $this->falha_na_autenticacao(); }
 	}
 
 	function logout() {

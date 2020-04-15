@@ -8,11 +8,16 @@ class Validar_email extends CI_Controller {
 		$this->load->model('classes/Usuario_model', 'usuario');
 	}
 
-	public function validar($id, $email, $valido){
-		if ($valido) {
+	public function validar($id, $valido){
+		if ($valido = 'true') {
 			$this->usuario->setUsuario_id($id);
-			$this->usuario->setUsuario_email($email);
-			$this->usuario->Validar_email();
+			$email_valido = $this->usuario->Validar_email();
+
+			if ($email_valido) {
+				redirect('Login/email_valido');
+			} else {
+				echo "Ocorreu um erro ao validar o e-mail. Tente novamente!";
+			}
 		};
 	}
 }

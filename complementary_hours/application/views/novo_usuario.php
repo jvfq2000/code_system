@@ -84,8 +84,8 @@
 				}else if(senha == "" || senha.length <= 5){
                     $("#alerts_ficam_aqui").html(
                         "<div class=\"alert alert-danger\" role=\"alert\">"
-                        +"A senha deve ter no mínimo 6 caracteres!"
-                        +"<img src=\"<?php echo base_url('assets/img/emoji/doido.png');?>\" width=\"35\" height=\"35\"/>"
+                        +"Para sua segurança, a senha deve ter no mínimo 6 caracteres!"
+                        +"<img src=\"<?php echo base_url('assets/img/emoji/timido.png');?>\" width=\"35\" height=\"35\"/>"
                         +"</div>"
                     );
                     event.preventDefault();
@@ -99,6 +99,13 @@
                     );
                     event.preventDefault();
                     event.stopPropagation();
+                } else {
+                    $("#alerts_ficam_aqui").html(
+                        "<div class=\"alert alert-primary\" role=\"alert\">"
+                        +"Muito bem! Aguarde um pouquinho enquanto ajeitamos tudo para você!"
+                        +"<img src=\"<?php echo base_url('assets/img/emoji/vergonha.png');?>\" width=\"35\" height=\"35\"/>"
+                        +"</div>"
+                    );
                 }
 				form.classList.add('was-validated');
 			    }, false);

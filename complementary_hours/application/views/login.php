@@ -61,9 +61,16 @@
 					<?php
 						echo $mensagem;
 					?>
-                    <img src="<?php echo base_url('assets/img/emoji/monoculo.png');?>" width="35" height="35"/>
+                    <img src="<?php echo base_url('assets/img/'.$icone);?>" width="35" height="35"/>
 				</div>
-			<?php } ?>
+			<?php } else if($tentou = 'validou email'){ ?>
+                <div class="alert alert-primary" role="alert">
+                    <?php
+                        echo $mensagem;
+                    ?>
+                    <img src="<?php echo base_url('assets/img/'.$icone);?>" width="35" height="35"/>
+                </div>
+            <?php } ?>
             <form class="needs-validation" novalidate action="<?php echo base_url('Login/autenticar');?>" method="POST">
             	<div class="row">
                 	<div class="col-md-12 mb-2">
