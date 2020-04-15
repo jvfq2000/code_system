@@ -20,21 +20,21 @@ class Login extends CI_Controller {
 
 	private function falha_na_autenticacao(){
 		$this->dados['tentou']   = TRUE;
-		$this->dados['icone']    = 'emoji/monoculo';
+		$this->dados['icone']    = base_url('assets/img/emoji/monoculo');
 		$this->dados['mensagem'] = "Email ou senha incorretos, tente novamente!";
 		$this->index();
 	}
 
 	private function email_valido(){
-		$this->dados['tentou']   = 'validou email';
-		$this->dados['icone']    = 'emoji/festa';
+		$this->dados['tentou']   = 'email';
+		$this->dados['icone']    = base_url('assets/img/emoji/festa');
 		$this->dados['mensagem'] = "E-mail validado com sucesso!";
 		$this->index();
 	}
 
 	private function email_invalido(){
-		$this->dados['tentou']   = 'validou email';
-		$this->dados['icone']    = 'emoji/piscando';
+		$this->dados['tentou']   = 'email';
+		$this->dados['icone']    = base_url('assets/img/emoji/piscando');
 		$this->dados['mensagem'] = "Falta validar seu e-mail! Caso não tenha recebido o link de confirmação, ele já deve estar chegando!";
 		$this->index();
 	}
@@ -46,7 +46,7 @@ class Login extends CI_Controller {
 
 		if ($result->num_rows() > 0) {
 			$dados = $result->row_array();
-			
+
 			if (password_verify($usuario_senha, $dados['usuario_senha'])) {
 				if ($dados['usuario_validou_email'] === 'S') {
 					$dados_sessao = array(
