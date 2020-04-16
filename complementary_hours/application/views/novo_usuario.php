@@ -77,11 +77,24 @@
 			    form.addEventListener('submit', function(event) {
                 var senha = $("#senha").val();
                 var repetir_senha = $("#repetir_senha").val();
+
+                var email_separar = $("#email").val();
+                var email_array   = email_separar.split("@");
+                console.log(email_separar, email_array[1]);
 				
                 if (form.checkValidity() === false) {
 				    event.preventDefault();
 				    event.stopPropagation();
-				}else if(senha == "" || senha.length <= 5){
+				} else if(email_array[1] != "aluno.ifnmg.edu.br" && email_array[1] != "ifnmg.edu.br"){
+                    $("#alerts_ficam_aqui").html(
+                        "<div class=\"alert alert-info\" role=\"alert\">"
+                        +"Cadastre-se utilizando seu e-mail institucional! <b>exemplo@aluno.ifnmg.edu.br</b>"
+                        +"<img src=\"<?php echo base_url('assets/img/emoji/nerd.png');?>\" width=\"35\" height=\"35\"/>"
+                        +"</div>"
+                    );
+                    event.preventDefault();
+                    event.stopPropagation();
+                } else if(senha == "" || senha.length <= 5){
                     $("#alerts_ficam_aqui").html(
                         "<div class=\"alert alert-info\" role=\"alert\">"
                         +"Para sua segurança, a senha deve ter no mínimo 6 caracteres!"
@@ -187,7 +200,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="@aluno.ifnmg.edu.br" name="email" required>
+                                <input type="email" class="form-control" id="email" placeholder="exemplo@ifnmg.edu.br" name="email" required>
                                 <div class="invalid-feedback">
                                     Campo obrigatorio!
                                 </div>
