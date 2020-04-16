@@ -60,7 +60,9 @@ class Usuario_model extends CI_Model {
     }
 
     public function validar_email(){
-        $this->db->update_string('usuario', array('usuario_validou_email' => 'S'), 'usuario_id = '.$this->getUsuario_id());
-        return TRUE;
+    	$dados = array('usuario_validou_email' => 'S');
+    	$where = "usuario_id = {$this->getUsuario_id()}";
+        $query = $this->db->update_string('usuario', $dados, $where);
+        return$this->db->query($query);
     }
 }

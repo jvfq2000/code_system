@@ -8,7 +8,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Login_model');
 
-		$this->dados['tentou']   = FALSE;
+		$this->dados['tentou']   = 'não';
 		$this->dados['mensagem'] = "";
 		$this->dados['icone']    = "";
 	}
@@ -19,23 +19,23 @@ class Login extends CI_Controller {
 	}
 
 	private function falha_na_autenticacao(){
-		$this->dados['tentou']   = TRUE;
-		$this->dados['icone']    = base_url('assets/img/emoji/monoculo');
+		$this->dados['tentou']   = 'sim';
+		$this->dados['icone']    = base_url('assets/img/emoji/monoculo.png');
 		$this->dados['mensagem'] = "Email ou senha incorretos, tente novamente!";
 		$this->index();
 	}
 
 	private function email_valido(){
 		$this->dados['tentou']   = 'email';
-		$this->dados['icone']    = base_url('assets/img/emoji/festa');
+		$this->dados['icone']    = base_url('assets/img/emoji/festa.png');
 		$this->dados['mensagem'] = "E-mail validado com sucesso!";
 		$this->index();
 	}
 
 	private function email_invalido(){
 		$this->dados['tentou']   = 'email';
-		$this->dados['icone']    = base_url('assets/img/emoji/piscando');
-		$this->dados['mensagem'] = "Falta validar seu e-mail! Caso não tenha recebido o link de confirmação, ele já deve estar chegando!";
+		$this->dados['icone']    = base_url('assets/img/emoji/piscando.png');
+		$this->dados['mensagem'] = "E-mail não confirmado! Te enviamos um link de confirmação. Verifique seu e-mail!";
 		$this->index();
 	}
 	

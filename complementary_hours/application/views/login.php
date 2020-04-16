@@ -56,15 +56,15 @@
 		<div class="card-header rounded mx-auto col-4 bg-white float-rigth" id="headingOne">
         	<img src="<?php echo base_url('assets/img/logo.jpeg');?>" width="200" height="190" class="rounded mx-auto d-block"/>
 
-			<?php if($tentou === TRUE){ ?>
+			<?php if($tentou === 'sim'){ ?>
 				<div class="alert alert-danger" role="alert">
 					<?php
 						echo $mensagem;
 					?>
                     <img src="<?php echo $icone;?>" width="35" height="35"/>
 				</div>
-			<?php } else if($tentou == 'validou email'){ ?>
-                <div class="alert alert-success" role="alert">
+			<?php } else if($tentou == 'email'){ ?>
+                <div class="alert alert-info" role="alert">
                     <?php
                         echo $mensagem;
                     ?>
