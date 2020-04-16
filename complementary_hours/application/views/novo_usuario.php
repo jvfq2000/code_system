@@ -83,7 +83,7 @@
 				    event.stopPropagation();
 				}else if(senha == "" || senha.length <= 5){
                     $("#alerts_ficam_aqui").html(
-                        "<div class=\"alert alert-danger\" role=\"alert\">"
+                        "<div class=\"alert alert-info\" role=\"alert\">"
                         +"Para sua segurança, a senha deve ter no mínimo 6 caracteres!"
                         +"<img src=\"<?php echo base_url('assets/img/emoji/timido.png');?>\" width=\"35\" height=\"35\"/>"
                         +"</div>"
@@ -101,9 +101,9 @@
                     event.stopPropagation();
                 } else {
                     $("#alerts_ficam_aqui").html(
-                        "<div class=\"alert alert-primary\" role=\"alert\">"
+                        "<div class=\"alert alert-success\" role=\"alert\">"
                         +"Muito bem! Aguarde um pouquinho enquanto ajeitamos tudo para você!"
-                        +"<img src=\"<?php echo base_url('assets/img/emoji/vergonha.png');?>\" width=\"35\" height=\"35\"/>"
+                        +"<img src=\"<?php echo base_url('assets/img/emoji/romantico.png');?>\" width=\"35\" height=\"35\"/>"
                         +"</div>"
                     );
                 }

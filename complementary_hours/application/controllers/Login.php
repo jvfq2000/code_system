@@ -25,13 +25,6 @@ class Login extends CI_Controller {
 		$this->index();
 	}
 
-	private function email_valido(){
-		$this->dados['tentou']   = 'email';
-		$this->dados['icone']    = base_url('assets/img/emoji/festa.png');
-		$this->dados['mensagem'] = "E-mail validado com sucesso!";
-		$this->index();
-	}
-
 	private function email_invalido(){
 		$this->dados['tentou']   = 'email';
 		$this->dados['icone']    = base_url('assets/img/emoji/piscando.png');
