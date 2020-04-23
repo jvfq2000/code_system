@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class objetivos extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
@@ -11,11 +11,10 @@ class Home extends CI_Controller {
 	}
 
 	public function index(){
-		$header['titulo'] = 'Página Inicial';
+		$header['titulo'] = 'Objetivos';
 		$this->load->view('include/header',$header);
 		$this->load->view('include/menu');
-		$this->load->view('home');
+		$this->load->view('objetivos');
 		$this->load->view('include/footer');
 	}
-
 }

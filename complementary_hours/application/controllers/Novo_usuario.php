@@ -6,6 +6,9 @@ class Novo_usuario extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
+		if($_SESSION['logado'] === TRUE){
+			redirect(base_url('Home'));
+		}
 		$this->load->model('classes/Usuario_model', 'usuario');
 		$this->load->model('classes/Pessoa_model', 'pessoa');
 		$this->load->model('classes/Campus_model', 'campus');
@@ -63,7 +66,14 @@ class Novo_usuario extends CI_Controller {
 					$this->email->from('complementaryhours.codesystem@gmail.com', 'Complementary Hours');
 					$this->email->to($this->usuario->getUsuario_email());
 					$this->email->subject('Confirmação de E-mail');
-					$this->email->message("Click <a href=\"".base_url('Validar_email/validar/'.$this->pessoa->getUsuario_id().'/true')."\">aqui</a> para confirmar seu e-mail e finalizar o cadastro!");
+					
+					$imagem = base_url('assets/img/logo_cadastro.png');
+					$this->email->attach($imagem);
+					$imagem_id = $this->email->attachment_cid($imagem);
+					
+					$this->email->message('Olá, '.$this->pessoa->getPessoa_nome().'! Estamos muito felizes por ter você conosco!<br><br>'
+						.'Click <a href="'.base_url("Validar_email/validar/".$this->pessoa->getUsuario_id()."/true").'">aqui</a> para confirmar seu e-mail e finalizar o cadastro.<br>'
+						.'<img src="imagem_id:'.$imagem_id.'" alt="Logo" />');
 					$email_enviado = $this->email->send();
 
 					$this->dados['tentou']   = TRUE;

@@ -1,12 +1,8 @@
 <?php
-    if ($titulo == "Gerenciar Campus") {
-        $caminho = "Gerenciar_campus";
-    } else {
-        $caminho = "";
-    }
+
 ?>
 
-<div class="modal fade" name="modal_cancelar" id="modal_cancelar" tabindex="-1" role="dialog">
+<div class="modal fade" name="modal_excluir" id="modal_excluir" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
 
@@ -21,14 +17,19 @@
             </div>
                     
             <div class="modal-body">
-                Deseja realmente cancelar?
+                Deseja realmente excluir?
             </div>
                     
             <div class="modal-footer">
-	             <a class="btn btn-primary"  href="<?php echo base_url($caminho);?>" role="button">Sim</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                <a class="btn btn-primary" href="<?php echo $link_confirmou;?>" role="button">Sim</a>
+                <a class="btn btn-secondary"  href="<?php echo $link_cancelou;?>" role="button">Não</a>
             </div>
             
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('#modal_excluir').modal('show');
+    });
+</script>
