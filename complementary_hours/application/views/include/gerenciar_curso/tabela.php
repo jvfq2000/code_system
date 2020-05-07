@@ -1,9 +1,10 @@
 <div class="shadow card-header rounded mx-auto col-sm-10" id="headingOne">
+    <br>
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Campus</th>
                 <th scope="col">Curso</th>
+                <th scope="col">Campus</th>
                 <th scope="col">Periodos</th>
                 <th scope="col">Menu</th>
             </tr>
@@ -12,6 +13,7 @@
             <?php echo $linhas_curso; ?>
         </tbody>
     </table>
+    <br>
     <div class="row">
         <div class="col-6 mb-1">
             <a class="shadow-sm col-12 btn btn-outline-primary btn-lg"  href="<?php echo base_url('Gerenciar_curso/novo/');?>" role="button">Novo</a>
@@ -20,6 +22,7 @@
             <a class="shadow-sm col-12 btn btn-outline-danger btn-lg"  href="<?php echo base_url('Home');?>" role="button">Voltar</a>
         </div>
     </div>
+    <br>
 </div>
 
 <div class="modal fade" name="modal_sucesso" id="modal_sucesso" tabindex="-1" role="dialog">

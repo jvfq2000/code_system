@@ -16,12 +16,12 @@ class Gerenciar_campus extends CI_Controller {
         $this->load->model('classes/Cidade_model', 'cidade');
         
         $this->dados['estado_options'] = $this->estado->montar_options_estado();
-        $this->dados['mostrar']  = "";
-        $this->dados['tentou']   = FALSE;
-        $this->dados['excluiu']   = FALSE;
-		$this->dados['sucesso']  = FALSE;
-		$this->dados['pegou_campus'] = 'S';
-		$this->dados['mensagem'] = "";
+        $this->dados['mostrar']        = "";
+        $this->dados['tentou']         = FALSE;
+        $this->dados['excluiu']        = FALSE;
+		$this->dados['sucesso']        = FALSE;
+		$this->dados['pegou_campus']   = 'S';
+		$this->dados['mensagem']       = "";
     }
     
     public function index(){
@@ -37,10 +37,10 @@ class Gerenciar_campus extends CI_Controller {
 	}
     
     public function novo(){
-        $this->dados['mostrar'] = "operacoes";
-        $header['titulo']       = 'Gerenciar Campus';
+        $this->dados['mostrar']      = "operacoes";
         $this->dados['pegou_campus'] = 'N';
-        $this->dados['sucesso'] = TRUE;
+        $this->dados['sucesso']      = TRUE;
+        $header['titulo']            = 'Gerenciar Campus';
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
@@ -49,8 +49,10 @@ class Gerenciar_campus extends CI_Controller {
 	}
     
     public function cadastrar(){
-        $this->dados['tentou']   = TRUE;
-		$this->dados['mensagem'] = "Erro ao cadastrar, tente novamente!";
+        $this->dados['pegou_campus']  = 'N';
+        $this->dados['tentou']        = TRUE;
+        $this->dados['sucesso']       = FALSE;
+		$this->dados['mensagem']      = "Erro ao cadastrar, tente novamente!";
         
         $this->campus->setCampus_descricao($this->input->post("campus_descricao"));
         
@@ -58,16 +60,16 @@ class Gerenciar_campus extends CI_Controller {
             $this->campus->setCidade_id($this->input->post("cidade"));
             $this->campus->setEstado_id($this->input->post("estado"));
 				
-            $campus_cadastrado = $this->campus->cadastrar();
-            $this->dados['sucesso'] = TRUE;
+            $campus_cadastrado       = $this->campus->cadastrar();
+            $this->dados['sucesso']  = TRUE;
             $this->dados['mensagem'] = "Campus cadastrado com sucesso!";        
         }else {
+            $this->dados['sucesso']  = FALSE;
 			$this->dados['mensagem'] = "Um campus já foi cadastrado com esse nome, verifique as informações e tente novamente!";
         }
         
         $this->dados['mostrar'] = "operacoes";
         $header['titulo']       = 'Gerenciar Campus';
-        $this->index();
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
@@ -81,18 +83,18 @@ class Gerenciar_campus extends CI_Controller {
 	}
     
     public function editar($campus_id){
-        $this->dados['mostrar'] = "operacoes";
-        $header['titulo']       = 'Gerenciar Campus';
+        $this->dados['mostrar']       = "operacoes";
+        $header['titulo']             = 'Gerenciar Campus';
         $this->dados['pegou_campus']  = 'S';
         
         $this->campus->setCampus_id($campus_id);
         $result = $this->campus->pegar_campus();
         $campus_result = $result->row_array();
         
-        $this->dados['campus_id'] = $campus_result['campus_id'];
+        $this->dados['campus_id']        = $campus_result['campus_id'];
         $this->dados['campus_descricao'] = $campus_result['campus_descricao'];
-        $this->dados['estado_id'] = $campus_result['estado_id'];
-        $this->dados['cidade_id'] = $campus_result['cidade_id'];
+        $this->dados['estado_id']        = $campus_result['estado_id'];
+        $this->dados['cidade_id']        = $campus_result['cidade_id'];
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
@@ -110,7 +112,7 @@ class Gerenciar_campus extends CI_Controller {
         $this->campus->setCidade_id($this->input->post("cidade"));
         $this->campus->setEstado_id($this->input->post("estado"));
         
-        $campus_alterado = $this->campus->editar_campus();
+        $campus_alterado         = $this->campus->editar_campus();
         $this->dados['mensagem'] = "Campus alterado com sucesso!";        
         $this->index();
     }
@@ -128,7 +130,7 @@ class Gerenciar_campus extends CI_Controller {
         if ($campus_excluido) {
             $this->dados['sucesso']  = TRUE;
             $this->dados['tentou']   = TRUE;
-            $this->dados['excluiu']   = TRUE;
+            $this->dados['excluiu']  = TRUE;
             $this->dados['mensagem'] = "Campus excluido com sucesso!";
         }
         

@@ -100,7 +100,7 @@
                                 <button class="shadow-sm col-12 btn btn-outline-primary btn-lg" type="submit">Salvar</button>
                             </div>
                             <div class="col-6 mb-1">
-                                <button class="shadow-sm col-12 btn btn-outline-danger btn-lg" type="button" data-toggle="modal" data-target="#modal_sucesso">Cancelar</button>
+                                <button class="shadow-sm col-12 btn btn-outline-danger btn-lg" data-toggle="modal" type="button" data-toggle="modal" data-target="#modal_cancelar">Cancelar</button>
                             </div>  
                         </div>
                     </form>
@@ -141,6 +141,7 @@
         </div>
     </div>
 </div>
+<?php  $this->load->view('include/modal_cancelar'); ?>
 <?php 
     if($tentou){ 
 ?>	

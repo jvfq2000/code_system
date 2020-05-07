@@ -3,8 +3,8 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Campus</th>
-                <th scope="col">Estado</th>
                 <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Menu</th>
             </tr>
         </thead>
@@ -64,15 +64,17 @@
         </div>
     </div>
 </div>
-<?php 
-    if($tentou){ 
-?>	
 <script>
     $(document).ready(function(){
+        <?php if($tentou){ ?>  
         $('#modal_sucesso').modal('show');
+        <?php } ?>
+
+        <?php if($pegou_campus == 'S') { ?>
+        $("#estado").val("<?php echo $estado_id?>");
+        $("#cidade").val("<?php echo $cidade_id?>");
+        console.log($("#estado").val(););
+        console.log($("#cidade").val(););
+        <?php } ?>
     });
 </script>
-<?php 
-    }
-
-?>
