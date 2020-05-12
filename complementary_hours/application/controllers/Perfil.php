@@ -11,7 +11,7 @@ class Perfil extends CI_Controller {
 		$this->load->model('classes/Pessoa_model', 'pessoa');
         
 		$this->dados['tentou']         = FALSE;
-		$this->dados['pasta']          = "Arquivos/Fotos_perfil/";
+		$this->dados['pasta']          = base_url('Arquivos/Fotos_perfil/');
 		$this->dados['sucesso']        = FALSE;
         $this->dados['imagem']         = FALSE;
 		$this->dados['mensagem']       = "";

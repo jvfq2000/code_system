@@ -49,18 +49,18 @@
                 </li> 
     		</ul>
       		<div class="dropleft">
-        		<img src="<?php echo base_url('assets/img/logo.jpeg');?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+        		<img src="<?php echo base_url('Arquivos/Fotos_perfil/'.$_SESSION['foto_perfil']);?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
         		<div class="dropdown-menu dropdown-menu-right" style="width:18rem;">
                 <ul class="list-group list-group-flush">
                     <div class="row">
-                        <img src="<?php echo base_url('assets/img/logo.jpeg');?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                        <img src="<?php echo base_url('Arquivos/Fotos_perfil/'.$_SESSION['foto_perfil']);?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                         <a class="floar-right">
                             <?php echo "{$tipoUsuario}<br>{$_SESSION['nome']}"; ?><br>
                             <?php echo $_SESSION['email']; ?>
                         </a><br>
                     </div>
                     <li class="list-group-item">
-                        <a class="dropdown-item" href="Novo_usuario/alterar_usuario">Perfil</a>
+                        <a class="dropdown-item" href="<?php echo base_url('Perfil')?>">Perfil</a>
                         <a class="dropdown-item" href="<?php echo base_url('login')?>" type="button" data-toggle="modal" data-target="#confirmacao">Sair</a>
                     </li>
                 </ul>
