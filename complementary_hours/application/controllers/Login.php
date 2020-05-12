@@ -48,8 +48,11 @@ class Login extends CI_Controller {
 			if (password_verify($usuario_senha, $dados['usuario_senha'])) {
 				if ($dados['usuario_validou_email'] === 'S') {
 					$dados_sessao = array(
+                    'pessoa_id' => $dados['pessoa_id'],
 					'nome'      => $dados['pessoa_nome'],
+					'foto_perfil' => $dados['pessoa_foto_perfil'],
 					'sobrenome' => $dados['pessoa_sobrenome'],
+                    'nascimento'=> $dados['pessoa_data_nascimento'],
 					'campus'    => $dados['campus_descricao'],
 					'curso'     => $dados['curso_descricao'],
 					'telefone'  => $dados['pessoa_telefone'],

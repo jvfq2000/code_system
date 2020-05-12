@@ -3,6 +3,8 @@
         $caminho = "Gerenciar_campus";
     } else if($titulo == "Gerenciar Cursos"){
         $caminho = "Gerenciar_curso";
+    }else if($titulo == "Perfil"){
+        $caminho = "Home";
     }else{
         $caminho = "";
     }

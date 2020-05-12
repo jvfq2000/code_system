@@ -10,6 +10,7 @@ class Pessoa_model extends CI_Model {
 	private $pessoa_sobrenome;
 	private $pessoa_data_nascimento;
 	private $pessoa_telefone;
+	private $pessoa_foto_perfil;
 
 	function __construct(){
 		parent::__construct();
@@ -71,7 +72,15 @@ class Pessoa_model extends CI_Model {
 	public function setPessoa_telefone($pessoa_telefone){
 		$this->pessoa_telefone = $pessoa_telefone;
 	}
-
+    
+    public function getPessoa_foto_perfil(){
+		return $this->pessoa_foto_perfil;
+	}
+    
+	public function setPessoa_foto_perfil($pessoa_foto_perfil){
+		$this->pessoa_foto_perfil = $pessoa_foto_perfil;
+	}
+    
 	public function cadastrar(){
 		$dados_pessoa = array(
 			"usuario_id"             => $this->getUsuario_id(),
@@ -84,4 +93,28 @@ class Pessoa_model extends CI_Model {
 		);
         return $this->db->insert("pessoa", $dados_pessoa);
 	}
+    
+    public function alterar(){
+        $dados = array(
+                        'pessoa_nome' => $this->getPessoa_nome(),
+                        'pessoa_sobrenome' => $this->getPessoa_sobrenome(),
+                        'pessoa_data_nascimento' => $this->getPessoa_data_nascimento(),
+                        'pessoa_telefone' => $this->getPessoa_telefone()
+                    );
+    	$where = "pessoa_id = {$this->getPessoa_id()}";
+        $query = $this->db->update_string('pessoa', $dados, $where);
+        return $this->db->query($query);
+    }
+    
+    public function inserir_foto_pefil(){
+        
+        $dados = array(
+                            'pessoa_foto_perfil' => $this->getPessoa_foto_perfil()
+                        );
+        
+        $where = "pessoa_id = {$this->getPessoa_id()}";
+        $query = $this->db->update_string('pessoa', $dados, $where);
+        return $this->db->query($query);
+
+    }
 }

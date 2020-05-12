@@ -63,6 +63,6 @@ class Usuario_model extends CI_Model {
     	$dados = array('usuario_validou_email' => 'S');
     	$where = "usuario_id = {$this->getUsuario_id()}";
         $query = $this->db->update_string('usuario', $dados, $where);
-        return$this->db->query($query);
+        return $this->db->query($query);
     }
 }

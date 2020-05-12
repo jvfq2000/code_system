@@ -60,7 +60,7 @@ class Gerenciar_curso extends CI_Controller {
 			$this->dados['mensagem'] = "Um curso deste campus já foi cadastrado com esse nome, verifique as informações e tente novamente!";
 		}
         $this->dados['sucesso']  = TRUE;
-		$this->index();
+		$this->novo();
     }
     
     public function editar($curso_id){

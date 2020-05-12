@@ -60,7 +60,7 @@
                         </a><br>
                     </div>
                     <li class="list-group-item">
-                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="Novo_usuario/alterar_usuario">Perfil</a>
                         <a class="dropdown-item" href="<?php echo base_url('login')?>" type="button" data-toggle="modal" data-target="#confirmacao">Sair</a>
                     </li>
                 </ul>

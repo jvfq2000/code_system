@@ -9527,6 +9527,7 @@ CREATE TABLE IF NOT EXISTS `pessoa` (
   `pessoa_sobrenome` varchar(100) NOT NULL,
   `pessoa_data_nascimento` date NOT NULL,
   `pessoa_telefone` char(16) DEFAULT NULL,
+  `pessoa_foto_perfil` varchar(100) DEFAULT 'logo.jpeg',
   PRIMARY KEY (`pessoa_id`),
   KEY `FK_pessoa_usuario` (`usuario_id`),
   KEY `fk_pessoa_curso` (`curso_id`),

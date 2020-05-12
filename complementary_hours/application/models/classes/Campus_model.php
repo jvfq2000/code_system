@@ -69,14 +69,14 @@ class Campus_model extends CI_Model {
 	}
     
     public function editar_campus(){
-        $this->db->where('campus_id',$this->getCampus_id());
-        return $this->db->update(
-        	'campus',array(
+        $dados = array(
             'cidade_id' => $this->getCidade_id(),
             'estado_id' => $this->getEstado_id(),
             'campus_descricao' => $this->getCampus_descricao()
-            )
-        );
+            );
+        $where = "campus_id = {$this->getCampus_id()}";
+        $query = $this->db->update_string('campus', $dados, $where);
+        return $this->db->query($query);
     }
     
 	public function listar_campus(){

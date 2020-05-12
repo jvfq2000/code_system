@@ -132,7 +132,7 @@
 
             <div class="modal-footer">
                 <?php if ($sucesso){ ?>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Entendi</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Entedi</button>
                 <?php 
                     } 
                 ?>

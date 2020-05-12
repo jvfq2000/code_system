@@ -17,6 +17,7 @@ class Novo_usuario extends CI_Controller {
 		$this->dados['campus_options'] = $this->campus->montar_options_campus();
 		$this->dados['tentou']         = FALSE;
 		$this->dados['sucesso']        = FALSE;
+        $this->dados['imagem']         = FALSE;
 		$this->dados['mensagem']       = "";
 	}
 	

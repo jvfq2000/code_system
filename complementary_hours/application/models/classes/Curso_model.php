@@ -93,14 +93,14 @@ class Curso_model extends CI_Model {
 	}
     
     public function editar_curso(){
-        $this->db->where('curso_id',$this->getCurso_id());
-        return $this->db->update(
-        	'curso',array(
+        $dados = array(
                 'campus_id' => $this->getCampus_id(),
                 'curso_descricao' => $this->getCurso_descricao(),
                 'curso_qtd_periodos' => $this->getCurso_qtd_periodos()
-            )
-        );
+            );
+        $where = "campus_id = {$this->getCampus_id()}";
+        $query = $this->db->update_string('curso', $dados, $where);
+        return $this->db->query($query);
     }
     
      public function excluir(){
