@@ -150,5 +150,21 @@ class Gerenciar_campus extends CI_Controller {
 		$this->load->view('include/modal_excluir', $this->dados);
         $this->load->view('include/footer');
 	}
+    
+    public function pesquisar(){
+        $this->campus->setPesquisa($this->input->post("pesquisar"));
+        $this->campus->pesquisar();
+        
+        $this->dados['mostrar']       = "tabela";
+        $this->dados['sucesso']       = FALSE;
+        $this->dados['linhas_campus'] = $this->campus->montar_tabela_pesquisa();
+        $header['titulo']             = 'Gerenciar Campus';
+        
+        $this->load->view('include/header', $header);
+		$this->load->view('include/menu');
+		$this->load->view('gerenciar_campus', $this->dados);
+		$this->load->view('include/footer');
+	}
+    
 
 }

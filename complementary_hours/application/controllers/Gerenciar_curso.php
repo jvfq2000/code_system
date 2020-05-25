@@ -136,6 +136,20 @@ class Gerenciar_curso extends CI_Controller {
 		$this->load->view('include/modal_excluir', $this->dados);
         $this->load->view('include/footer');
 	}
+    
+    public function pesquisar(){
+        $this->curso->setPesquisa($this->input->post("pesquisar"));
+        $this->curso->pesquisar();
+        
+        $this->dados['mostrar']      = "tabela";
+        $this->dados['linhas_curso'] = $this->curso->montar_tabela_pesquisa();
+        $header['titulo']            = 'Gerenciar Cursos';
+        
+        $this->load->view('include/header', $header);
+		$this->load->view('include/menu');
+		$this->load->view('gerenciar_curso', $this->dados);
+		$this->load->view('include/footer');
+	}
 
 }
 

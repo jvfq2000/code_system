@@ -1,4 +1,8 @@
-<div class="shadow card-header rounded mx-auto col-sm-10" id="headingOne">
+<div class="shadow card-header rounded mx-auto col-sm-11" id="headingOne">
+    <form class="form-inline mt-2 mt-md-0" action="<?php echo base_url('Gerenciar_curso/pesquisar/');?>" method='POST' novalidate>
+        <input class="form-control col-11 mr-sm-2" type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+    </form>
     <br>
     <table class="table table-hover">
         <thead class="thead-dark">

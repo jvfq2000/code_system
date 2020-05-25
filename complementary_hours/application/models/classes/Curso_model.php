@@ -5,6 +5,7 @@ class Curso_model extends CI_Model {
 	private $curso_id;
 	private $curso_descricao;
 	private $curso_qtd_periodos;
+	private $pesquisa;
 
 	function __construct(){
 		parent::__construct();
@@ -37,7 +38,13 @@ class Curso_model extends CI_Model {
 	public function setCurso_qtd_periodos($curso_qtd_periodos){
 		$this->curso_qtd_periodos = $curso_qtd_periodos;
 	}	
-
+    public function getPesquisa(){
+		return $this->pesquisa;
+	}
+	public function setPesquisa($pesquisa){
+		$this->pesquisa = $pesquisa;
+	}
+    
 	public function cadastrar(){
 		$dados_curso = array(
 			"campus_id"          => $this->getCampus_id(),
@@ -127,5 +134,32 @@ class Curso_model extends CI_Model {
 		return $linhas;
 	}
     
+    public function pesquisar(){
+		$this->db->select('*');
+		$this->db->from('curso');
+        $this->db->join('campus', 'campus.campus_id = curso.campus_id');
+        $this->db->like('curso_descricao',$this->getPesquisa());
+		$this->db->order_by('curso_descricao');
+		$query = $this->db->get();
+		return $query;
+	}
     
+     public function montar_tabela_pesquisa(){
+		$cursos_lista = $this->pesquisar();
+        $linhas = "";
+
+		foreach($cursos_lista->result() as $curso){
+            $linhas .= "<tr>";
+            $linhas .= "<td>{$curso->campus_descricao}</td>";
+			$linhas .= "<td>{$curso->curso_descricao}</td>";
+            $linhas .= "<td>{$curso->curso_qtd_periodos}</td>";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerenciar_curso/editar/')."{$curso->curso_id}\" />";
+            $linhas .= "<img src=\"".base_url('assets/img/icone/editar.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
+            $linhas .= "<a href=\"".base_url('Gerenciar_curso/confirmacao/')."{$curso->curso_id}\"/>";
+            $linhas .= "<img src=\"".base_url('assets/img/icone/lixeira.png')."\" class=\"nav-link\" width=\"55\" height=\"39\" /></a></td>";
+            $linhas .= "</div><tr>";        
+		}
+        
+		return $linhas;
+	}
 }
