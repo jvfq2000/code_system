@@ -11,7 +11,7 @@ class Perfil extends CI_Controller {
 		$this->load->model('classes/Pessoa_model', 'pessoa');
         
 		$this->dados['tentou']         = FALSE;
-		$this->dados['pasta']          = base_url('Arquivos/Fotos_perfil/');
+		$this->dados['pasta']          = 'Arquivos/Fotos_perfil/';
 		$this->dados['sucesso']        = FALSE;
         $this->dados['imagem']         = FALSE;
 		$this->dados['mensagem']       = "";
@@ -76,8 +76,9 @@ class Perfil extends CI_Controller {
                 $nome_arquivo_temporario = $_FILES['arquivo']['tmp_name'];
                 $novo_nome_arquivo = uniqid().".$extencao";
                 
-                unlink($this->dados['pasta'].$_SESSION['foto_perfil']);
-                
+                if($_SESSION['foto_perfil'] != 'logo.jpeg'){
+                    unlink($this->dados['pasta'].$_SESSION['foto_perfil']);
+                }
                 if(move_uploaded_file($nome_arquivo_temporario, $this->dados['pasta'].$novo_nome_arquivo)){
                     
                     $this->pessoa->setPessoa_id($_SESSION['pessoa_id']);
