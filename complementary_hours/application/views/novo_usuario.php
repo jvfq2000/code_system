@@ -48,7 +48,7 @@
                     $("#curso").html("<option value=\"\">Selecione o campus acima!</option>");
                     $("#curso").attr("disabled");
                 
-                } else {
+               } else {
     				$.ajax({
     					url        : urlMostrarCursos,
     					type       : "POST",
@@ -282,7 +282,7 @@
             </div>
         </div>
         
-        <?php  $this->load->view('include/modal_cancelar'); ?>
+		<?php $this->load->view('include/modal_cancelar'); ?>
 
         <?php 
             if($tentou){ 

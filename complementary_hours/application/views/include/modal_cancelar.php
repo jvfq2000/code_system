@@ -1,13 +1,17 @@
 <?php
-    if ($titulo == "Gerenciar Campus") {
-        $caminho = "Gerenciar_campus";
-    } else if($titulo == "Gerenciar Cursos"){
-        $caminho = "Gerenciar_curso";
-    }else if($titulo == "Perfil"){
-        $caminho = "Home";
-    }else{
+	if (isset($titulo)){
+		if ($titulo == "Gerenciar Campus") {
+			$caminho = "Gerenciar_campus";
+		} else if($titulo == "Gerenciar Cursos"){
+			$caminho = "Gerenciar_curso";
+		}else if($titulo == "Perfil"){
+			$caminho = "Home";
+		}else{
+			$caminho = "";
+		}
+	}else{
         $caminho = "";
-    }
+	}
 ?>
 
 <div class="modal fade" name="modal_cancelar" id="modal_cancelar" tabindex="-1" role="dialog">

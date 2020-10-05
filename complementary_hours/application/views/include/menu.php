@@ -49,11 +49,11 @@
                 </li> 
     		</ul>
       		<div class="dropleft">
-        		<img src="<?php echo base_url('Arquivos/Fotos_perfil/'.$_SESSION['foto_perfil']);?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+        		<img src="<?php echo base_url('assets/img/fotos_perfil/'.$_SESSION['foto_perfil']);?>" class="rounded-circle nav-link dropdown-toggle text-white" width="68" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
         		<div class="dropdown-menu dropdown-menu-right" style="width:18rem;">
                 <ul class="list-group list-group-flush">
                     <div class="row">
-                        <img src="<?php echo base_url('Arquivos/Fotos_perfil/'.$_SESSION['foto_perfil']);?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                        <img src="<?php echo base_url('assets/img/fotos_perfil/'.$_SESSION['foto_perfil']);?>" class="rounded-circle nav-link dropdown-toggle text-white" width="65" height="50" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                         <a class="floar-right">
                             <?php echo "{$tipoUsuario}<br>{$_SESSION['nome']}"; ?><br>
                             <?php echo $_SESSION['email']; ?>

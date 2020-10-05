@@ -6,7 +6,7 @@ class Novo_usuario extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		if($_SESSION['logado'] === TRUE){
+		if(isset($_SESSION['logado']) && $_SESSION['logado'] === TRUE){
 			redirect(base_url('Home'));
 		}
 		$this->load->model('classes/Usuario_model', 'usuario');

@@ -1,8 +1,8 @@
 <div class="shadow card-header rounded mx-auto col-sm-11" id="headingOne">
     
     <form class="form-inline mt-2 mt-md-0" action="<?php echo base_url('Gerenciar_campus/pesquisar/');?>" method='POST' novalidate>
-        <input class="form-control col-11 mr-sm-2" type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+		<input class="form-control col-9 mr-sm-2" type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar" aria-label="Search">
+		<button class="btn btn-outline-success col-2 my-2 my-sm-0" type="submit">Pesquisar</button>
     </form>
     
     <br>
@@ -11,8 +11,8 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Campus</th>
-                <th scope="col">Cidade</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Cidade</th>
                 <th scope="col">Menu</th>
             </tr>
         </thead>

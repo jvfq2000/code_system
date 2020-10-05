@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-br">    
-    <script type="text/javascript">
-		function mascara(telefone){ 
-                	if(telefone.value.length == 0){
-                    		telefone.value = '(' + telefone.value; 
-                	}
-                	if(telefone.value.length == 3){
-                		telefone.value = telefone.value + ') '; 
-                	}
-                	if(telefone.value.length == 8){
-                		telefone.value = telefone.value + '-';
-                	}
+<script type="text/javascript">
+	function mascara(telefone){ 
+		if(telefone.value.length == 0){
+			telefone.value = '(' + telefone.value; 
 		}
+		if(telefone.value.length == 3){
+			telefone.value = telefone.value + ') '; 
+		}
+		if(telefone.value.length == 8){
+			telefone.value = telefone.value + '-';
+		}
+	}
  (function() {
               'use strict';
               window.addEventListener('load', function() {
@@ -31,13 +29,27 @@
             })();
     </script>
     
+<br><br><br>
+<main role="main" class="container-fluid">
+    <div class="jumbotron shadow-sm pt-3 pb-5">
+    <div style="float: right">
+        <img src="<?php echo base_url('assets/img/logo_transparente.png'); ?>" width="270" height="230" style="margin-bottom: 5px"/><br/>
+    </div>
     
-    <body class="bg-white">
+    <div class="container">
+        <h1 class="display-3" style="font-size: 50pt">
+            <img class="rounded-circle" src="<?php echo base_url('assets/img/icone/usuario_neutro.png'); ?>" alt="Generic placeholder image" width="100" height="100">
+			Olá, <?php echo $_SESSION['nome']; ?>!
+        </h1>
+        <p>
+            Mantenha seus dados sempre atualizados, inclusive a foto de perfil.<br>
+            Nada melhor que uma foto, para deixar o ambiente mais agradável!
+			<img src="<?php echo base_url('assets/img/emoji/piscando.png');?>" height="40" width="40"/>
+        </p>
         <br>
-        <br>
-        <br>
+    </div>
+  </div>
         <div class="col-12">
-            <br>
             <div class="accordion shadow" id="accordionExample">
                 <div class="row mx-auto">
                     <div class="card-header rounded col-sm-3" id="headingOne">                    
@@ -139,9 +151,6 @@
                 
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
         </div>
 
         <div class="modal fade" name="modal_escolher_imagem" id="modal_escolher_imagem" tabindex="-1" role="dialog">
@@ -225,3 +234,4 @@
             } 
         ?>
         <script src="<?php echo base_url('assets/jquery/jquery.mask.js');?>"></script>
+</main>

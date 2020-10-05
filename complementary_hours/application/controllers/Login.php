@@ -14,10 +14,8 @@ class Login extends CI_Controller {
 	}
 
 	public function index(){
-		if(isset($_SESSION['logado'])){
-			if($_SESSION['logado'] == TRUE){
-				redirect(base_url('Home'));
-			}
+		if(isset($_SESSION['logado']) && $_SESSION['logado'] == TRUE){
+			redirect(base_url('Home'));
 		}
 		$this->load->view('login', $this->dados);
 		$this->load->view('include/footer');

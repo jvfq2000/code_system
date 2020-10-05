@@ -10,16 +10,15 @@ class Perfil extends CI_Controller {
 		$this->load->model('classes/Usuario_model', 'usuario');
 		$this->load->model('classes/Pessoa_model', 'pessoa');
         
-		$this->dados['tentou']         = FALSE;
-		$this->dados['pasta']          = 'Arquivos/Fotos_perfil/';
-		$this->dados['sucesso']        = FALSE;
-        $this->dados['imagem']         = FALSE;
-		$this->dados['mensagem']       = "";
+		$this->dados['tentou']   = FALSE;
+		$this->dados['pasta']    = 'assets/img/fotos_perfil/';
+		$this->dados['sucesso']  = FALSE;
+        $this->dados['imagem']   = FALSE;
+		$this->dados['mensagem'] = "";
 	}
 	
 	public function index(){
-        
-        $header['titulo']             = 'Perfil';
+        $header['titulo'] = 'Perfil';
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
@@ -27,12 +26,9 @@ class Perfil extends CI_Controller {
 		$this->load->view('include/footer');
 	}
     
-    
-    
     public function alterar(){
-        
-        $this->dados['tentou']   = TRUE;
-        $this->dados['imagem']   = FALSE;
+        $this->dados['tentou'] = TRUE;
+        $this->dados['imagem'] = FALSE;
         
         $this->pessoa->setPessoa_id($_SESSION['pessoa_id']);
         $this->pessoa->setPessoa_nome($this->input->post("nome"));
@@ -51,8 +47,8 @@ class Perfil extends CI_Controller {
 
 		$this->alterar_usuario();
     }
+
     public function alterar_usuario(){
-        
         $header['titulo']             = 'Perfil';
         
         $this->load->view('include/header', $header);
@@ -62,9 +58,10 @@ class Perfil extends CI_Controller {
 	}
     
     public function alterar_foto(){
+        $this->dados['imagem']  = FALSE;
+        $this->dados['tentou']  = TRUE;
+        $this->dados['sucesso'] = TRUE;
 
-        
-        $this->dados['imagem']   = FALSE;
         if(isset($_POST['enviar'])){
             $formatos = array("png", "jpg", "jpeg");
             $extencao = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
@@ -80,7 +77,6 @@ class Perfil extends CI_Controller {
                     unlink($this->dados['pasta'].$_SESSION['foto_perfil']);
                 }
                 if(move_uploaded_file($nome_arquivo_temporario, $this->dados['pasta'].$novo_nome_arquivo)){
-                    
                     $this->pessoa->setPessoa_id($_SESSION['pessoa_id']);
                     $this->pessoa->setPessoa_foto_perfil($novo_nome_arquivo);
                     $this->pessoa->inserir_foto_pefil();
@@ -91,16 +87,13 @@ class Perfil extends CI_Controller {
                     $this->dados['imagem']   = TRUE;
                 }else{
                     $this->dados['mensagem'] = "Erro ao enviar imagem";
-                    $this->dados['imagem']   = TRUE;
+                    $this->dados['imagem']   = FALSE;
                 }
-                
             }else{
                 $this->dados['mensagem'] = "formato de imagem invalido";
+				$this->dados['sucesso']  = FALSE;
             }
         }
-        $this->dados['tentou']   = TRUE;
-        $this->dados['sucesso']  = TRUE;
-
 		$this->alterar_usuario();
     }
 }
