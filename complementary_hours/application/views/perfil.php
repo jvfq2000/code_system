@@ -38,13 +38,12 @@
     
     <div class="container">
         <h1 class="display-3" style="font-size: 50pt">
-            <img class="rounded-circle" src="<?php echo base_url('assets/img/icone/usuario_neutro.png'); ?>" alt="Generic placeholder image" width="100" height="100">
+            <img class="rounded-circle" src="<?php echo base_url('assets/img/icone/usuario.png'); ?>" alt="Generic placeholder image" width="100" height="100">
 			Olá, <?php echo $_SESSION['nome']; ?>!
         </h1>
         <p>
             Mantenha seus dados sempre atualizados, inclusive a foto de perfil.<br>
             Nada melhor que uma foto, para deixar o ambiente mais agradável!
-			<img src="<?php echo base_url('assets/img/emoji/piscando.png');?>" height="40" width="40"/>
         </p>
         <br>
     </div>
