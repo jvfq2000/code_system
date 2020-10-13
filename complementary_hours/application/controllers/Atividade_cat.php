@@ -7,7 +7,9 @@ class Atividade_cat extends CI_Controller {
     
 	function __construct(){
 		parent::__construct();
-        
+        if($_SESSION['logado'] !== TRUE){
+            redirect(base_url());
+        }
         $this->load->model('classes/Atividade_cat_model', 'categoriaAtividade');
         $this->dados['campus_options'] = $this->categoriaAtividade->montar_options_campus();
 
