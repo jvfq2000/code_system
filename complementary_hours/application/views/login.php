@@ -51,6 +51,11 @@
 					Chega de assinar formulários e imprimir certificados.</br></br>
 					Descomplique sua vida com a gente!
                 </p>
+                <br>
+                <br>
+                <p class="text-left"> 
+                    <a type="button" class="btn btn-outline-light" href="<?php echo base_url('Objetivos/objetivo');?>">Clique aqui e saiba mais &raquo;</a>
+                </p>
 			</h4>
 		</div>
 		<div class="card-header rounded mx-auto col-4 bg-white float-rigth" id="headingOne">

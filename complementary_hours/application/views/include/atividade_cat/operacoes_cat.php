@@ -1,36 +1,9 @@
 <script>
-    $(function(){
-			$("#estado").change(function(){
-				let estado_id = $("#estado").val();
-				let urlMostrarCidades = "<?php echo base_url('Gerenciar_campus/ajax_mostrar_cidades');?>";
-				
-                if (estado_id == '') {
-                    $("#cidade").html("<option value=\"\">Selecione o estado acima!</option>");
-                    $("#cidade").attr("disabled");
-                
-                } else {
-    				$.ajax({
-    					url        : urlMostrarCidades,
-    					type       : "POST",
-    					data       : {id : estado_id},
-
-    					beforeSend : function(){
-    						$("#cidade").html("<option value=\"\">Carregando cidades ...</option>");
-    					}
-    				})
-    				.done(function(cidades){
-                        $("#cidade").html(cidades);
-                        $("#cidade").removeAttr("disabled");
-    				})
-    				.fail(function(){
-    					$("#cidade").html("Ops! Houve um erro ao carregar.");
-    				});
+    function mascara(qtd_horas){ 
+                if(qtd_horas.value.length == 2){
+                        qtd_horas.value = ':' + qtd_horas.value; 
                 }
-			});
-        });
-</script>
-
-<script>
+    }
     (function() {
       'use strict';
       window.addEventListener('load', function() {
@@ -63,19 +36,19 @@
 
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="campus_desc">Nome do campus</label>
-                        <input type="text" class="form-control" id="campus_desc" name="campus_descricao" value="<?php if($pegou_campus == 'S') {echo $campus_descricao;}?>" required>
+                        <label for="campus_desc">Descrição da Categoria</label>
+                        <input type="text" class="form-control" id="campus_desc" name="campus_descricao" value="" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="row">
                     <div class="col-md-12 mb-2">
-                        <label for="estado">Estado</label>
-                        <select class="custom-select" id="estado" name="estado" required>
-                           <?php echo $estado_options; ?>
+                        <label for="campus">Campus</label>
+                        <select class="custom-select" id="campus" name="campus" required>
+                           <?php echo $campus_options; ?>
                         </select>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
@@ -84,11 +57,9 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12 mb-2">
-                        <label for="cidade">Cidade</label>
-                        <select class="custom-select" id="cidade" name="cidade" required disabled>
-                           <option value="">Selecione o estado acima!</option>
-                        </select>
+                    <div class="col-md-12 mb-3">
+                        <label for="qtd_horas">Quantidade de horas</label>
+                        <input type="text" class="form-control" id="qtd_horas" name="qtd_horas" placeholder="__:__" data-mask="00:00" data-mask-selectonfocus="true" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
@@ -117,13 +88,13 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    <?php if ($sucesso){ ?>
+                    <?php// if ($sucesso){ ?>
                             <img src="<?php echo base_url('assets/img/icone/ok.png');?>" height="40" width="40"/>
                             Tudo certo por aqui!
-                    <?php } else { ?>
+                    <?php //} else { ?>
                             <img src="<?php echo base_url('assets/img/icone/erro.png');?>" height="40" width="40"/>
                             Algo deu errado!
-                    <?php } ?>
+                    <?php //} ?>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span>&times;</span>
@@ -132,32 +103,33 @@
 
             <div class="modal-body">
                 <?php
-                    echo $mensagem;
+                //    echo $mensagem;
                 ?>
             </div>
 
             <div class="modal-footer">
                 <?php
-                    if($excluiu){
+                  //  if($excluiu){
                 ?>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                 <?php
-                    }else if ($tentou){ 
+                    //}else if ($tentou){ 
                 ?>
-                        <a type="button" class="btn btn-secondary" href="<?php echo base_url('Gerenciar_curso/novo/');?>">Cadastrar cursos</a>
+                        <a type="button" class="btn btn-secondary" href="<?php echo base_url('Atividade_cat/novo/');?>">Cadastrar cursos</a>
                         <a type="button" class="btn btn-primary" href="<?php echo base_url('Gerenciar_campus/novo/');?>">Novo campus</a>
                         <a type="button" class="btn btn-danger " href="<?php echo base_url('Gerenciar_campus');?>">Sair</a>
                     <?php 
-                    }
+                    //}
                 ?>
             </div>
 
         </div>
     </div>
 </div>
+<script src="<?php echo base_url('assets/jquery/jquery.mask.js');?>"></script>
 <?php  $this->load->view('include/modal_cancelar'); ?>
 <?php 
-    if($tentou){ 
+    //if($tentou){ 
 ?>	
 <script>
     $(document).ready(function(){
@@ -165,7 +137,7 @@
     });
 </script>
 <?php 
-    }
+    //}
 
     //PAROU EM ENVIAR OS DADOS PARA O EDITAR!
 

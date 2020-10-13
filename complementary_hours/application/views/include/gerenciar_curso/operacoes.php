@@ -132,7 +132,8 @@
 
             <div class="modal-footer">
                 <?php if ($sucesso){ ?>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Entedi</button>
+                        <a type="button" class="btn btn-primary " href="<?php echo base_url('Gerenciar_curso/novo');?>">Novo curso</a>
+                        <a type="button" class="btn btn-danger " href="<?php echo base_url('Gerenciar_curso');?>">Sair</a>
                 <?php 
                     } 
                 ?>

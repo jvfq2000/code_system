@@ -1,4 +1,15 @@
-<br/><br/><br/>
+<?php
+    if($espaco){
+?>
+    <br/><br/><br/>
+<?php
+    }else{
+?>
+    <br/>
+<?php   
+    }
+
+?>
 <main role="main" class="container-fluid">
   <div class="jumbotron shadow-sm pt-3">
     <div style="float: right">
