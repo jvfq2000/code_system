@@ -27,17 +27,18 @@
     <div class="accordion" id="accordionExample">
         <div class="shadow card-header rounded mx-auto col-sm-7" id="headingOne">
             <form name="formuser" class="form-group needs-validation"
-                action="<?php if($pegou_campus == 'S') {
-                        echo base_url('Gerenciar_campus/salvar_edicao/').$campus_id;
+                action="<?php if($pegou_atividade_cat == 'S') {
+                        echo base_url('Atividade_cat/salvar_edicao/').$atividade_cat_id;
                     } else {
-                        echo base_url('Gerenciar_campus/cadastrar');
-                    }?>"
+                        echo base_url('Atividade_cat/cadastrar');
+                    }   
+                        ?>"
                 method='POST'novalidate>
 
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="campus_desc">Descrição da Categoria</label>
-                        <input type="text" class="form-control" id="campus_desc" name="campus_descricao" value="" required>
+                        <label for="categoria_descricao">Descrição categoria</label>
+                        <input type="text" class="form-control" id="categoria_descricao" name="categoria_descricao" value="<?php if($pegou_atividade_cat == 'S') {echo $atividade_cat_descricao;}?>" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
@@ -59,7 +60,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="qtd_horas">Quantidade de horas</label>
-                        <input type="text" class="form-control" id="qtd_horas" name="qtd_horas" placeholder="__:__" data-mask="00:00" data-mask-selectonfocus="true" required>
+                        <input type="text" class="form-control" id="qtd_horas" name="qtd_horas" placeholder="__:__" data-mask="00:00" data-mask-selectonfocus="true" value="<?php if($pegou_atividade_cat == 'S') {echo $atividade_cat_horas_max;}?>" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
@@ -88,13 +89,13 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    <?php// if ($sucesso){ ?>
+                    <?php if ($sucesso){ ?>
                             <img src="<?php echo base_url('assets/img/icone/ok.png');?>" height="40" width="40"/>
                             Tudo certo por aqui!
-                    <?php //} else { ?>
+                    <?php } else { ?>
                             <img src="<?php echo base_url('assets/img/icone/erro.png');?>" height="40" width="40"/>
                             Algo deu errado!
-                    <?php //} ?>
+                    <?php } ?>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span>&times;</span>
@@ -103,23 +104,22 @@
 
             <div class="modal-body">
                 <?php
-                //    echo $mensagem;
+                    echo $mensagem;
                 ?>
             </div>
 
             <div class="modal-footer">
                 <?php
-                  //  if($excluiu){
+                    if($excluiu){
                 ?>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                 <?php
-                    //}else if ($tentou){ 
+                    }else if ($tentou){ 
                 ?>
-                        <a type="button" class="btn btn-secondary" href="<?php echo base_url('Atividade_cat/novo/');?>">Cadastrar cursos</a>
-                        <a type="button" class="btn btn-primary" href="<?php echo base_url('Gerenciar_campus/novo/');?>">Novo campus</a>
-                        <a type="button" class="btn btn-danger " href="<?php echo base_url('Gerenciar_campus');?>">Sair</a>
+                        <a type="button" class="btn btn-primary" href="<?php echo base_url('Atividade_cat/novo/');?>">Nova categoria</a>
+                        <a type="button" class="btn btn-danger " href="<?php echo base_url('Atividade_cat/');?>">Sair</a>
                     <?php 
-                    //}
+                    }
                 ?>
             </div>
 
@@ -129,7 +129,7 @@
 <script src="<?php echo base_url('assets/jquery/jquery.mask.js');?>"></script>
 <?php  $this->load->view('include/modal_cancelar'); ?>
 <?php 
-    //if($tentou){ 
+    if(($tentou)||($sucesso)){ 
 ?>	
 <script>
     $(document).ready(function(){
@@ -137,7 +137,7 @@
     });
 </script>
 <?php 
-    //}
+    }
 
     //PAROU EM ENVIAR OS DADOS PARA O EDITAR!
 

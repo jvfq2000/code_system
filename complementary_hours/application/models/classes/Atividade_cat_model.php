@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Base_model extends CI_Model {
+class Atividade_cat_model extends CI_Model {
 	private $atividade_cat_id;
 	private $campus_id;
 	private $atividade_cat_descricao;
@@ -30,7 +30,7 @@ class Base_model extends CI_Model {
 		return $this->atividade_cat_descricao;
 	}
 	public function setAtividade_cat_descricao($atividade_cat_descricao){
-		$this->atividade_cat_id = $atividade_cat_descricao;
+		$this->atividade_cat_descricao = $atividade_cat_descricao;
 	}
 	
 	public function getAtividade_cat_horas_max(){
@@ -49,9 +49,9 @@ class Base_model extends CI_Model {
 
 	public function cadastrar(){
 		$dados_atividade_cat = array(
-			"atividade_cat_id" => $this->getAtividade_cat_id()
-			"curso_id" => $this->getCurso_id()
-			"atividade_cat_descricao" => $this->getAtividade_cat_descricao()
+			"atividade_cat_id" => $this->getAtividade_cat_id(),
+			"campus_id" => $this->getCampus_id(),
+			"atividade_cat_descricao" => $this->getAtividade_cat_descricao(),
 			"atividade_cat_horas_max" => $this->getAtividade_cat_horas_max()
 		);
 		return $this->db->insert("atividade_cat",$dados_atividade_cat);
@@ -61,18 +61,26 @@ class Base_model extends CI_Model {
         return $this->db->delete('atividade_cat', array('atividade_cat_id' => $this->getAtividade_cat_id())); 
     }
 
+    public function categoria_existe(){
+        $this->db->select('atividade_cat_descricao');
+        $this->db->from('atividade_cat');
+        $this->db->where('atividade_cat_descricao',$this->getAtividade_cat_descricao());
+        $query = $this->db->get();
+	    return ($query->num_rows() > 0); 
+    }
+    
     public function editar(){
         $dados = array(
             'atividade_cat_id' => $this->getAtividade_cat_id(),
             'campus_id' => $this->getCampus_id(),
-            'atividade_cat_descricao' => $this->getAtividade_cat_descricao()
-            'atividade_cat_horas_max' => $this->getAtividade_cat_horas_max(),
+            'atividade_cat_descricao' => $this->getAtividade_cat_descricao(),
+            'atividade_cat_horas_max' => $this->getAtividade_cat_horas_max()
             );
         $where = "atividade_cat_id = {$this->getAtividade_cat_id()}";
         $query = $this->db->update_string('atividade_cat', $dados, $where);
         return $this->db->query($query);
     }
-
+    
     public function pegar_atividade_cat(){
 		$this->db->select('*');
 		$this->db->from('atividade_cat');
@@ -88,17 +96,34 @@ class Base_model extends CI_Model {
 		$query = $this->db->get();
 		return $query;
 	}
-
+    
+    public function listar_campus(){
+		$this->db->select('campus_id, campus_descricao, estado_id,cidade_id');
+		$this->db->from('campus');
+		$this->db->order_by('campus_descricao');
+		$query = $this->db->get();
+		return $query;
+	}
     public function listar_tabela(){
-		$this->db->select('atividade_cat.*, campus.descricao');
+		$this->db->select('atividade_cat.*, campus.campus_descricao');
 		$this->db->from('atividade_cat');
         $this->db->join('campus', 'atividade_cat.campus_id = campus.campus_id');
 		$this->db->order_by('campus_descricao, atividade_cat_descricao');
 		$query = $this->db->get();
 		return $query;
 	}
+    
+	public function montar_options_campus(){
+		$options = "<option value=\"\">Selecione</option>";
+		$campus_lista = $this->listar_campus();
+
+		foreach($campus_lista->result() as $campus){
+			$options .= "<option value=\"{$campus->campus_id}\">{$campus->campus_descricao}</option>";
+		}
+		return $options;
+	}
 	
-    public function montar_campus(){
+    public function montar_categoria_atividade(){
 		$atividade_cat_lista = $this->listar_tabela();
         $linhas = "";
 
@@ -107,9 +132,9 @@ class Base_model extends CI_Model {
 			$linhas .= "<td>{$atv_cat->campus_descricao}</td>";
             $linhas .= "<td>{$atv_cat->atividade_cat_descricao}</td>";
             $linhas .= "<td>{$atv_cat->atividade_cat_horas_max}</td>";
-            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerenciar_atividade_cat/editar/')."{$campus->atividade_cat_id}\" />";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Atividade_cat/editar/')."{$atv_cat->atividade_cat_id}\" />";
             $linhas .= "<img src=\"".base_url('assets/img/icone/editar.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
-            $linhas .= "<a href=\"".base_url('Gerenciar_atividade_cat/confirmacao/')."{$atividade_cat->atividade_cat_id}\"/>";
+            $linhas .= "<a href=\"".base_url('Atividade_cat/confirmacao/')."{$atv_cat->atividade_cat_id}\"/>";
             $linhas .= "<img src=\"".base_url('assets/img/icone/lixeira.png')."\" class=\"nav-link\" width=\"55\" height=\"39\" /></a></td>";
             $linhas .= "</div><tr>";
 		}
@@ -125,5 +150,24 @@ class Base_model extends CI_Model {
 		$this->db->order_by('campus_descricao, atividade_cat_descricao');
 		$query = $this->db->get();
 		return $query;
+	}
+    
+    public function montar_tabela_pesquisa(){
+		$atividade_cat_lista = $this->pesquisar();
+        $linhas = "";
+
+		foreach($atividade_cat_lista->result() as $atv_cat){
+            $linhas .= "<tr>";
+			$linhas .= "<td>{$atv_cat->campus_descricao}</td>";
+            $linhas .= "<td>{$atv_cat->atividade_cat_descricao}</td>";
+            $linhas .= "<td>{$atv_cat->atividade_cat_horas_max}</td>";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Atividade_cat/editar/')."{$atv_cat->atividade_cat_id}\" />";
+            $linhas .= "<img src=\"".base_url('assets/img/icone/editar.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
+            $linhas .= "<a href=\"".base_url('Atividade_cat/confirmacao/')."{$atv_cat->atividade_cat_id}\"/>";
+            $linhas .= "<img src=\"".base_url('assets/img/icone/lixeira.png')."\" class=\"nav-link\" width=\"55\" height=\"39\" /></a></td>";
+            $linhas .= "</div><tr>";
+		}
+        
+		return $linhas;
 	}
 }

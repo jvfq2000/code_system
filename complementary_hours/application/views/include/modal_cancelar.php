@@ -6,7 +6,9 @@
 			$caminho = "Gerenciar_curso";
 		}else if($titulo == "Perfil"){
 			$caminho = "Home";
-		}else{
+		}else if($titulo == "Categoria de Atividades"){
+            $caminho = "Atividade_cat";
+        }else{
 			$caminho = "";
 		}
 	}else{

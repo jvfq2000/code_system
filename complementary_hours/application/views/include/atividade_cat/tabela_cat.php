@@ -1,6 +1,6 @@
 <div class="shadow card-header rounded mx-auto col-sm-11" id="headingOne">
     
-    <form class="form-inline mt-2 mt-md-0" action="<?php echo base_url('Gerenciar_campus/pesquisar/');?>" method='POST' novalidate>
+    <form class="form-inline mt-2 mt-md-0" action="<?php echo base_url('Atividade_cat/pesquisar/');?>" method='POST' novalidate>
         <input class="form-control col-11 mr-sm-2" type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
     </form>
@@ -11,13 +11,13 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Campus</th>
-                    <th scope="col">Descrição</th>
+                    <th scope="col">Descrição Atividades</th>
                     <th scope="col">Máximo de Horas</th>
                     <th scope="col">Menu</th>
                 </tr>
             </thead>
             <tbody>
-                <?php echo $linhas_atividade_max; ?>
+                <?php echo $linhas_atividade_cat; ?>
             </tbody>
         </table>
     </div>
@@ -83,10 +83,10 @@
         <?php } ?>
 
         <?php if($pegou_campus == 'S') { ?>
-        $("#estado").val("<?php echo $estado_id?>");
-        $("#cidade").val("<?php echo $cidade_id?>");
-        console.log($("#estado").val(););
-        console.log($("#cidade").val(););
+            $("#estado").val("<?php echo $estado_id?>");
+            $("#cidade").val("<?php echo $cidade_id?>");
+            console.log($("#estado").val(););
+            console.log($("#cidade").val(););
         <?php } ?>
     });
 </script>
