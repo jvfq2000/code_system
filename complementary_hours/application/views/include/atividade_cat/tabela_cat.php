@@ -11,13 +11,13 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Campus</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Cidade</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Máximo de Horas</th>
                     <th scope="col">Menu</th>
                 </tr>
             </thead>
             <tbody>
-                <?php echo $linhas_campus; ?>
+                <?php echo $linhas_atividade_max; ?>
             </tbody>
         </table>
     </div>

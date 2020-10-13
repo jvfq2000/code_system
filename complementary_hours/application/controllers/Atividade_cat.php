@@ -10,10 +10,10 @@ class Atividade_cat extends CI_Controller {
     }
     
     public function index(){
-        $this->dados['mostrar']       = "tabela";
-        $this->dados['sucesso']       = FALSE;
-        //$this->dados['linhas_campus'] = $this->campus->montar_tabela_campus();
-        $header['titulo']             = 'Categoria de Atividades';
+        $this->dados['mostrar'] = "tabela";
+        $this->dados['sucesso'] = FALSE;
+        $this->dados['linhas_atividade_cat'] = $this->campus->montar_tabela();
+        $header['titulo'] = 'Categoria de Atividades';
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
@@ -22,15 +22,15 @@ class Atividade_cat extends CI_Controller {
 	}
     
     public function novo(){
-        $this->dados['mostrar']      = "operacoes";
-        $this->dados['pegou_campus'] = 'N';
-        $this->dados['sucesso']      = TRUE;
-        $header['titulo']             = 'Categoria de Atividades';
+        $this->dados['mostrar'] = "operacoes";
+        $this->dados['pegou_ativ_cat'] = 'N';
+        $this->dados['sucesso'] = TRUE;
+        $header['titulo'] = 'Categoria de Atividades';
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
 		$this->load->view('atividade_cat', $this->dados);
-		//$this->load->view('include/footer');
+		$this->load->view('include/footer');
 	}
     
 

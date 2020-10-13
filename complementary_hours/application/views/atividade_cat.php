@@ -11,7 +11,7 @@
             Categoria de Atividades!
         </h1>
         <p>
-            Como administrador do nosso sistema, você pode: incluir, alterar, excluir e pesquisar.<br>
+            Nessa página você pode: incluir, alterar, excluir e pesquisar.<br>
             Quanto maior a permissão, maior a responsabilidade!
         </p>
         <br>

@@ -35,11 +35,11 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_gerenciar">
                         <?php if($_SESSION['nivel'] > 3){ ?>
-                        <a class="dropdown-item" href="<?php echo base_url('Gerenciar_campus');?>">Gerenciar Campus</a>
-                        <a class="dropdown-item" href="<?php echo base_url('Gerenciar_curso');?>">Gerenciar Cursos</a>
+                        <a class="dropdown-item" href="<?php echo base_url('Gerenciar_campus');?>">Campus</a>
+                        <a class="dropdown-item" href="<?php echo base_url('Gerenciar_curso');?>">Curso</a>
                         <div class="dropdown-divider"></div>
                         <?php } ?>
-                        <a class="dropdown-item" href="#">Gerenciar Regulamentos</a>
+						<a class="dropdown-item" href="<?php echo base_url('Atividade_cat');?>">Categoria Atividades</a>
                     </div>
       			</li>
                 <?php } ?>
