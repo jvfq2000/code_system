@@ -4,7 +4,6 @@
         <button class="btn btn-outline-success col-2 my-2 my-sm-0" type="submit">Pesquisar</button>
     </form>
     <br>
-<<<<<<< HEAD
     <div style="overflow: auto; height: 400px;">
         <table class="table table-hover">
             <thead class="thead-dark">
@@ -20,21 +19,6 @@
             </tbody>
         </table>
     </div>
-=======
-    <table class="table table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Campus</th>
-                <th scope="col">Curso</th>
-                <th scope="col">Periodos</th>
-                <th scope="col">Menu</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php echo $linhas_curso; ?>
-        </tbody>
-    </table>
->>>>>>> c8a4d3601e1949aa89539df9dbcd4b367e792094
     <br>
     <div class="row">
         <div class="col-6 mb-1">

@@ -52,6 +52,7 @@ class Atividade_cat extends CI_Controller {
 		$this->dados['mensagem']      = "Erro ao cadastrar, tente novamente!";
         
         $this->categoriaAtividade->setAtividade_cat_descricao($this->input->post("categoria_descricao"));
+        $this->categoriaAtividade->setCampus_id($this->input->post("campus"));
         
 		if(!$this->categoriaAtividade->categoria_existe()){
             $this->categoriaAtividade->setCampus_id($this->input->post("campus"));

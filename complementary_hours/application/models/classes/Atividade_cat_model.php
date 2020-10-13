@@ -65,6 +65,7 @@ class Atividade_cat_model extends CI_Model {
         $this->db->select('atividade_cat_descricao');
         $this->db->from('atividade_cat');
         $this->db->where('atividade_cat_descricao',$this->getAtividade_cat_descricao());
+        $this->db->where('campus_id',$this->getCampus_id());
         $query = $this->db->get();
 	    return ($query->num_rows() > 0); 
     }

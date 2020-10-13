@@ -30,7 +30,7 @@ class Novo_quadro extends CI_Controller {
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
 		$this->load->view('quadro_atividade', $this->dados);
-		//$this->load->view('include/footer');
+		$this->load->view('include/footer');
 	}
     
 
