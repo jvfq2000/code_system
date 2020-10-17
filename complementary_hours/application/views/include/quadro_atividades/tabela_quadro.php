@@ -17,7 +17,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php echo $linhas_campus; ?>
+                <tr>
+                    <td>quadro</td>
+                    <td>quadro</td>
+                    <td>quadro</td>
+                    <td>quadro</td>
+                </tr>
+		<?php// echo $linhas_campus; ?>
+		
             </tbody>
         </table>
     </div>
