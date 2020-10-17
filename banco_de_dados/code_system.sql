@@ -19,6 +19,8 @@
 -- Table structure for table `aluno`
 --
 
+
+
 DROP TABLE IF EXISTS `aluno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -42,6 +44,24 @@ LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `regulamento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `regulamento` (
+  `regulamento_id` int(11) NOT NULL AUTO_INCREMENT,
+  `campus_id` int(11) NOT NULL,
+  `curso_id` int(11) NOT NULL,
+  `regulamento_descricao` varchar(100) NOT NULL,
+  `regulamento_caminho` varchar(100) NOT NULL,
+  PRIMARY KEY (`regulamento_id`),
+  KEY `FK_regulamento_campus` (`campus_id`),
+  KEY `FK_regulamento_curso` (`curso_id`),
+  CONSTRAINT `FK_regulamento_campus` FOREIGN KEY (`campus_id`) REFERENCES `campus` (`campus_id`),
+  CONSTRAINT `FK_regulamento_curso` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`curso_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
 --
 -- Table structure for table `atividade`
 --
@@ -54,8 +74,8 @@ CREATE TABLE `atividade` (
   `quadro_id` int(11) DEFAULT NULL,
   `atividade_cat_id` int(11) DEFAULT NULL,
   `atividade_descricao` varchar(100) DEFAULT NULL,
-  `atividade_horas_min` time DEFAULT NULL,
-  `atividade_horas_max` time DEFAULT NULL,
+  `atividade_horas_min` decimal(5,2) DEFAULT NULL,
+  `atividade_horas_max` decimal(5,2) DEFAULT NULL,
   PRIMARY KEY (`atividade_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -80,7 +100,7 @@ CREATE TABLE `atividade_cat` (
   `atividade_cat_id` int(11) NOT NULL AUTO_INCREMENT,
   `campus_id` int(11) DEFAULT NULL,
   `atividade_cat_descricao` varchar(100) DEFAULT NULL,
-  `atividade_cat_horas_max` time DEFAULT NULL,
+  `atividade_cat_horas_max` decimal(5,2) DEFAULT NULL,
   PRIMARY KEY (`atividade_cat_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
