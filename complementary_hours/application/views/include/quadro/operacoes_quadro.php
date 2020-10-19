@@ -1,31 +1,6 @@
-<script>
-    function mascara(qtd_horas){ 
-                if(qtd_horas.value.length == ){
-                        qtd_horas.value = '' + qtd_horas.value; 
-                }
-    }
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-    
-    
-</script>
-   
 <div class="col-12">
     <div class="accordion" id="accordionExample">
-        <div class="shadow card-header rounded mx-auto col-sm-7" id="headingOne">
+        <div class="shadow card-header rounded mx-auto col-sm-10" id="headingOne">
             <form name="formuser" class="form-group needs-validation"
                 action="<?php if($pegou_campus == 'S') {
                         echo base_url('Gerenciar_campus/salvar_edicao/').$campus_id;
@@ -40,7 +15,7 @@
                 <br>
                 
                 <div class="row">
-                    <div class="col-md-12 mb-2">
+                    <div class="col-md-6 mb-2">
                         <label for="campus">Campus</label>
                         <select class="custom-select" id="campus" name="campus" required>
                            <?php echo $campus_options; ?>
@@ -49,10 +24,8 @@
                             Campo obrigatorio!
                         </div>
                     </div>
-                </div>
                 
-                <div class="row">
-                    <div class="col-md-12 mb-2">
+                    <div class="col-md-6 mb-2">
                         <label for="curso">Curso</label>
                         <select class="custom-select" id="curso" name="curso" required>
                            <?php echo $curso_options; ?>
@@ -66,7 +39,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="quadro_desc">Descrição do Quadro</label>
-                        <input type="text" class="form-control" id="quadro_desc" name="quadro_descricao" value="" required>
+                        <input type="text" class="form-control" id="quadro_descricao" name="quadro_descricao" value="" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
@@ -76,7 +49,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="qtd_horas">Quantidade de horas</label>
-                        <input type="number" class="form-control" id="qtd_horas" name="qtd_horas" placeholder="__:__" data-mask="00:00" data-mask-selectonfocus="true" required>
+                        <input type="number" class="form-control" id="qtd_horas" name="qtd_horas" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
@@ -116,42 +89,42 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="qtd_horas_min">Quantidade de horas minimas</label>
-                        <input type="text" class="form-control" id="qtd_horas_min" name="qtd_horas_min" placeholder="__:__" data-mask="00:00" data-mask-selectonfocus="true" required>
+                        <input type="number" class="form-control" id="qtd_horas_min" name="qtd_horas_min" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="qtd_horas_max">Quantidade de horas maximas</label>
-                        <input type="text" class="form-control" id="qtd_horas_max" name="qtd_horas_max" placeholder="__:__" data-mask="00:00" data-mask-selectonfocus="true" required>
+                        <input type="number" class="form-control" id="qtd_horas_max" name="qtd_horas_max" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
                     </div>
-                    
-                    <div class="col-4 mb-1">
+                    <div class="col-md-4 mb-3">
+                        <br>
                         <button class="shadow-sm col-12 btn btn-outline-primary btn-lg" type="submit">Adicionar</button>
                     </div>
-                    
-                    <hr class="mb-4">
-                    <br>
-                    <div style="overflow: auto; height: 400px;">
-                        <table class="table table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Categoria atividade</th>
-                                    <th scope="col">Descrição da Atividade</th>
-                                    <th scope="col">Horas minimas</th>
-                                    <th scope="col">Horas maximas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php// echo $linhas_campus; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    
                 </div>
+                    
+                <hr class="mb-4">
+                <div style="overflow: auto; height: 400px;">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Categoria atividade</th>
+                                <th scope="col">Descrição da Atividade</th>
+                                <th scope="col">Horas minimas</th>
+                                <th scope="col">Horas maximas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php// echo $linhas_campus; ?>
+                        </tbody>
+                    </table>
+                </div>
+                    
+                
                 
                 
                 <div class="row">

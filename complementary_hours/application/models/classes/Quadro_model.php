@@ -48,17 +48,52 @@ class Quadro_model extends CI_Model {
 	}
     
 	public function cadastrar(){
-		$dados_quadro = array(
+		$dados = array(
 			"quadro_id"        => $this->getQuadro_id(),
 			"curso_id"         => $this->getCurso_id(),
 			"campus_id"        => $this->getCampus_id(),
 			"quadro_descricao" => $this->getQuadro_descricao(),
 			"quadro_horas_max" => $this->getQuadro_horas_max()
 		);
-		return $this->db->insert("quadro",$dados_quadro);
+		return $this->db->insert("quadro",$dados);
 	}
     
-    public function quadro_existe(){
+    public function editar(){
+        $dados = array(
+			"curso_id"         => $this->getCurso_id(),
+			"campus_id"        => $this->getCampus_id(),
+			"quadro_descricao" => $this->getQuadro_descricao(),
+			"quadro_horas_max" => $this->getQuadro_horas_max()
+		);
+        $where = "quadro_id = {$this->getQuadro_id()}";
+        $query = $this->db->update_string('quadro', $dados, $where);
+        return $this->db->query($query);
+    }
+    
+    public function excluir(){
+        return $this->db->delete('quadro', array('quadro_id' => $this->getQuadro_id())); 
+    }
+
+    public function pesquisar(){
+		$this->db->select('*');
+		$this->db->from('quadro');
+        $this->db->join('campus', 'campus.campus_id = quadro.campus_id');
+        $this->db->join('curso', 'curso.curso_id = quadro.curso_id');
+        $this->db->like('quadro_descricao',$this->getPesquisa());
+		$this->db->order_by('quadro_descricao');
+		$query = $this->db->get();
+		return $query;
+	}
+    
+    public function pegar_quadro(){
+		$this->db->select('quadro_id, quadro_descricao, quadro_qtd_periodos');
+		$this->db->from('quadro');
+        $this->db->where('quadro_id', $this->getQuadro_id());
+		$query = $this->db->get();
+		return $query;
+	}
+    
+    public function existe(){
         $this->db->select('quadro_id' , 'quadro_descricao');
         $this->db->from('quadro');
         $this->db->where('quadro_descricao',$this->getQuadro_descricao()) and $this->db->where('quadro_id',$this->getQuadro_id());
@@ -66,7 +101,7 @@ class Quadro_model extends CI_Model {
 	    return ($query->num_rows() > 0); 
     }
     
-	public function listar_quadro(){
+	public function listar(){
 		$this->db->select('quadro_id, quadro_descricao');
 		$this->db->from('quadro');
 		$this->db->order_by('quadro_descricao');
@@ -84,51 +119,29 @@ class Quadro_model extends CI_Model {
 		return $options;
 	}
     
-    public function listar_quadros_tabela(){
-		$this->db->select('quadro_id, quadro_descricao, quadro_qtd_periodos, quadro_descricao');
+    public function listar_quadro_tabela(){
+		$this->db->select('quadro_id, campus_descricao, curso_descricao, quadro_descricao, quadro_horas_max');
 		$this->db->from('quadro');
+        $this->db->join('campus', 'campus.campus_id = quadro.campus_id');
+        $this->db->join('curso', 'curso.curso_id = quadro.curso_id');
 		$this->db->order_by('quadro_descricao');
 		$query = $this->db->get();
 		return $query;
 	}	
     
-    
-    public function pegar_quadro(){
-		$this->db->select('quadro_id, quadro_descricao, quadro_qtd_periodos');
-		$this->db->from('quadro');
-        $this->db->where('quadro_id', $this->getQuadro_id());
-		$query = $this->db->get();
-		return $query;
-	}
-    
-    public function editar_curso(){
-        $dados = array(
-                'campus_id' => $this->getCampus_id(),
-                'curso_descricao' => $this->getCurso_descricao(),
-                'curso_qtd_periodos' => $this->getCurso_qtd_periodos()
-            );
-        $where = "campus_id = {$this->getCampus_id()}";
-        $query = $this->db->update_string('curso', $dados, $where);
-        return $this->db->query($query);
-    }
-    
-     public function excluir(){
-        return $this->db->delete('curso', array('curso_id' => $this->getCurso_id())); 
-    }
-    
-    
-    public function montar_tabela_curso(){
-		$cursos_lista = $this->listar_cursos_tabela();
+    public function montar_tabela(){
+		$quadro_lista = $this->listar_quadro_tabela();
         $linhas = "";
 
-		foreach($cursos_lista->result() as $curso){
+		foreach($quadro_lista->result() as $quadro){
             $linhas .= "<tr>";
-            $linhas .= "<td>{$curso->campus_descricao}</td>";
-			$linhas .= "<td>{$curso->curso_descricao}</td>";
-            $linhas .= "<td>{$curso->curso_qtd_periodos}</td>";
-            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerenciar_curso/editar/')."{$curso->curso_id}\" />";
+            $linhas .= "<td>{$quadro->campus_descricao}</td>";
+			$linhas .= "<td>{$quadro->curso_descricao}</td>";
+			$linhas .= "<td>{$quadro->quadro_descricao}</td>";
+            $linhas .= "<td>{$quadro->quadro_horas_max}</td>";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Quadro/editar/')."{$quadro->quadro_id}\" />";
             $linhas .= "<img src=\"".base_url('assets/img/icone/editar.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
-            $linhas .= "<a href=\"".base_url('Gerenciar_curso/confirmacao/')."{$curso->curso_id}\"/>";
+            $linhas .= "<a href=\"".base_url('Quadro/confirmacao/')."{$quadro->quadro_id}\"/>";
             $linhas .= "<img src=\"".base_url('assets/img/icone/lixeira.png')."\" class=\"nav-link\" width=\"55\" height=\"39\" /></a></td>";
             $linhas .= "</div><tr>";        
 		}
@@ -136,28 +149,19 @@ class Quadro_model extends CI_Model {
 		return $linhas;
 	}
     
-    public function pesquisar(){
-		$this->db->select('*');
-		$this->db->from('curso');
-        $this->db->join('campus', 'campus.campus_id = curso.campus_id');
-        $this->db->like('curso_descricao',$this->getPesquisa());
-		$this->db->order_by('curso_descricao');
-		$query = $this->db->get();
-		return $query;
-	}
-    
-     public function montar_tabela_pesquisa(){
-		$cursos_lista = $this->pesquisar();
+    public function montar_tabela_pesquisa(){
+		$quadro_lista = $this->pesquisar();
         $linhas = "";
 
-		foreach($cursos_lista->result() as $curso){
+		foreach($quadro_lista->result() as $quadro){
             $linhas .= "<tr>";
-            $linhas .= "<td>{$curso->campus_descricao}</td>";
-			$linhas .= "<td>{$curso->curso_descricao}</td>";
-            $linhas .= "<td>{$curso->curso_qtd_periodos}</td>";
-            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerenciar_curso/editar/')."{$curso->curso_id}\" />";
+            $linhas .= "<td>{$quadro->campus_descricao}</td>";
+			$linhas .= "<td>{$quadro->curso_descricao}</td>";
+			$linhas .= "<td>{$quadro->quadro_descricao}</td>";
+            $linhas .= "<td>{$quadro->quadro_horas_max}</td>";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Quadro/editar/')."{$quadro->quadro_id}\" />";
             $linhas .= "<img src=\"".base_url('assets/img/icone/editar.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
-            $linhas .= "<a href=\"".base_url('Gerenciar_curso/confirmacao/')."{$curso->curso_id}\"/>";
+            $linhas .= "<a href=\"".base_url('Quadro/confirmacao/')."{$quadro->quadro_id}\"/>";
             $linhas .= "<img src=\"".base_url('assets/img/icone/lixeira.png')."\" class=\"nav-link\" width=\"55\" height=\"39\" /></a></td>";
             $linhas .= "</div><tr>";        
 		}

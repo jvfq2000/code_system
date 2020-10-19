@@ -17,21 +17,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>quadro</td>
-                    <td>quadro</td>
-                    <td>quadro</td>
-                    <td>quadro</td>
-                </tr>
-		<?php// echo $linhas_campus; ?>
-		
+                <?php echo $linhas_quadro; ?>
             </tbody>
         </table>
     </div>
     <br>
     <div class="row">
         <div class="col-6 mb-1">
-            <a class="shadow-sm col-12 btn btn-outline-primary btn-lg"  href="<?php echo base_url('Atividade_cat/novo/');?>" role="button">Novo</a>
+            <a class="shadow-sm col-12 btn btn-outline-primary btn-lg"  href="<?php echo base_url('Quadro/novo/');?>" role="button">Novo</a>
         </div>
         <div class="col-6 mb-1">
             <a class="shadow-sm col-12 btn btn-outline-danger btn-lg"  href="<?php echo base_url('Home');?>" role="button">Voltar</a>
@@ -73,7 +66,7 @@
                 <?php
                     }else if ($tentou){ 
                 ?>
-                        <a type="button" class="btn btn-primary" href="<?php echo base_url('Gerenciar_curso/novo/');?>">Cadastrar curso</a>
+                        <a type="button" class="btn btn-primary" href="<?php echo base_url('Quadro/novo/');?>">Cadastrar quadro</a>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Entendi</button>
                     <?php 
                     }
