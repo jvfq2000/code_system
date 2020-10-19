@@ -39,8 +39,9 @@
                         <a class="dropdown-item" href="<?php echo base_url('Gerenciar_curso');?>">Curso</a>
                         <div class="dropdown-divider"></div>
                         <?php } ?>
-			<a class="dropdown-item" href="<?php echo base_url('Atividade_cat');?>">Categoria Atividades</a>
-			<a class="dropdown-item" href="<?php echo base_url('Novo_quadro');?>">Quadro Horas</a>
+                        <a class="dropdown-item" href="<?php echo base_url('Atividade_cat');?>">Categoria Atividades</a>
+                        <a class="dropdown-item" href="<?php echo base_url('Novo_quadro');?>">Quadro Horas</a>
+                        <a class="dropdown-item" href="<?php echo base_url('Regulamento');?>">Regulamentos</a>
                     </div>
       			</li>
                 <?php } ?>

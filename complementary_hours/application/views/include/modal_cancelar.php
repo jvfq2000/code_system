@@ -8,6 +8,8 @@
 			$caminho = "Home";
 		}else if($titulo == "Categoria de Atividades"){
             $caminho = "Atividade_cat";
+        }else if($titulo == "Gerenciar Regulamentos"){
+            $caminho = "Regulamento";
         }else{
 			$caminho = "";
 		}

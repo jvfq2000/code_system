@@ -1,7 +1,7 @@
 <script>
     function mascara(qtd_horas){ 
-                if(qtd_horas.value.length == 2){
-                        qtd_horas.value = ':' + qtd_horas.value; 
+                if(qtd_horas.value.length == ){
+                        qtd_horas.value = '' + qtd_horas.value; 
                 }
     }
     (function() {
@@ -76,7 +76,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="qtd_horas">Quantidade de horas</label>
-                        <input type="text" class="form-control" id="qtd_horas" name="qtd_horas" placeholder="__:__" data-mask="00:00" data-mask-selectonfocus="true" required>
+                        <input type="number" class="form-control" id="qtd_horas" name="qtd_horas" placeholder="__:__" data-mask="00:00" data-mask-selectonfocus="true" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>

@@ -53,6 +53,7 @@ CREATE TABLE `regulamento` (
   `curso_id` int(11) NOT NULL,
   `regulamento_descricao` varchar(100) NOT NULL,
   `regulamento_caminho` varchar(100) NOT NULL,
+  `regulamento_ano` int(11) NOT NULL,
   PRIMARY KEY (`regulamento_id`),
   KEY `FK_regulamento_campus` (`campus_id`),
   KEY `FK_regulamento_curso` (`curso_id`),
