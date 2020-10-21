@@ -25,6 +25,15 @@
           			font-size: 3.5rem;
         		}
       		}
+            
+            .bs-example { 
+                margin: auto; 
+                width: 25%; 
+            } 
+          
+            .dropdown:hover .dropdown-menu { 
+                display: block; 
+            }
     	</style>
     	<link href="jumbotron.css" rel="stylesheet">
 	</head>

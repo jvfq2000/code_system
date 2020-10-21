@@ -63,6 +63,37 @@ CREATE TABLE `regulamento` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
+
+DROP TABLE IF EXISTS `aluno_ati`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `aluno_ati` (
+  `aluno_ati_id` int(11) NOT NULL AUTO_INCREMENT,
+  `campus_id` int(11) NOT NULL,
+  `curso_id` int(11) NOT NULL,
+  `aluno_id` int(11) NOT NULL,
+  `atividade_id` int(11) NOT NULL,
+  `aluno_ati_descricao` varchar(100) NOT NULL,
+  `aluno_ati_doc` varchar(100) NOT NULL,
+  `aluno_ati_qtd_horas` decimal(5,2) DEFAULT NULL,
+  `aluno_ati_comprovado` TINYINT NOT NULL,
+  `aluno_ati_justificativa` varchar(300) NOT NULL,
+  `aluno_ati_semestre` TINYINT NOT NULL,
+  `aluno_ati_qtd_horas_aprovadas` decimal(5,2) DEFAULT NULL,
+  `aluno_ati_visto` TINYINT NOT NULL,
+  PRIMARY KEY (`aluno_ati_id`),
+  KEY `FK_aluno_ati_campus` (`campus_id`),
+  KEY `FK_aluno_ati_curso` (`curso_id`),
+  KEY `FK_aluno_ati_aluno` (`aluno_id`),  
+  KEY `FK_aluno_ati_atividade` (`atividade_id`),
+  CONSTRAINT `FK_aluno_ati_campus` FOREIGN KEY (`campus_id`) REFERENCES `campus` (`campus_id`),
+  CONSTRAINT `FK_aluno_ati_curso` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`curso_id`),
+  CONSTRAINT `FK_aluno_ati_aluno` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`aluno_id`),
+  CONSTRAINT `FK_aluno_ati_atividade` FOREIGN KEY (`atividade_id`) REFERENCES `atividade` (`atividade_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
 --
 -- Table structure for table `atividade`
 --
