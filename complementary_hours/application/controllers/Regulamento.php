@@ -102,9 +102,12 @@ class Regulamento extends CI_Controller {
         $regulamento_result = $result->row_array();
         
         $this->dados['regulamento_id']        = $regulamento_result['regulamento_id'];
+        $this->dados['campus_id']        = $regulamento_result['campus_id'];
+        $this->dados['curso_id']        = $regulamento_result['curso_id'];
         $this->dados['regulamento_descricao'] = $regulamento_result['regulamento_descricao'];
         $this->dados['regulamento_ano']       = $regulamento_result['regulamento_ano'];
-        
+		$this->dados['curso_options'] = $this->curso->montar_options_curso($regulamento_result['campus_id']);
+
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
 		$this->load->view('gerenciar_regulamento', $this->dados);
@@ -114,6 +117,16 @@ class Regulamento extends CI_Controller {
     public function salvar_edicao($regulamento_id){
         $this->dados['tentou']   = TRUE;
 		$this->dados['mensagem'] = "Erro ao salvar, tente novamente!";
+        
+        $this->regulamento->setRegulamento_id($regulamento_id);
+        $result = $this->regulamento->pegar_regulamento();
+        $regulamento_result = $result->row_array();
+
+        $this->dados['regulamento_id']        = $regulamento_result['regulamento_id'];
+        $this->dados['campus_id']        = $regulamento_result['campus_id'];
+        $this->dados['regulamento_descricao'] = $regulamento_result['regulamento_descricao'];
+        $this->dados['regulamento_ano']       = $regulamento_result['regulamento_ano'];
+        $this->dados['curso_options'] = $this->curso->montar_options_curso($regulamento_result['campus_id']);
         
         $this->regulamento->setRegulamento_id($regulamento_id);
         $this->regulamento->setCampus_id($this->input->post("campus"));
@@ -146,6 +159,7 @@ class Regulamento extends CI_Controller {
         
         $this->dados['mostrar'] = "operacoes";
         $header['titulo']       = 'Gerenciar Regulamentos';
+        $this->dados['pegou_regulamento']  = 'S';
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');

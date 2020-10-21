@@ -92,7 +92,7 @@ class Curso_model extends CI_Model {
     
     
     public function pegar_curso(){
-		$this->db->select('curso_id, curso_descricao, curso_qtd_periodos');
+		$this->db->select('curso_id, campus_id, curso_descricao, curso_qtd_periodos');
 		$this->db->from('curso');
         $this->db->where('curso_id', $this->getCurso_id());
 		$query = $this->db->get();

@@ -138,7 +138,7 @@
 </script>
 <?php 
     }
-
-    //PAROU EM ENVIAR OS DADOS PARA O EDITAR!
-
 ?>
+<script>
+    $("#campus").val("<?php echo $campus_id?>");
+</script>

@@ -127,7 +127,7 @@ class Regulamento_model extends CI_Model {
 	}
     
     public function pegar_regulamento(){
-		$this->db->select('regulamento_id, curso_descricao, campus_descricao, regulamento_descricao, regulamento_ano');
+		$this->db->select('*');
 		$this->db->from('regulamento');
         $this->db->join('campus', 'campus.campus_id = regulamento.campus_id');
         $this->db->join('curso', 'curso.curso_id = regulamento.curso_id');
