@@ -98,13 +98,14 @@ class Atividade_cat_model extends CI_Model {
 		return $query;
 	}
     
-    public function listar_campus(){
-		$this->db->select('campus_id, campus_descricao, estado_id,cidade_id');
-		$this->db->from('campus');
-		$this->db->order_by('campus_descricao');
+    public function listar_categoria(){
+		$this->db->select('*');
+		$this->db->from('atividade_cat');
+		$this->db->order_by('atividade_cat_descricao');
 		$query = $this->db->get();
 		return $query;
 	}
+    
     public function listar_tabela(){
 		$this->db->select('atividade_cat.*, campus.campus_descricao');
 		$this->db->from('atividade_cat');
@@ -114,12 +115,12 @@ class Atividade_cat_model extends CI_Model {
 		return $query;
 	}
     
-	public function montar_options_campus(){
+	public function montar_options_categoria(){
 		$options = "<option value=\"\">Selecione</option>";
-		$campus_lista = $this->listar_campus();
+		$categoria_lista = $this->listar_categoria();
 
-		foreach($campus_lista->result() as $campus){
-			$options .= "<option value=\"{$campus->campus_id}\">{$campus->campus_descricao}</option>";
+		foreach($categoria_lista->result() as $categoria){
+			$options .= "<option value=\"{$categoria->atividade_cat_id}\">{$categoria->atividade_cat_descricao}</option>";
 		}
 		return $options;
 	}

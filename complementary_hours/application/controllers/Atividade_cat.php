@@ -11,7 +11,8 @@ class Atividade_cat extends CI_Controller {
             redirect(base_url());
         }
         $this->load->model('classes/Atividade_cat_model', 'categoriaAtividade');
-        $this->dados['campus_options'] = $this->categoriaAtividade->montar_options_campus();
+        $this->load->model('classes/Campus_model', 'campus');
+        $this->dados['campus_options'] = $this->campus->montar_options_campus();
 
         $this->dados['tentou']         = FALSE;
 		$this->dados['sucesso']        = FALSE;
