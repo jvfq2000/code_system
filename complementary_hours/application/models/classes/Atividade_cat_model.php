@@ -98,12 +98,23 @@ class Atividade_cat_model extends CI_Model {
 		return $query;
 	}
     
-    public function listar_categoria(){
+    public function listar_categoria($campus_id){
 		$this->db->select('*');
 		$this->db->from('atividade_cat');
+		$this->db->where('campus_id', $campus_id);
 		$this->db->order_by('atividade_cat_descricao');
 		$query = $this->db->get();
 		return $query;
+	}
+    
+	public function montar_options_categoria($campus_id){
+		$options = "<option value=\"\">Selecione</option>";
+		$categoria_lista = $this->listar_categoria($campus_id);
+
+		foreach($categoria_lista->result() as $categoria){
+			$options .= "<option value=\"{$categoria->atividade_cat_id}\">{$categoria->atividade_cat_descricao}</option>";
+		}
+		return $options;
 	}
     
     public function listar_tabela(){
@@ -113,16 +124,6 @@ class Atividade_cat_model extends CI_Model {
 		$this->db->order_by('campus_descricao, atividade_cat_descricao');
 		$query = $this->db->get();
 		return $query;
-	}
-    
-	public function montar_options_categoria(){
-		$options = "<option value=\"\">Selecione</option>";
-		$categoria_lista = $this->listar_categoria();
-
-		foreach($categoria_lista->result() as $categoria){
-			$options .= "<option value=\"{$categoria->atividade_cat_id}\">{$categoria->atividade_cat_descricao}</option>";
-		}
-		return $options;
 	}
 	
     public function montar_categoria_atividade(){

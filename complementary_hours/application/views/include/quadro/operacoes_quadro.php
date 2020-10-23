@@ -1,19 +1,17 @@
 <div class="col-12">
     <div class="accordion" id="accordionExample">
-        <div class="shadow card-header rounded mx-auto col-sm-10" id="headingOne">
+        <div class="shadow card-header rounded mx-auto col-sm-11" id="headingOne">
             <form name="formuser" class="form-group needs-validation"
-                action="<?php if($pegou_campus == 'S') {
-                        echo base_url('Gerenciar_campus/salvar_edicao/').$campus_id;
+                action="<?php if($pegou_quadro == 'S') {
+                        echo base_url('Quadro/salvar_edicao/').$quadro_id;
                     } else {
-                        echo base_url('Gerenciar_campus/cadastrar');
+                        echo base_url('Quadro/cadastrar');
                     }?>"
                 method='POST'novalidate>
                 <h1 class="text-center">
                     Quadro
                 </h1>
                 <hr class="mb-4">
-                <br>
-                
                 <div class="row">
                     <div class="col-md-6 mb-2">
                         <label for="campus">Campus</label>
@@ -28,7 +26,7 @@
                     <div class="col-md-6 mb-2">
                         <label for="curso">Curso</label>
                         <select class="custom-select" id="curso" name="curso" required>
-                           <?php echo $curso_options; ?>
+                           <option value="">Selecione o campus!</option>
                         </select>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
@@ -37,19 +35,17 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-9 mb-3">
                         <label for="quadro_desc">Descrição do Quadro</label>
                         <input type="text" class="form-control" id="quadro_descricao" name="quadro_descricao" value="" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="qtd_horas">Quantidade de horas</label>
-                        <input type="number" class="form-control" id="qtd_horas" name="qtd_horas" required>
+                        <input type="number" step="0.01" class="form-control" id="qtd_horas" name="qtd_horas" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
@@ -57,27 +53,23 @@
                 </div>
 
                 <hr class="mb-4">
-                
+                <br>
                 <h1 class="text-center">
                     Atividades
                 </h1>
-                
                 <hr class="mb-4">
-                
                 <div class="row">
-                    <div class="col-md-12 mb-2">
+                    <div class="col-md-4 mb-2">
                         <label for="cat-atividade">Categoria atividades</label>
                         <select class="custom-select" id="cat-atividade" name="cat-atividade" required>
-                           <?php echo $cat_atividades_options; ?>
+                           <option value="">Selecione o campus!</option>
                         </select>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
                     </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-12 mb-3">
+
+                    <div class="col-md-8 mb-3">
                         <label for="atividade_desc">Descrição da Atividade</label>
                         <input type="text" class="form-control" id="atividade_desc" name="atividade_descricao" value="" required>
                         <div class="invalid-feedback">
@@ -89,21 +81,21 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="qtd_horas_min">Quantidade de horas minimas</label>
-                        <input type="number" class="form-control" id="qtd_horas_min" name="qtd_horas_min" required>
+                        <input type="number" step="0.01" class="form-control" id="qtd_horas_min" name="qtd_horas_min" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="qtd_horas_max">Quantidade de horas maximas</label>
-                        <input type="number" class="form-control" id="qtd_horas_max" name="qtd_horas_max" required>
+                        <input type="number" step="0.01" class="form-control" id="qtd_horas_max" name="qtd_horas_max" required>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div id="add" class="col-md-4 mb-3">
                         <br>
-                        <button class="shadow-sm col-12 btn btn-outline-primary btn-lg" type="submit">Adicionar</button>
+                        <button class="shadow-sm col-12 btn btn-outline-primary btn-lg" type="button">Adicionar</button>
                     </div>
                 </div>
                     
@@ -118,15 +110,12 @@
                                 <th scope="col">Horas maximas</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php// echo $linhas_campus; ?>
+                        <tbody id="linhas_quadro">
+                            
                         </tbody>
                     </table>
                 </div>
-                    
-                
-                
-                
+                   
                 <div class="row">
                     <div class="col-6 mb-1">
                         <button class="shadow-sm col-12 btn btn-outline-primary btn-lg" type="submit">Salvar</button>
@@ -184,7 +173,22 @@
         </div>
     </div>
 </div>
-<script src="<?php echo base_url('assets/jquery/jquery.mask.js');?>"></script>
+<script>
+    src="<?php echo base_url('assets/jquery/jquery.mask.js');?>";
+    let linhas_atividade = '';
+
+    $("#add").click(function() {
+        linhas_atividade = linhas_atividade +
+            '<tr>'+
+                '<td>teste</td>'+
+                '<td>teste</td>'+
+                '<td>teste</td>'+
+                '<td>teste</td>'+
+            '<tr>';
+
+        $("#linhas_quadro").html(linhas_atividade);
+    });
+</script>
 <?php  $this->load->view('include/modal_cancelar'); ?>
 <?php 
     //if($tentou){ 
@@ -195,8 +199,4 @@
     });*/
 </script>
 <?php 
-    //}
-
-    //PAROU EM ENVIAR OS DADOS PARA O EDITAR!
-
 ?>

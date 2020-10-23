@@ -24,13 +24,14 @@
     $(function(){
         $("#campus").change(function(){
             let campus_id = $("#campus").val();
-            let urlMostrarCursos = "<?php echo base_url('Novo_usuario/ajax_mostrar_cursos');?>";
+            let urlMostrarCursos = "<?php echo base_url('Quadro/ajax_mostrar_cursos');?>";
+            let urlMostrarCat = "<?php echo base_url('Quadro/ajax_mostrar_categorias');?>";
             
             if (campus_id == '') {
-                $("#curso").html("<option value=\"\">Selecione o campus acima!</option>");
-                $("#curso").attr("disabled");
+                $("#curso").html("<option value=\"\">Selecione o campus!</option>");
+                $("#cat-atividade").html("<option value=\"\">Selecione o campus!</option>");
             
-           } else {
+            } else {
                 $.ajax({
                     url        : urlMostrarCursos,
                     type       : "POST",
@@ -46,6 +47,24 @@
                 })
                 .fail(function(){
                     $("#curso").html("Ops! Houve um erro ao carregar.");
+                });
+            
+
+                $.ajax({
+                    url        : urlMostrarCat,
+                    type       : "POST",
+                    data       : {id : campus_id},
+
+                    beforeSend : function(){
+                        $("#cat-atividade").html("<option value=\"\">Carregando categorias ...</option>");
+                    }
+                })
+                .done(function(categorias){
+                    $("#cat-atividade").html(categorias);
+                    $("#cat-atividade").removeAttr("disabled");
+                })
+                .fail(function(){
+                    $("#cat-atividade").html("Ops! Houve um erro ao carregar.");
                 });
             }
         });
