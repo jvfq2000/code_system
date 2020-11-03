@@ -180,10 +180,10 @@
     $("#add").click(function() {
         linhas_atividade = linhas_atividade +
             '<tr>'+
-                '<td>teste</td>'+
-                '<td>teste</td>'+
-                '<td>teste</td>'+
-                '<td>teste</td>'+
+                '<td>'+$("#cat-atividade").val()+'</td>'+
+                '<td>'+$("#atividade_desc").val()+'</td>'+
+                '<td>'+$("#qtd_horas_min").val()+'</td>'+
+                '<td>'+$("#qtd_horas_max").val()+'</td>'+
             '<tr>';
 
         $("#linhas_quadro").html(linhas_atividade);

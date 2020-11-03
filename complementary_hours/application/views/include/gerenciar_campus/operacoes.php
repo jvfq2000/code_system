@@ -8,7 +8,7 @@
                     $("#cidade").html("<option value=\"\">Selecione o estado acima!</option>");
                     $("#cidade").attr("disabled");
                 
-                } else {
+                }else {
     				$.ajax({
     					url        : urlMostrarCidades,
     					type       : "POST",
@@ -86,8 +86,12 @@
                 <div class="row">
                     <div class="col-md-12 mb-2">
                         <label for="cidade">Cidade</label>
-                        <select class="custom-select" id="cidade" name="cidade" required disabled>
-                           <option value="">Selecione o estado acima!</option>
+                        <select class="custom-select" id="cidade" name="cidade" required>
+                            <?php if($pegou_campus == 'S') {
+                                echo $cidade_options;
+                            } else {
+                                echo '<option value="">Selecione o estado acima!</option>';
+                            }?> 
                         </select>
                         <div class="invalid-feedback">
                             Campo obrigatorio!
@@ -170,3 +174,7 @@
     //PAROU EM ENVIAR OS DADOS PARA O EDITAR!
 
 ?>
+<script>
+    $("#estado").val("<?php echo $estado_id?>");
+    $("#cidade").val("<?php echo $cidade_id?>");
+</script>

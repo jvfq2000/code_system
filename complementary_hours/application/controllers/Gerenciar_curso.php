@@ -73,6 +73,7 @@ class Gerenciar_curso extends CI_Controller {
         $curso_result = $result->row_array();
         
         $this->dados['curso_id'] = $curso_result['curso_id'];
+        $this->dados['campus_id'] = $curso_result['campus_id'];
         $this->dados['curso_descricao'] = $curso_result['curso_descricao'];
         $this->dados['curso_qtd_periodos'] = $curso_result['curso_qtd_periodos'];
         

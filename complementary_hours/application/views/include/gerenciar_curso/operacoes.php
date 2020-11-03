@@ -155,3 +155,6 @@
     }
 
 ?>
+<script>
+    $("#campus").val("<?php echo $campus_id?>");
+</script>

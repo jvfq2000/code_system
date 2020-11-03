@@ -95,6 +95,7 @@ class Gerenciar_campus extends CI_Controller {
         $this->dados['campus_descricao'] = $campus_result['campus_descricao'];
         $this->dados['estado_id']        = $campus_result['estado_id'];
         $this->dados['cidade_id']        = $campus_result['cidade_id'];
+        $this->dados['cidade_options'] = $this->cidade->montar_options_cidade($campus_result['estado_id']);
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');

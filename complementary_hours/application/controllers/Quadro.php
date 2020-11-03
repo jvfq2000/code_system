@@ -28,7 +28,8 @@ class Quadro extends CI_Controller {
         $this->dados['mostrar'] = "tabela";
         $this->dados['sucesso'] = FALSE;
         $this->dados['linhas_quadro'] = $this->quadro->montar_tabela();
-        $header['titulo'] = 'Quadro de Atividades';
+        $this->dados['campus_options']= $this->campus->montar_options_campus();
+        $header['titulo']             = 'Quadro de Atividades';
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');

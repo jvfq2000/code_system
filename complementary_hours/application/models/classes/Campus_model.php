@@ -95,7 +95,7 @@ class Campus_model extends CI_Model {
 		return $query;
 	}
 
-	public function montar_options_campus(){
+    public function montar_options_campus(){
 		$options = "<option value=\"\">Selecione</option>";
 		$campus_lista = $this->listar_campus();
 
