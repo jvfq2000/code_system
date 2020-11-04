@@ -23,7 +23,7 @@
 				<li class="nav-item">
 					<a class="nav-link btn-outline-secondary" href="#">Regulamentos<span class="sr-only">(current)</span></a>
 				</li>
-
+                
       			<li class="nav-item">
         			<a class="nav-link btn-outline-secondary" href="#">Relatórios<span class="sr-only">(current)</span></a>
 				</li> 
@@ -45,7 +45,10 @@
                     </div>
       			</li>
                 <?php } ?>
-
+                
+                <li class="nav-item">
+                    <a class="nav-link btn-outline-secondary" href="<?php echo base_url('Atividade_aluno');?>">Atividades complementares<span class="sr-only">(current)</span></a>
+                </li> 
                 <li class="nav-item">
                     <a class="nav-link btn-outline-secondary" href="<?php echo base_url('Objetivos');?>">Objetivos<span class="sr-only">(current)</span></a>
                 </li> 
