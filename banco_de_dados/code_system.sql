@@ -69,10 +69,10 @@ DROP TABLE IF EXISTS `aluno_ati`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `aluno_ati` (
   `aluno_ati_id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL,
   `campus_id` int(11) NOT NULL,
   `curso_id` int(11) NOT NULL,
   `atividade_id` int(11) NOT NULL,
-  `aluno_ati_nome_aluno` varchar(100) NOT NULL,
   `aluno_ati_descricao` varchar(100) NOT NULL,
   `aluno_ati_doc` varchar(100) NOT NULL,
   `aluno_ati_qtd_horas` decimal(5,2) DEFAULT NULL,
@@ -83,9 +83,11 @@ CREATE TABLE `aluno_ati` (
   `aluno_ati_qtd_horas_aprovadas` decimal(5,2) DEFAULT NULL,
   `aluno_ati_visto` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`aluno_ati_id`),
+  KEY `FK_aluno_ati_usuario` (`usuario_id`),
   KEY `FK_aluno_ati_campus` (`campus_id`),
   KEY `FK_aluno_ati_curso` (`curso_id`),  
   KEY `FK_aluno_ati_atividade` (`atividade_id`),
+  CONSTRAINT `FK_aluno_ati_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`),
   CONSTRAINT `FK_aluno_ati_campus` FOREIGN KEY (`campus_id`) REFERENCES `campus` (`campus_id`),
   CONSTRAINT `FK_aluno_ati_curso` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`curso_id`),
   CONSTRAINT `FK_aluno_ati_atividade` FOREIGN KEY (`atividade_id`) REFERENCES `atividade` (`atividade_id`)
