@@ -75,7 +75,7 @@ class Regulamento extends CI_Controller {
                     $this->regulamento->setRegulamento_caminho($nomes_arquivos[$i]);
                     $this->regulamento->cadastrar();
                     $this->dados['sucesso']        = TRUE;
-                    $this->dados['mensagem'] = "Regulamento salvo com sucesso";
+                    $this->dados['mensagem'] = "Regulamento cadastrado com sucesso";
                 } else{
                     $this->dados['tentou_salvar']        = TRUE;
                     $this->dados['mensagem'] = "Erro ao enviar arquivo, certifique-se de que o formato do seu arquivo seja PDF";
@@ -176,12 +176,13 @@ class Regulamento extends CI_Controller {
         
         $this->regulamento->setRegulamento_id($regulamento_id);
         $regulamento_excluido = $this->regulamento->excluir();
+        $this->dados['linhas']         = $this->regulamento->montar_tabela_regulamento();
         
         if ($regulamento_excluido) {
             $this->dados['sucesso']  = TRUE;
             $this->dados['tentou']   = TRUE;
             $this->dados['excluiu']  = TRUE;
-            $this->dados['mensagem'] = "Campus excluido com sucesso!";
+            $this->dados['mensagem'] = "Regulamento excluido com sucesso!";
         }
         
         $this->load->view('include/header', $header);
@@ -216,4 +217,20 @@ class Regulamento extends CI_Controller {
 		$this->load->view('include/footer');
 	}
     
+    public function visualizar($curso_id){
+        $header['titulo']             = 'Visualizar regulamento';
+        
+        $this->regulamento->setCurso_id($curso_id);
+        $result  = $this->regulamento->pegar_anoRegulamento($curso_id);
+        $regulamento_result = $result->row_array();
+    
+        $this->dados['regulamento'] = $this->regulamento->montar_ano($curso_id);
+        
+        
+        
+        $this->load->view('include/header', $header);
+		$this->load->view('include/menu');
+		$this->load->view('regulamentos', $this->dados);
+		$this->load->view('include/footer');
+    }
 }

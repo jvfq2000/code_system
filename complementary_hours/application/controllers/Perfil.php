@@ -6,7 +6,9 @@ class Perfil extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-
+        if($_SESSION['logado'] !== TRUE){
+            redirect(base_url());
+        }
 		$this->load->model('classes/Usuario_model', 'usuario');
 		$this->load->model('classes/Pessoa_model', 'pessoa');
         
@@ -67,9 +69,6 @@ class Perfil extends CI_Controller {
             $extencao = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
             
             if(in_array($extencao, $formatos)){
-                //system("chown 777 " . "Arquivos/Fotos_perfil/" . "");
-                //chown ("Arquivos/Fotos_perfil/", 777);
-                //$pasta = "Arquivos/Fotos_perfil/";
                 $nome_arquivo_temporario = $_FILES['arquivo']['tmp_name'];
                 $novo_nome_arquivo = uniqid().".$extencao";
                 

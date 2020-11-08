@@ -21,14 +21,14 @@
 		<div class="collapse navbar-collapse" id="barra_de_menu">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link btn-outline-secondary" href="#">Regulamentos<span class="sr-only">(current)</span></a>
+					<a class="nav-link btn-outline-secondary" href="<?php echo base_url('Regulamento/visualizar/').$_SESSION['curso_id'];?>">Regulamentos<span class="sr-only">(current)</span></a>
 				</li>
                 
       			<li class="nav-item">
         			<a class="nav-link btn-outline-secondary" href="#">Relatórios<span class="sr-only">(current)</span></a>
 				</li> 
 
-                <?php if($_SESSION['nivel'] > 1){ ?>
+                
       			<li class="nav-item dropdown">
         			<a class="nav-link dropdown-toggle btn-outline-secondary" href="#" id="dropdown_gerenciar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Gerencial
@@ -39,16 +39,15 @@
                         <a class="dropdown-item" href="<?php echo base_url('Gerenciar_curso');?>">Curso</a>
                         <div class="dropdown-divider"></div>
                         <?php } ?>
+                        <?php if($_SESSION['nivel'] > 1){ ?>
                         <a class="dropdown-item" href="<?php echo base_url('Atividade_cat');?>">Categoria Atividades</a>
                         <a class="dropdown-item" href="<?php echo base_url('Quadro');?>">Quadro Horas</a>
                         <a class="dropdown-item" href="<?php echo base_url('Regulamento');?>">Regulamentos</a>
+                        <?php } ?> 
+                        <a class="dropdown-item" href="<?php echo base_url('Atividade_aluno');?>">Atividades</a>
                     </div>
       			</li>
-                <?php } ?>
                 
-                <li class="nav-item">
-                    <a class="nav-link btn-outline-secondary" href="<?php echo base_url('Atividade_aluno');?>">Atividades complementares<span class="sr-only">(current)</span></a>
-                </li> 
                 <li class="nav-item">
                     <a class="nav-link btn-outline-secondary" href="<?php echo base_url('Objetivos');?>">Objetivos<span class="sr-only">(current)</span></a>
                 </li> 

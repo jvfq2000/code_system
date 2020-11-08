@@ -187,7 +187,7 @@
                         
                         <div class="row">
                             <div class="col-md-12 mb-2">
-                                <label for="campus">Curso</label>
+                                <label for="curso">Curso</label>
                                 <select class="custom-select" id="curso" name="curso" required disabled>
     					           <option value="">Selecione o campus acima!</option>
                                 </select>
@@ -274,7 +274,8 @@
                                     <a class="btn btn-primary"  href="<?php echo base_url();?>" role="button">Efetuar Login</a>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cadastrar Outro</button>
                             <?php } else { ?>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Entendi</button>
+                                    <a class="btn btn-primary"  href="<?php echo base_url();?>" role="button">Efetuar Login</a>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Novo usuario</button>
                             <?php } ?>
                     </div>
                     

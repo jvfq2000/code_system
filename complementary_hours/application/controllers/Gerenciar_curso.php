@@ -84,6 +84,8 @@ class Gerenciar_curso extends CI_Controller {
 	}
     
     public function salvar_edicao($curso_id){
+        $this->dados['mostrar'] = "operacoes";
+        $header['titulo']       = 'Gerenciar Cursos';
         $this->dados['tentou']   = TRUE;
 		$this->dados['mensagem'] = "Erro ao Salvar, tente novamente!";
 
@@ -92,17 +94,17 @@ class Gerenciar_curso extends CI_Controller {
         $this->curso->setCampus_id($this->input->post("campus"));
         $this->curso->setCurso_descricao($this->input->post("curso_descricao"));
         
-        if(!$this->curso->curso_existe()){
             
-            $this->curso->setCurso_qtd_periodos($this->input->post("curso_qtd_periodos"));
-			$curso_cadastrado = $this->curso->editar_curso();
-            
-            $this->dados['sucesso']        = TRUE;
-            $this->dados['mensagem'] = "Curso Alterado com sucesso!";
-		}else {
-			$this->dados['mensagem'] = "Um curso deste campus já foi cadastrado com esse nome, verifique as informações e tente novamente!";
-		}
-        $this->index();
+        $this->curso->setCurso_qtd_periodos($this->input->post("curso_qtd_periodos"));
+        $curso_cadastrado = $this->curso->editar_curso();
+
+        $this->dados['sucesso']        = TRUE;
+        $this->dados['mensagem'] = "Curso Alterado com sucesso!";
+        
+        $this->load->view('include/header', $header);
+		$this->load->view('include/menu');
+		$this->load->view('gerenciar_curso', $this->dados);
+		$this->load->view('include/footer');
     }
     
     public function excluir($curso_id){
@@ -113,6 +115,7 @@ class Gerenciar_curso extends CI_Controller {
         
         $this->curso->setCurso_id($curso_id);
         $curso_excluido = $this->curso->excluir();
+        $this->dados['linhas_curso'] = $this->curso->montar_tabela_curso();
         
         if ($curso_excluido) {
             $this->dados['sucesso']  = TRUE;
@@ -121,7 +124,6 @@ class Gerenciar_curso extends CI_Controller {
             $this->dados['mensagem'] = "Curso excluido com sucesso!";
         }
         
-        $this->dados['linhas_curso'] = $this->curso->montar_tabela_curso();
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
 		$this->load->view('gerenciar_curso', $this->dados);

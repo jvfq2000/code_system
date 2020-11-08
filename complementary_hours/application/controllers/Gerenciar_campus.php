@@ -104,6 +104,8 @@ class Gerenciar_campus extends CI_Controller {
 	}
     
     public function salvar_edicao($campus_id){
+        $this->dados['mostrar']       = "operacoes";
+        $header['titulo']             = 'Gerenciar Campus';
         $this->dados['tentou']   = TRUE;
 		$this->dados['mensagem'] = "Erro ao salvar, tente novamente!";
 
@@ -114,8 +116,14 @@ class Gerenciar_campus extends CI_Controller {
         $this->campus->setEstado_id($this->input->post("estado"));
         
         $campus_alterado         = $this->campus->editar_campus();
+        
+        $this->dados['sucesso']        = TRUE;
         $this->dados['mensagem'] = "Campus alterado com sucesso!";        
-        $this->index();
+        
+        $this->load->view('include/header', $header);
+		$this->load->view('include/menu');
+		$this->load->view('gerenciar_campus', $this->dados);
+		$this->load->view('include/footer');
     }
     
     public function excluir($campus_id){
@@ -127,6 +135,7 @@ class Gerenciar_campus extends CI_Controller {
         
         $this->campus->setCampus_id($campus_id);
         $campus_excluido = $this->campus->excluir();
+        $this->dados['linhas_campus'] = $this->campus->montar_tabela_campus();
         
         if ($campus_excluido) {
             $this->dados['sucesso']  = TRUE;
@@ -135,7 +144,6 @@ class Gerenciar_campus extends CI_Controller {
             $this->dados['mensagem'] = "Campus excluido com sucesso!";
         }
         
-        $this->dados['linhas_campus'] = $this->campus->montar_tabela_campus();
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
 		$this->load->view('gerenciar_campus', $this->dados);

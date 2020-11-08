@@ -41,20 +41,41 @@ class Atividades_model extends CI_Model {
 		$this->atividade_descricao = $atividade_descricao;
 	}
     
-    public function listar_atividades(){
+    public function listar_atividades($quadro_id){
 		$this->db->select('atividade_id, atividade_descricao');
 		$this->db->from('atividade');
+        $this->db->where('quadro_id', $quadro_id);
 		$this->db->order_by('atividade_descricao');
 		$query = $this->db->get();
 		return $query;
 	}
 
-    public function montar_options_atividade(){
+    public function montar_options_atividade($quadro_id){
 		$options = "<option value=\"\">Selecione</option>";
-		$atividade_lista = $this->listar_atividades();
+		$atividades_lista = $this->listar_atividades($quadro_id);
 
-		foreach($atividade_lista->result() as $atividades){
-			$options .= "<option value=\"{$atividades->atividade_id}\">{$atividades->atividade_descricao}</option>";
+		foreach($atividades_lista->result() as $atividade){
+			$options .= "<option value=\"{$atividade->atividade_id}\">{$atividade->atividade_descricao}</option>";
+		}
+		return $options;
+	}
+    
+     public function listar_cat($atividade_id){
+		$this->db->select('*');
+		$this->db->from('atividade');
+        $this->db->join('atividade_cat', 'atividade_cat.atividade_cat_id = atividade.atividade_cat_id');
+		$this->db->where('atividade_id', $atividade_id);
+		$this->db->order_by('atividade_cat_descricao');
+		$query = $this->db->get();
+		return $query;
+	}	
+
+	public function montar_options_cat($quadro_id){
+		$options = "<option value=\"\">Selecione</option>";
+		$categoria_lista = $this->listar_cat($quadro_id);
+
+		foreach($categoria_lista->result() as $categoria){
+			$options .= "<option value=\"{$categoria->atividade_cat_id}\">{$categoria->atividade_cat_descricao}</option>";
 		}
 		return $options;
 	}

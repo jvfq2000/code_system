@@ -7,7 +7,7 @@
     
     <div class="container">
         <h1 class="display-3" style="font-size: 50pt">
-            <img class="rounded-circle" src="<?php echo base_url('assets/img/icone/escola.png'); ?>" alt="Generic placeholder image" width="100" height="100">
+            <img class="rounded-circle" src="<?php echo base_url('assets/img/icone/categoria.png'); ?>" alt="Generic placeholder image" width="100" height="100">
             Categoria de Atividades!
         </h1>
         <p>

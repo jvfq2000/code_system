@@ -10,6 +10,8 @@
             $caminho = "Atividade_cat";
         }else if($titulo == "Gerenciar Regulamentos"){
             $caminho = "Regulamento";
+        }else if($titulo == "Atividades do aluno"){
+            $caminho = "Atividade_aluno";
         }else{
 			$caminho = "";
 		}

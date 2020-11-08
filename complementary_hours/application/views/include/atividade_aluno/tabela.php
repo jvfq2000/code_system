@@ -1,6 +1,6 @@
 <div class="shadow card-header rounded mx-auto col-sm-11" id="headingOne">
     
-    <form class="form-inline mt-2 mt-md-0" action="<?php echo base_url('Atividade_cat/pesquisar/');?>" method='POST' novalidate>
+    <form class="form-inline mt-2 mt-md-0" action="<?php echo base_url('Atividade_aluno/pesquisar/');?>" method='POST' novalidate>
         <input class="form-control col-11 mr-sm-2" type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
     </form>
@@ -11,13 +11,18 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Campus</th>
+                    <th scope="col">Curso</th>
+                    <th scope="col">Nome do aluno</th>
                     <th scope="col">Descrição Atividades</th>
-                    <th scope="col">Máximo de Horas</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Ano</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Horas aprovadas</th>
                     <th scope="col">Menu</th>
                 </tr>
             </thead>
             <tbody>
-                <?php //echo $linhas_atividade_cat; ?>
+                <?php echo $linhas_atividade; ?>
             </tbody>
         </table>
     </div>
@@ -66,7 +71,7 @@
                 <?php
                     }else if ($tentou){ 
                 ?>
-                        <a type="button" class="btn btn-primary" href="<?php echo base_url('Gerenciar_curso/novo/');?>">Cadastrar curso</a>
+                        <a type="button" class="btn btn-primary" href="<?php echo base_url('Aluno_atividade/novo/');?>">Nova atividade</a>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Entendi</button>
                     <?php 
                     }

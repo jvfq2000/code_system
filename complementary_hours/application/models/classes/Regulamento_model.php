@@ -185,4 +185,38 @@ class Regulamento_model extends CI_Model {
         return $this->db->delete('regulamento', array('regulamento_id' => $this->getRegulamento_id())); 
     }
     
+    
+    public function pegar_anoRegulamento($curso_id){
+		$this->db->select('regulamento_ano');
+		$this->db->from('regulamento');
+        $this->db->where('curso_id', $this->getCurso_id());
+		$query = $this->db->get();
+		return $query;
+	}
+    
+    public function montar_ano($curso_id){
+        $ano_lista = $this->pegar_anoRegulamento($curso_id);
+        $linhas = "";
+        
+		foreach($ano_lista->result() as $ano){
+            $linhas .= "<div style=\"overflow: auto; height: 400px;\">";
+                $linhas .= "<div class=\"card col-sm-3\">";
+                    $linhas .= "<div class=\"card-header\">";
+                        $linhas .= "Ano";
+                    $linhas .= "</div>";
+                    $linhas .= "<div class=\"card-body\">";
+                        //$linhas .= "<td>"{$ano->regulamento_ano}"</td>";
+                        $linhas .= "<a href=\"#\" class=\"btn btn-primary col-sm-12\">Ir</a>";
+                    $linhas .= "</div>";
+                $linhas .= "</div>";
+            $linhas .= "</div>";
+            
+            
+            
+			
+		}
+		return $linhas;
+    }
+    
+    
 }

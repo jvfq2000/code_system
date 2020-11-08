@@ -25,7 +25,6 @@ class Atividade_cat extends CI_Controller {
         $this->dados['mostrar'] = "tabela";
         $this->dados['sucesso'] = FALSE;
         $this->dados['tentou']        = FALSE;
-        $this->dados['pegou_campus'] = 'N';
         $this->dados['linhas_atividade_cat'] = $this->categoriaAtividade->montar_categoria_atividade();
         $header['titulo'] = 'Categoria de Atividades';
         
@@ -61,7 +60,7 @@ class Atividade_cat extends CI_Controller {
 				
             $categoria_cadastrada       = $this->categoriaAtividade->cadastrar();
             $this->dados['sucesso']  = TRUE;
-            $this->dados['mensagem'] = "Categoria cadastrada com sucesso!";        
+            $this->dados['mensagem'] = "Categoria de Atividade cadastrada com sucesso!";        
         }else {
             $this->dados['sucesso']  = FALSE;
 			$this->dados['mensagem'] = "Uma categoria já foi cadastrada com esse nome, verifique as informações e tente novamente!";
@@ -125,7 +124,8 @@ class Atividade_cat extends CI_Controller {
         
         $this->categoriaAtividade->setAtividade_cat_id($atividade_cat_id);
         $categoria_excluida = $this->categoriaAtividade->excluir();
-        
+        $this->dados['linhas_atividade_cat'] = $this->categoriaAtividade->montar_categoria_atividade();
+         
         if ($categoria_excluida) {
             $this->dados['sucesso']  = TRUE;
             $this->dados['tentou']   = TRUE;
@@ -133,7 +133,6 @@ class Atividade_cat extends CI_Controller {
             $this->dados['mensagem'] = "Categoria de atividade excluida com sucesso!";
         }
         
-        $this->dados['linhas_atividade_cat'] = $this->categoriaAtividade->montar_categoria_atividade();
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
 		$this->load->view('atividade_cat', $this->dados);

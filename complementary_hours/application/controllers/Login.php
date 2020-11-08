@@ -46,20 +46,22 @@ class Login extends CI_Controller {
 			if (password_verify($usuario_senha, $dados['usuario_senha'])) {
 				if ($dados['usuario_validou_email'] === 'S') {
 					$dados_sessao = array(
-                    'pessoa_id' => $dados['pessoa_id'],
-					'nome'      => $dados['pessoa_nome'],
-					'foto_perfil' => $dados['pessoa_foto_perfil'],
-					'sobrenome' => $dados['pessoa_sobrenome'],
-                    'nascimento'=> $dados['pessoa_data_nascimento'],
+                    'pessoa_id'    => $dados['pessoa_id'],
+                    'usuario_id'    => $dados['usuario_id'],
+                    'aluno_id'     => $dados['aluno_id'],
+					'nome'         => $dados['pessoa_nome'],
+					'foto_perfil'  => $dados['pessoa_foto_perfil'],
+					'sobrenome'    => $dados['pessoa_sobrenome'],
+                    'nascimento'   => $dados['pessoa_data_nascimento'],
                     'campus_id'    => $dados['campus_id'],
-					'campus'    => $dados['campus_descricao'],
+					'campus'       => $dados['campus_descricao'],
 					'curso_id'     => $dados['curso_id'],
-					'curso'     => $dados['curso_descricao'],
-					'telefone'  => $dados['pessoa_telefone'],
-					'email'     => $dados['usuario_email'],
-					'senha'     => $dados['usuario_senha'],
-					'nivel'     => $dados['usuario_nivel'],
-					'logado'    => TRUE
+					'curso'        => $dados['curso_descricao'],
+					'telefone'     => $dados['pessoa_telefone'],
+					'email'        => $dados['usuario_email'],
+					'senha'        => $dados['usuario_senha'],
+					'nivel'        => $dados['usuario_nivel'],
+					'logado'       => TRUE
 				);
 		
 				$this->session->set_userdata($dados_sessao);
