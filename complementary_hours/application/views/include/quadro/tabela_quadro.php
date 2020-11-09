@@ -14,6 +14,7 @@
                     <th scope="col">Curso</th>
                     <th scope="col">Descrição do quadro</th>
                     <th scope="col">Horas máximas</th>
+                    <th scope="col">Menu</th>
                 </tr>
             </thead>
             <tbody>
@@ -82,11 +83,11 @@
         $('#modal_sucesso').modal('show');
         <?php } ?>
 
-        <?php if($pegou_campus == 'S') { ?>
-        $("#estado").val("<?php echo $estado_id?>");
-        $("#cidade").val("<?php echo $cidade_id?>");
-        console.log($("#estado").val(););
-        console.log($("#cidade").val(););
-        <?php } ?>
+        <?php //if($pegou_campus == 'S') { ?>
+        //$("#estado").val("<?php //echo $estado_id?>");
+        //$("#cidade").val("<?php //echo $cidade_id?>");
+        //console.log($("#estado").val(););
+        //console.log($("#cidade").val(););
+        <?php //} ?>
     });
 </script>
