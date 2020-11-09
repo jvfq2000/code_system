@@ -210,8 +210,7 @@ class Regulamento_model extends CI_Model {
                 $linhas .= "<small class=\"text-muted\"><a href=\"".base_url('assets/files/regulamento/')."{$ano->regulamento_caminho}\" class=\"btn btn-primary col-sm-12\">Visualizar regulamento</a></small>";
                 $linhas .= "</div>";
             $linhas .= "</div>";
-                        //$linhas .= "<p>{$ano->regulamento_ano}</p>";
-                        //$linhas .= "<a href=\"".base_url('assets/files/regulamento/')."{$ano->regulamento_caminho}\" class=\"btn btn-primary col-sm-12\">Ir</a>";
+                        
 		}
 		return $linhas;
     }
@@ -219,8 +218,9 @@ class Regulamento_model extends CI_Model {
     public function verificar_ano(){
 		$this->db->select('regulamento_descricao, regulamento_ano, regulamento_caminho');
 		$this->db->from('regulamento');
+        $this->db->join('campus', 'campus.campus_id = regulamento.campus_id');
         $this->db->join('curso', 'curso.curso_id = regulamento.curso_id');
-        $this->db->where('campus.campus_id', $this->getCampus_id() and 'curso.curso_id', $this->getCurso_id() and 'regulamento.regulamento_ano', $this->getRegulamento_ano());
+        $this->db->where('regulamento.regulamento_descricao', $this->getRegulamento_descricao() and 'campus.campus_id', $this->getCampus_id() and 'curso.curso_id', $this->getCurso_id() and 'regulamento.regulamento_ano', $this->getRegulamento_ano());
 		$query = $this->db->get();
 		return $query;
 	}
