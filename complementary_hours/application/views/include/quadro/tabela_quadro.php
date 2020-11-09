@@ -15,6 +15,7 @@
                     <th scope="col">Descrição do quadro</th>
                     <th scope="col">Horas máximas</th>
                     <th scope="col">Menu</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>

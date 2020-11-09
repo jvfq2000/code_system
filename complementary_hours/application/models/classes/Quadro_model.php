@@ -46,10 +46,6 @@ class Quadro_model extends CI_Model {
 	public function setQuadro_horas_max($quadro_horas_max){
 		$this->quadro_horas_max = $quadro_horas_max;
 	}
-
-	public function get_id_ultimo_cadastro(){
-		return $this->db->insert_id();
-	}
     
 	public function cadastrar(){
 		$dados = array(
@@ -106,7 +102,7 @@ class Quadro_model extends CI_Model {
     }
     
 	public function listar(){
-		$this->db->select('quadro_id, quadro_descricao');
+		$this->db->select('*');
 		$this->db->from('quadro');
 		$this->db->order_by('quadro_descricao');
 		$query = $this->db->get();
@@ -115,7 +111,7 @@ class Quadro_model extends CI_Model {
     
 	public function montar_options_quadro(){
 		$options = "<option value=\"\">Selecione</option>";
-		$quadro_lista = $this->listar_quadros();
+		$quadro_lista = $this->listar();
 
 		foreach($quadro_lista->result() as $quadro){
 			$options .= "<option value=\"{$quadro->quadro_id}\">{$quadro->quadro_descricao}</option>";
@@ -143,6 +139,8 @@ class Quadro_model extends CI_Model {
 			$linhas .= "<td>{$quadro->curso_descricao}</td>";
 			$linhas .= "<td>{$quadro->quadro_descricao}</td>";
             $linhas .= "<td>{$quadro->quadro_horas_max}</td>";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir_quadro/')."{$quadro->quadro_id}\" />";
+            $linhas .= "<img src=\"".base_url('assets/img/icone/impressora.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
             $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Quadro/editar/')."{$quadro->quadro_id}\" />";
             $linhas .= "<img src=\"".base_url('assets/img/icone/editar.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
             $linhas .= "<a href=\"".base_url('Quadro/confirmacao/')."{$quadro->quadro_id}\"/>";
@@ -163,6 +161,8 @@ class Quadro_model extends CI_Model {
 			$linhas .= "<td>{$quadro->curso_descricao}</td>";
 			$linhas .= "<td>{$quadro->quadro_descricao}</td>";
             $linhas .= "<td>{$quadro->quadro_horas_max}</td>";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir_quadro/')."{$quadro->quadro_id}\" />";
+            $linhas .= "<img src=\"".base_url('assets/img/icone/impressora.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
             $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Quadro/editar/')."{$quadro->quadro_id}\" />";
             $linhas .= "<img src=\"".base_url('assets/img/icone/editar.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
             $linhas .= "<a href=\"".base_url('Quadro/confirmacao/')."{$quadro->quadro_id}\"/>";
@@ -171,5 +171,17 @@ class Quadro_model extends CI_Model {
 		}
         
 		return $linhas;
+	}
+
+    public function pegar_quadro_pdf(){
+		$this->db->select('campus_descricao, quadro.quadro_id, atividade.atividade_id, atividade_descricao, atividade.atividade_horas_min, atividade.atividade_horas_max, atividade_cat.atividade_cat_id, curso_descricao, atividade_descricao, atividade_cat_descricao, quadro_descricao, quadro_horas_max,');
+		$this->db->from('quadro');
+        $this->db->join('campus', 'quadro.campus_id = campus.campus_id');
+        $this->db->join('curso', 'quadro.curso_id = curso.curso_id');
+        $this->db->join('atividade', 'atividade.quadro_id = quadro.quadro_id');
+        $this->db->join('atividade_cat', 'atividade.atividade_cat_id = atividade_cat.atividade_cat_id');
+        $this->db->where('quadro.quadro_id', $this->getQuadro_id());
+		$query = $this->db->get();
+		return $query;
 	}
 }

@@ -11,6 +11,7 @@ class Gerar_pdf extends CI_Controller {
         
         $this->load->library('pdf_gerar');
         $this->load->model('classes/Atividade_aluno_model', 'atividadeAluno');
+        $this->load->model('classes/Quadro_model', 'quadro');
      
     }
     
@@ -32,6 +33,18 @@ class Gerar_pdf extends CI_Controller {
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');
 		$this->load->view('gerar_pdf', ['query'=>$query]);
+		$this->load->view('include/footer');
+    }
+    
+    public function imprimir_quadro($quadro_id){
+        $header['titulo'] = 'Gerar pdf quadro';
+        
+        $this->quadro->setQuadro_id($quadro_id);
+        $query = $this->quadro->pegar_quadro_pdf();
+        
+        $this->load->view('include/header', $header);
+		$this->load->view('include/menu');
+		$this->load->view('gerar_pdf_quadro', ['query'=>$query]);
 		$this->load->view('include/footer');
     }
    
