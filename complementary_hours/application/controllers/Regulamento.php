@@ -15,7 +15,7 @@ class Regulamento extends CI_Controller {
 
 		$this->dados['campus_options'] = $this->campus->montar_options_campus();
 		$this->dados['linhas']         = $this->regulamento->montar_tabela_regulamento();
-        $this->dados['pasta']          = 'assets/Regulamentos/';
+        $this->dados['pasta']          = 'assets/files/regulamento/';
 		$this->dados['tentou']         = FALSE;
 		$this->dados['tentou_salvar']  = FALSE;
         $this->dados['pegou_regulamento']  = 'N';
@@ -67,20 +67,24 @@ class Regulamento extends CI_Controller {
                 $this->regulamento->setRegulamento_descricao($this->input->post("regulamento_descricao"));
                 $this->regulamento->setRegulamento_ano($this->input->post("regulamento_ano"));
                 
-                
-                $extensao = explode('.', $nomes_arquivos[$i]);
-                $extensao = end($extensao);
-                $nomes_arquivos[$i] = uniqid().".$extensao";
-                
-                if(in_array($extensao, $formatos)){
-                    $move = move_uploaded_file($_FILES['arquivos']['tmp_name'][$i], $this->dados['pasta'].$nomes_arquivos[$i]);
-                    $this->regulamento->setRegulamento_caminho($nomes_arquivos[$i]);
-                    $this->regulamento->cadastrar();
-                    $this->dados['sucesso']        = TRUE;
-                    $this->dados['mensagem'] = "Regulamento cadastrado com sucesso";
-                } else{
+                if(!$this->regulamento->verificar_ano()){
+                    $extensao = explode('.', $nomes_arquivos[$i]);
+                    $extensao = end($extensao);
+                    $nomes_arquivos[$i] = uniqid().".$extensao";
+
+                    if(in_array($extensao, $formatos)){
+                        $move = move_uploaded_file($_FILES['arquivos']['tmp_name'][$i], $this->dados['pasta'].$nomes_arquivos[$i]);
+                        $this->regulamento->setRegulamento_caminho($nomes_arquivos[$i]);
+                        $this->regulamento->cadastrar();
+                        $this->dados['sucesso']        = TRUE;
+                        $this->dados['mensagem'] = "Regulamento cadastrado com sucesso";
+                    } else{
+                        $this->dados['tentou_salvar']        = TRUE;
+                        $this->dados['mensagem'] = "Erro ao enviar arquivo, certifique-se de que o formato do seu arquivo seja PDF";
+                    }    
+                }else{
                     $this->dados['tentou_salvar']        = TRUE;
-                    $this->dados['mensagem'] = "Erro ao enviar arquivo, certifique-se de que o formato do seu arquivo seja PDF";
+                    $this->dados['mensagem'] = "Regulamento ja cadastrado";
                 }
             }
         }
@@ -219,16 +223,12 @@ class Regulamento extends CI_Controller {
 		$this->load->view('include/footer');
 	}
     
-    public function visualizar($curso_id){
+    public function visualizar(){
         $header['titulo']             = 'Visualizar regulamento';
-        
-        $this->regulamento->setCurso_id($curso_id);
-        $result  = $this->regulamento->pegar_anoRegulamento($curso_id);
-        $regulamento_result = $result->row_array();
-    
-        $this->dados['regulamento'] = $this->regulamento->montar_ano($curso_id);
-        
-        
+
+        $this->regulamento->setCurso_id($_SESSION['curso_id']);
+        $result = $this->regulamento->pegar_regulamento_curso();
+        $this->dados['regulamento'] = $this->regulamento->montar_ano();
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');

@@ -186,37 +186,43 @@ class Regulamento_model extends CI_Model {
     }
     
     
-    public function pegar_anoRegulamento($curso_id){
-		$this->db->select('regulamento_ano');
+    public function pegar_regulamento_curso(){
+		$this->db->select('regulamento_descricao, regulamento_ano, regulamento_caminho');
 		$this->db->from('regulamento');
-        $this->db->where('curso_id', $this->getCurso_id());
+        $this->db->join('curso', 'curso.curso_id = regulamento.curso_id');
+        $this->db->where('curso.curso_id', $this->getCurso_id());
 		$query = $this->db->get();
 		return $query;
 	}
     
-    public function montar_ano($curso_id){
-        $ano_lista = $this->pegar_anoRegulamento($curso_id);
+    public function montar_ano(){
+        $anos_lista = $this->pegar_regulamento_curso();
         $linhas = "";
         
-		foreach($ano_lista->result() as $ano){
-            $linhas .= "<div style=\"overflow: auto; height: 400px;\">";
-                $linhas .= "<div class=\"card col-sm-3\">";
-                    $linhas .= "<div class=\"card-header\">";
-                        $linhas .= "Ano";
-                    $linhas .= "</div>";
-                    $linhas .= "<div class=\"card-body\">";
-                        //$linhas .= "<td>"{$ano->regulamento_ano}"</td>";
-                        $linhas .= "<a href=\"#\" class=\"btn btn-primary col-sm-12\">Ir</a>";
-                    $linhas .= "</div>";
+		foreach($anos_lista->result() as $ano){
+            $linhas .= "<div class=\"card\">";
+                $linhas .= "<div class=\"card-body\">";
+                    $linhas .= "<h5 class=\"card-title text-center\"><img src=\"".base_url('assets/img/icone/regulamento.png')."\" style=\"width:40px;\" height=\"39\" class=\"card-img-top\">{$ano->regulamento_descricao}</h5>";
+                    $linhas .= "<hr class=\"featurette-divider\">";
+                    $linhas .= "<p class=\"card-text text-center\">{$ano->regulamento_ano}</p>";
+                $linhas .= "</div>";
+                $linhas .= "<div class=\"card-footer\">";
+                $linhas .= "<small class=\"text-muted\"><a href=\"".base_url('assets/files/regulamento/')."{$ano->regulamento_caminho}\" class=\"btn btn-primary col-sm-12\">Visualizar regulamento</a></small>";
                 $linhas .= "</div>";
             $linhas .= "</div>";
-            
-            
-            
-			
+                        //$linhas .= "<p>{$ano->regulamento_ano}</p>";
+                        //$linhas .= "<a href=\"".base_url('assets/files/regulamento/')."{$ano->regulamento_caminho}\" class=\"btn btn-primary col-sm-12\">Ir</a>";
 		}
 		return $linhas;
     }
     
+    public function verificar_ano(){
+		$this->db->select('regulamento_descricao, regulamento_ano, regulamento_caminho');
+		$this->db->from('regulamento');
+        $this->db->join('curso', 'curso.curso_id = regulamento.curso_id');
+        $this->db->where('campus.campus_id', $this->getCampus_id() and 'curso.curso_id', $this->getCurso_id() and 'regulamento.regulamento_ano', $this->getRegulamento_ano());
+		$query = $this->db->get();
+		return $query;
+	}
     
 }

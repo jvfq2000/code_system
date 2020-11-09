@@ -83,7 +83,7 @@
                                <?php if($pegou_regulamento == 'S') {
                                     echo $curso_options;
                                 } else {
-                                    echo '<option value="">Selecione o estado acima!</option>';
+                                    echo '<option value="">Selecione o campus acima!</option>';
                                 }?> 
                             </select>
                             <div class="invalid-feedback">

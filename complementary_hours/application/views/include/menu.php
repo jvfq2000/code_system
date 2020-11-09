@@ -21,7 +21,7 @@
 		<div class="collapse navbar-collapse" id="barra_de_menu">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link btn-outline-secondary" href="<?php echo base_url('Regulamento/visualizar/').$_SESSION['curso_id'];?>">Regulamentos<span class="sr-only">(current)</span></a>
+					<a class="nav-link btn-outline-secondary" href="<?php echo base_url('Regulamento/visualizar');?>">Regulamentos<span class="sr-only">(current)</span></a>
 				</li>
                 
       			<li class="nav-item">
