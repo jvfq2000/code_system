@@ -216,13 +216,16 @@ class Regulamento_model extends CI_Model {
     }
     
     public function verificar_ano(){
-		$this->db->select('regulamento_descricao, regulamento_ano, regulamento_caminho');
+		$this->db->select('regulamento.regulamento_descricao, regulamento.regulamento_ano, campus.campus_descricao, curso.curso_descricao');
 		$this->db->from('regulamento');
         $this->db->join('campus', 'campus.campus_id = regulamento.campus_id');
         $this->db->join('curso', 'curso.curso_id = regulamento.curso_id');
-        $this->db->where('regulamento.regulamento_descricao', $this->getRegulamento_descricao() and 'campus.campus_id', $this->getCampus_id() and 'curso.curso_id', $this->getCurso_id() and 'regulamento.regulamento_ano', $this->getRegulamento_ano());
+        $this->db->where('regulamento.regulamento_descricao', $this->getRegulamento_descricao());
+        $this->db->where('campus.campus_id', $this->getCampus_id());
+        $this->db->where('curso.curso_id', $this->getCurso_id());
+        $this->db->where('regulamento.regulamento_ano', $this->getRegulamento_ano());
 		$query = $this->db->get();
-		return $query;
+        return ($query->num_rows() > 0);
 	}
     
 }

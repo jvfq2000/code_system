@@ -60,12 +60,12 @@ class Regulamento extends CI_Controller {
             $arquivos = $_FILES['arquivos'];
             $nomes_arquivos = $arquivos['name'];
             
+            $this->regulamento->setCampus_id($this->input->post("campus"));
+            $this->regulamento->setCurso_id($this->input->post("curso"));
+            $this->regulamento->setRegulamento_descricao($this->input->post("regulamento_descricao"));
+            $this->regulamento->setRegulamento_ano($this->input->post("regulamento_ano"));
+            
             for($i = 0; $i < count($nomes_arquivos); $i++){
-
-                $this->regulamento->setCampus_id($this->input->post("campus"));
-                $this->regulamento->setCurso_id($this->input->post("curso"));
-                $this->regulamento->setRegulamento_descricao($this->input->post("regulamento_descricao"));
-                $this->regulamento->setRegulamento_ano($this->input->post("regulamento_ano"));
                 
                 if(!$this->regulamento->verificar_ano()){
                     $extensao = explode('.', $nomes_arquivos[$i]);
