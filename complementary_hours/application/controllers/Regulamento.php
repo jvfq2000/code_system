@@ -6,7 +6,9 @@ class Regulamento extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-
+        if($_SESSION['logado'] !== TRUE){
+            redirect(base_url());
+        }
 		$this->load->model('classes/Regulamento_model', 'regulamento');
 		$this->load->model('classes/Campus_model', 'campus');
 		$this->load->model('classes/Curso_model', 'curso');

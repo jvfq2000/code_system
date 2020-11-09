@@ -18,7 +18,8 @@
                     <th scope="col">Ano</th>
                     <th scope="col">Documento</th>
                     <th scope="col">Horas aprovadas</th>
-                    <th scope="col">Menu</th>
+                    <th scope="col" >Menu</th>
+                    <th scope="col" ></th>
                 </tr>
             </thead>
             <tbody>

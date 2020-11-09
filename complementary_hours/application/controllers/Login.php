@@ -47,7 +47,7 @@ class Login extends CI_Controller {
 				if ($dados['usuario_validou_email'] === 'S') {
 					$dados_sessao = array(
                     'pessoa_id'    => $dados['pessoa_id'],
-                    'usuario_id'    => $dados['usuario_id'],
+                    'usuario_id'   => $dados['usuario_id'],
                     'aluno_id'     => $dados['aluno_id'],
 					'nome'         => $dados['pessoa_nome'],
 					'foto_perfil'  => $dados['pessoa_foto_perfil'],

@@ -102,7 +102,7 @@ class Quadro_model extends CI_Model {
     }
     
 	public function listar(){
-		$this->db->select('quadro_id, quadro_descricao');
+		$this->db->select('*');
 		$this->db->from('quadro');
 		$this->db->order_by('quadro_descricao');
 		$query = $this->db->get();
@@ -111,7 +111,7 @@ class Quadro_model extends CI_Model {
     
 	public function montar_options_quadro(){
 		$options = "<option value=\"\">Selecione</option>";
-		$quadro_lista = $this->listar_quadros();
+		$quadro_lista = $this->listar();
 
 		foreach($quadro_lista->result() as $quadro){
 			$options .= "<option value=\"{$quadro->quadro_id}\">{$quadro->quadro_descricao}</option>";

@@ -15,6 +15,7 @@ class Atividade_aluno extends CI_Controller {
         $this->load->model('classes/Atividade_aluno_model', 'atividadeAluno');
         
         $this->dados['pasta']          = 'assets/files/atividades/';
+        
         $this->dados['quadro_options'] = $this->quadro->montar_options_quadro();
 
         $this->dados['pegou_atividade']  = 'N';
@@ -28,7 +29,19 @@ class Atividade_aluno extends CI_Controller {
         $this->dados['mostrar'] = "tabela";
         $this->dados['sucesso'] = FALSE;
         $this->dados['tentou']        = FALSE;
-        $this->dados['linhas_atividade'] = $this->atividadeAluno->montar_atividades();
+        
+        if($_SESSION['nivel'] == 1){
+            $this->atividadeAluno->setUsuario_id($_SESSION['usuario_id']);
+            $result = $this->atividadeAluno->pegar_atividade();
+            $this->dados['linhas_atividade'] = $this->atividadeAluno->montar_atividades_aluno();
+        }else if(($_SESSION['nivel'] == 2)||($_SESSION['nivel'] == 3)){
+            $this->atividadeAluno->setCurso_id($_SESSION['curso_id']);
+            $result = $this->atividadeAluno->pegar_atividade_curso();
+            $this->dados['linhas_atividade'] = $this->atividadeAluno->montar_atividades_curso();
+        }else{
+            $this->dados['linhas_atividade'] = $this->atividadeAluno->montar_atividades();
+        }
+        
         $header['titulo'] = 'Atividades do aluno';
         
         $this->load->view('include/header', $header);
@@ -182,7 +195,19 @@ class Atividade_aluno extends CI_Controller {
         
         $this->atividadeAluno->setAluno_ati_id($aluno_ati_id);
         $atividade_excluida = $this->atividadeAluno->excluir();
-        $this->dados['linhas_atividade'] = $this->atividadeAluno->montar_atividades();
+        
+        if($_SESSION['nivel'] == 1){
+            $this->atividadeAluno->setUsuario_id($_SESSION['usuario_id']);
+            $result = $this->atividadeAluno->pegar_atividade();
+            $this->dados['linhas_atividade'] = $this->atividadeAluno->montar_atividades_aluno();
+        }else if(($_SESSION['nivel'] == 2)||($_SESSION['nivel'] == 3)){
+            $this->atividadeAluno->setCurso_id($_SESSION['curso_id']);
+            $result = $this->atividadeAluno->pegar_atividade_curso();
+            $this->dados['linhas_atividade'] = $this->atividadeAluno->montar_atividades_curso();
+        }else{
+            $this->dados['linhas_atividade'] = $this->atividadeAluno->montar_atividades();
+        }
+        
         
         $this->dados['sucesso']  = TRUE;
         $this->dados['tentou']   = TRUE;
