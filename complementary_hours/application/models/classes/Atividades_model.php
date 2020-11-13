@@ -62,11 +62,11 @@ class Atividades_model extends CI_Model {
 	}
     
      public function listar_cat($quadro_id){
-		$this->db->select('atividade_cat.atividade_cat_id, atividade_cat_descricao');
+		$this->db->select('atividade_cat.atividade_cat_id, atividade_cat.atividade_cat_descricao');
+		$this->db->distinct();
 		$this->db->from('atividade');
         $this->db->join('atividade_cat', 'atividade_cat.atividade_cat_id = atividade.atividade_cat_id');
 		$this->db->where('atividade.quadro_id', $quadro_id);
-		$this->db->group_by('atividade_cat_descricao');
 		$this->db->order_by('atividade_cat_descricao');
 		$query = $this->db->get();
 		return $query;
