@@ -24,11 +24,12 @@ class Gerar_pdf extends CI_Controller {
 		$this->load->view('include/footer');
     }
     
-    public function imprimir($aluno_ati_id){
+    public function imprimir($usuario_id, $aluno_ati_semestre){
         $header['titulo'] = 'Gerar pdf';
         
-        $this->atividadeAluno->setAluno_ati_id($aluno_ati_id);
-        $query = $this->atividadeAluno->pegar_atividade();
+        $this->atividadeAluno->setAluno_ati_semestre($aluno_ati_semestre);
+        $this->atividadeAluno->setUsuario_id($usuario_id);
+        $query = $this->atividadeAluno->pegar_atividade_semestre();
         
         $this->load->view('include/header', $header);
 		$this->load->view('include/menu');

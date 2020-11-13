@@ -83,63 +83,68 @@ $pdf->SetFillColor(255, 255, 127);
 
 // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 foreach($query->result() as $q){
-$titulo = <<< OED
-<h1>CONTROLE DAS ATIVIDADES COMPLEMENTARES</h1>
-OED;
+    $titulo = <<< OED
+    <h1>CONTROLE DAS ATIVIDADES COMPLEMENTARES</h1>
+    OED;
+
+    //nome do curso
+    $subtitulo = <<< OED
+    <h3>$q->curso_descricao</h3>
+    OED;
+    
+}
 $pdf->WriteHTMLCell(0, 0, '', '', $titulo, 0, 1, 0, TRUE, 'C', TRUE);
-
-//nome do curso
-$subtitulo = <<< OED
-<h3>$q->curso_descricao</h3>
-OED;
 $pdf->WriteHTMLCell(0, 0, '', '', $subtitulo, 0, 1, 0, TRUE, 'C', TRUE);
-
-
 //Primeira parte tabela
+foreach($query->result() as $q){
+    $tabela1 = '<table style="border: 1px solid #000; padding:6px; ">';
+        $tabela1 .= '<tr>
+                        <th align="left">NOME DO ACADEMICO: '.$q->pessoa_nome.' '.$q->pessoa_sobrenome.'<br><br>SEMESTRE DE INGRESSO: '.$q->aluno_ati_semestre.'/'.$q->aluno_ati_ano.'
 
-$tabela1 = '<table style="border: 1px solid #000; padding:6px; ">';
-    $tabela1 .= '<tr>
-                    <th align="left">NOME DO ACADEMICO: '.$q->pessoa_nome.' '.$q->pessoa_sobrenome.'<br><br>SEMESTRE DE INGRESSO: '.$q->aluno_ati_semestre.'/'.$q->aluno_ati_ano.'
+                        </th>
+                   </tr>';
 
-                    </th>
-               </tr>';
+    $tabela1 .= '</table><br><br>';
+}
 
-$tabela1 .= '</table><br><br>';
 $pdf->WriteHTMLCell(0, 0, '', '', $tabela1, 0, 1, 0, TRUE, 'C', TRUE);
 
-//Segunda parte tabela
-$tabela = '<table style="border: 1px solid #000; padding:6px; ">';
-$tabela .= '<tr>
-                <th style="border: 1px solid #000; width:523px;" align="left">AS ATIVIDADES ABAIXO LISTADAS FORAM REALIZADAS NO SEMESTRE: '.$q->aluno_ati_semestre.'</th>
-                <th style="border: 1px solid #000; width:100px;" align="left">Uso exclusivo da coordenação</th>
-                
-           </tr>';
-$tabela .= '<tr style="background-color:#ccc;">
-                <th style="border: 1px solid #000; width:40px;" align="left">N°</th>
-                <th style="border: 1px solid #000; width:220px;" align="left">Descrição das atividades realizadas</th>
-                <th style="border: 1px solid #000; width:50px;" align="left">Qtde horas</th>
-                <th style="border: 1px solid #000; width:70px;" align="left">Comprovado? Sim/Não (*)</th>
-                <th style="border: 1px solid #000; width:143px;" align="left">Justificativa para atividades sem documentação comprobatória</th>
-                <th style="border: 1px solid #000; width:50px;" align="left">Horas aprov.</th>
-                <th style="border: 1px solid #000; width:50px;" align="left">Visto Coord.</th>
-            </tr>';
-$tabela .= '<tr>
-                <td style="border: 1px solid #000; width:40px;" align="left">'.$q->aluno_ati_id.'</td>
-                <td style="border: 1px solid #000; width:220px;" align="left">'.$q->aluno_ati_descricao.'</td>
-                <td style="border: 1px solid #000; width:50px;" align="left">'.$q->aluno_ati_qtd_horas.'</td>
-                <td style="border: 1px solid #000; width:70px;" align="left">'.$q->aluno_ati_comprovado.'</td>
-                <td style="border: 1px solid #000; width:143px;" align="left">'.$q->aluno_ati_justificativa.'</td>
-                <td style="border: 1px solid #000; width:50px;" align="left">'.$q->aluno_ati_qtd_horas_aprovadas.'</td>
-                <td style="border: 1px solid #000; width:50px;" align="left">'.$q->aluno_ati_visto.'</td>
-            </tr>';
-//$soma_horas = $q->aluno_ati_qtd_horas;
-$tabela .= '<tr>
-                <td style="border: 1px solid #000; width:260px;" align="left">TOTAL DE HORAS DE ATIVIDADES NO SEMESTRE</td>
-                <td style="border: 1px solid #000; width:50px;" align="left"></td>
-                <td style="border: 1px solid #000; width:213px;" align="left">TOTAL DE HORAS APROVADAS PELA COORDENAÇÃO</td>
-                <td style="border: 1px solid #000; width:50px;" align="left"></td>
-                <td style="border: 1px solid #000; width:50px;" align="left"></td>
-            </tr>';
+foreach($query->result() as $q){
+    //Segunda parte tabela
+    $tabela = '<table style="border: 1px solid #000; padding:6px; ">';
+    $tabela .= '<tr>
+                    <th style="border: 1px solid #000; width:523px;" align="left">AS ATIVIDADES ABAIXO LISTADAS FORAM REALIZADAS NO SEMESTRE: '.$q->aluno_ati_semestre.'</th>
+                    <th style="border: 1px solid #000; width:100px;" align="left">Uso exclusivo da coordenação</th>
+
+               </tr>';
+    $tabela .= '<tr style="background-color:#ccc;">
+                    <th style="border: 1px solid #000; width:40px;" align="left">N°</th>
+                    <th style="border: 1px solid #000; width:220px;" align="left">Descrição das atividades realizadas</th>
+                    <th style="border: 1px solid #000; width:50px;" align="left">Qtde horas</th>
+                    <th style="border: 1px solid #000; width:70px;" align="left">Comprovado? Sim/Não (*)</th>
+                    <th style="border: 1px solid #000; width:143px;" align="left">Justificativa para atividades sem documentação comprobatória</th>
+                    <th style="border: 1px solid #000; width:50px;" align="left">Horas aprov.</th>
+                    <th style="border: 1px solid #000; width:50px;" align="left">Visto Coord.</th>
+                </tr>';
+    foreach($query->result() as $q){
+        $tabela .= '<tr>
+                        <td style="border: 1px solid #000; width:40px;" align="left">'.$q->aluno_ati_id.'</td>
+                        <td style="border: 1px solid #000; width:220px;" align="left">'.$q->aluno_ati_descricao.'</td>
+                        <td style="border: 1px solid #000; width:50px;" align="left">'.$q->aluno_ati_qtd_horas.'</td>
+                        <td style="border: 1px solid #000; width:70px;" align="left">'.$q->aluno_ati_comprovado.'</td>
+                        <td style="border: 1px solid #000; width:143px;" align="left">'.$q->aluno_ati_justificativa.'</td>
+                        <td style="border: 1px solid #000; width:50px;" align="left">'.$q->aluno_ati_qtd_horas_aprovadas.'</td>
+                        <td style="border: 1px solid #000; width:50px;" align="left">'.$q->aluno_ati_visto.'</td>
+                    </tr>';
+    }
+    //$soma_horas = $q->aluno_ati_qtd_horas;
+    $tabela .= '<tr>
+                    <td style="border: 1px solid #000; width:260px;" align="left">TOTAL DE HORAS DE ATIVIDADES NO SEMESTRE</td>
+                    <td style="border: 1px solid #000; width:50px;" align="left"></td>
+                    <td style="border: 1px solid #000; width:213px;" align="left">TOTAL DE HORAS APROVADAS PELA COORDENAÇÃO</td>
+                    <td style="border: 1px solid #000; width:50px;" align="left"></td>
+                    <td style="border: 1px solid #000; width:50px;" align="left"></td>
+                </tr>';
 }
 
 $tabela .= '</table>';
