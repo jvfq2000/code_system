@@ -46,6 +46,10 @@ class Quadro_model extends CI_Model {
 	public function setQuadro_horas_max($quadro_horas_max){
 		$this->quadro_horas_max = $quadro_horas_max;
 	}
+
+	public function get_id_ultimo_cadastro(){
+		return $this->db->insert_id();
+	}
     
 	public function cadastrar(){
 		$dados = array(

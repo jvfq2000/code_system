@@ -32,6 +32,7 @@
     
     $(function(){
 			$("#categoria").change(function(){
+				let quadro_id = $("#quadro").val();
 				let categoria_id = $("#categoria").val();
                 let urlMostrarAtividades = "<?php echo base_url('Atividade_aluno/ajax_mostrar_atividade');?>";
 				
@@ -43,7 +44,7 @@
     				$.ajax({
                         url        : urlMostrarAtividades,
     					type       : "POST",
-    					data       : {id : categoria_id    },
+    					data       : {cat_id : categoria_id, qua_id : quadro_id},
 
     					beforeSend : function(){
     						$("#atividade").html("<option value=\"\">Carregando atividades ...</option>");

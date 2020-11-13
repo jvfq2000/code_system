@@ -1,4 +1,4 @@
-<div class="shadow card-header rounded mx-auto col-sm-11" id="headingOne">
+<div class="shadow card-header rounded mx-auto col-sm-12" id="headingOne">
     
     <form class="form-inline mt-2 mt-md-0" action="<?php echo base_url('Gerenciar_campus/pesquisar/');?>" method='POST' novalidate>
         <input class="form-control col-11 mr-sm-2" type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar" aria-label="Search">

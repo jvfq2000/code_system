@@ -51,8 +51,9 @@ class Atividade_aluno extends CI_Controller {
 	}
     
     public function ajax_mostrar_atividade(){
-		$atividade_id = $this->input->post('id');
-		echo $this->atividade->montar_options_atividade($atividade_id);
+		$cat_id = $this->input->post('cat_id');
+		$qua_id = $this->input->post('qua_id');
+		echo $this->atividade->montar_options_atividade($qua_id,$cat_id);
 	}
     
     public function ajax_mostrar_categoria(){

@@ -29,7 +29,6 @@ class Quadro extends CI_Controller {
         $this->dados['mostrar'] = "tabela";
         $this->dados['sucesso'] = FALSE;
         $this->dados['linhas_quadro'] = $this->quadro->montar_tabela();
-        $this->dados['campus_options']= $this->campus->montar_options_campus();
         $header['titulo']             = 'Quadro de Atividades';
         
         $this->load->view('include/header', $header);
@@ -65,7 +64,6 @@ class Quadro extends CI_Controller {
 			$idQuandro = $this->quadro->get_id_ultimo_cadastro();
 			if($quadro_cadastrado){
 				$this->atividades = json_decode($this->input->post('atividade_json'), true);
-				print_r($this->atividades);
 				for($i=0; $i < (is_array($this->atividades) ? count($this->atividades) : 0); $i++){
 					$dados_atividade = array(
 						"atividade_cat_id" => $this->atividades[$i][0],
@@ -88,6 +86,50 @@ class Quadro extends CI_Controller {
 		$this->index();
 	}
 
+    public function editar($quadro_cat_id){
+        $this->dados['mostrar'] = "operacoes";
+        $header['titulo']       = 'Quadro de Atividades';
+        $this->dados['pegou_atividade_cat']  = 'S';
+        
+        $this->quadro->setQuadro_id($quadro_id);
+        $result = $this->quadro->pegar_quadro();
+        $quadro_result = $result->row_array();
+        
+        $this->dados['quadro_id'] = $quadro_result['quadro_id'];
+        $this->dados['quadro_descricao'] = $quadro_result['quadro_descricao'];
+        $this->dados['campus_id'] = $quadro_result['campus_id'];
+        $this->dados['curso_id'] = $quadro_result['curso_id'];
+        $this->dados['quadro_horas_max'] = $quadro_result['quadro_horas_max'];
+        
+        $this->load->view('include/header', $header);
+		$this->load->view('include/menu');
+		$this->load->view('quadro', $this->dados);
+		$this->load->view('include/footer');
+	}
+	
+	public function excluir($quadro_id){
+        $this->dados['mostrar']  = "tabela";
+        $header['titulo']        = 'Quadro de Atividades';
+        $this->dados['mensagem'] = "Erro ao excluir Quadro de Atividades!";
+        $this->dados['sucesso']  = FALSE;
+        
+        $this->quadro->setQuadro_id($quadro_id);
+        $quadro_excluido = $this->quadro->excluir();
+        $this->dados['linhas_quadro'] = $this->quadro->montar_tabela();
+         
+        if ($quadro_excluido) {
+            $this->dados['sucesso']  = TRUE;
+            $this->dados['tentou']   = TRUE;
+            $this->dados['excluiu']   = TRUE;
+			$this->dados['mensagem'] = "Quadro de Atividades excluido com sucesso!";
+        }
+        
+        $this->load->view('include/header', $header);
+		$this->load->view('include/menu');
+		$this->load->view('quadro', $this->dados);
+		$this->load->view('include/footer');
+	}
+
     public function ajax_mostrar_cursos(){
         $campus_id = $this->input->post('id');
         echo $this->curso->montar_options_curso($campus_id);
@@ -96,10 +138,5 @@ class Quadro extends CI_Controller {
     public function ajax_mostrar_categorias(){
         $campus_id = $this->input->post('id');
         echo $this->atividade_cat->montar_options_categoria($campus_id);
-    }
-
-    public function ajax_armazena_atividades(){
-        $this->atividades = json_decode($this->input->post('atividades'));
-		echo $this->atividades;
     }
 }

@@ -1,6 +1,6 @@
 <div class="col-12">
     <div class="accordion" id="accordionExample">
-        <div class="shadow card-header rounded mx-auto col-sm-11" id="headingOne">
+        <div class="shadow card-header rounded mx-auto col-sm-12" id="headingOne">
             <form name="formuser" class="form-group needs-validation"
                 action="<?php if($pegou_quadro == 'S') {
                         echo base_url('Quadro/salvar_edicao/').$quadro_id;
@@ -175,7 +175,7 @@
 					'<td>'+$("#atividade_desc").val()+'</td>'+
 					'<td>'+$("#qtd_horas_min").val()+'</td>'+
 					'<td>'+$("#qtd_horas_max").val()+'</td>'+
-					'<td><img src="<?php echo base_url('assets/img/icone/lixeira.png');?>" class="btnExcluir"/></td>'+
+					'<td><img src="<?php echo base_url('assets/img/icone/lixeira.png');?>" height="45" width="45" class="btnExcluir"/></td>'+
 				'</tr>'
 			);
 			$(".btnExcluir").bind("click", excluir);
