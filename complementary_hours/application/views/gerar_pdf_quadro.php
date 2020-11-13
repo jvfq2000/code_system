@@ -83,43 +83,49 @@ $pdf->SetFillColor(255, 255, 127);
 
 // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 foreach($query->result() as $q){
-$titulo = <<< OED
-<h1>$q->quadro_descricao</h1>
-OED;
-$pdf->WriteHTMLCell(0, 0, '', '', $titulo, 0, 1, 0, TRUE, 'C', TRUE);
+    $titulo = <<< OED
+        <h1>$q->quadro_descricao</h1>
+    OED;
+
 }
+
+$pdf->WriteHTMLCell(0, 0, '', '', $titulo, 0, 1, 0, TRUE, 'C', TRUE);
+
 foreach($query->result() as $q){
-//Primeira parte tabela
+    //Primeira parte tabela
 
-$tabela1 = '<table style="border: 1px solid #000; padding:6px; ">';
-    $tabela1 .= '<tr>
-                    <th align="left">CAMPUS: '.$q->campus_descricao.'<br><br>CURSO: '.$q->curso_descricao.'<br><br>QTD TOTAL DE HORAS: '.$q->quadro_horas_max.'
+    $tabela1 = '<table style="border: 1px solid #000; padding:6px; ">';
+        $tabela1 .= '<tr>
+                        <th align="left">CAMPUS: '.$q->campus_descricao.'<br><br>CURSO: '.$q->curso_descricao.'<br><br>QTD TOTAL DE HORAS: '.$q->quadro_horas_max.'
 
-                    </th>
-               </tr>';
+                        </th>
+                   </tr>';
 
-$tabela1 .= '</table><br><br>';
+    $tabela1 .= '</table><br><br>';
+}
+
 $pdf->WriteHTMLCell(0, 0, '', '', $tabela1, 0, 1, 0, TRUE, 'C', TRUE);
 
-//Segunda parte tabela
-$tabela = '<table style="border: 1px solid #000; padding:6px; ">';
-$tabela .= '<tr style="background-color:#ccc;">
-                <th style="border: 1px solid #000; width:208px;" align="left">'.$q->atividade_cat_descricao.'</th>
-                <th style="border: 1px solid #000; width:208px;" align="left">Carga horário mínima</th>
-                <th style="border: 1px solid #000; width:208px;" align="left">Carga horário maxima</th>
-            </tr>';
-$tabela .= '<tr>
-                <td style="border: 1px solid #000; width:208px;" align="left">'.$q->atividade_descricao.'</td>
-                <td style="border: 1px solid #000; width:208px;" align="left">'.$q->atividade_horas_min.'</td>
-                <td style="border: 1px solid #000; width:208px;" align="left">'.$q->atividade_horas_max.'</td>
-            </tr>';
-//$soma_horas = $q->aluno_ati_qtd_horas;
+foreach($query->result() as $q){
+    //Segunda parte tabela
+    $tabela = '<table style="border: 1px solid #000; padding:6px; ">';
+    $tabela .= '<tr style="background-color:#ccc;">
+                    <th style="border: 1px solid #000; width:208px;" align="left">'.$q->atividade_cat_descricao.'</th>
+                    <th style="border: 1px solid #000; width:208px;" align="left">Carga horário mínima</th>
+                    <th style="border: 1px solid #000; width:208px;" align="left">Carga horário maxima</th>
+                </tr>';
+    foreach($query->result() as $q){
+        $tabela .= '<tr>
+                        <td style="border: 1px solid #000; width:208px;" align="left">'.$q->atividade_descricao.'</td>
+                        <td style="border: 1px solid #000; width:208px;" align="left">'.$q->atividade_horas_min.'</td>
+                        <td style="border: 1px solid #000; width:208px;" align="left">'.$q->atividade_horas_max.'</td>
+                    </tr>';
+    }
+    //$soma_horas = $q->aluno_ati_qtd_horas;
 
-
+}
 $tabela .= '</table>';
 $pdf->WriteHTMLCell(0, 0, '', '', $tabela, 0, 1, 0, TRUE, 'C', TRUE);
-}
-
 // move pointer to last page
 $pdf->lastPage();
 

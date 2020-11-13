@@ -174,11 +174,11 @@ class Quadro_model extends CI_Model {
 	}
 
     public function pegar_quadro_pdf(){
-		$this->db->select('campus_descricao, quadro.quadro_id, atividade.atividade_id, atividade_descricao, atividade.atividade_horas_min, atividade.atividade_horas_max, atividade_cat.atividade_cat_id, curso_descricao, atividade_descricao, atividade_cat_descricao, quadro_descricao, quadro_horas_max,');
-		$this->db->from('quadro');
+		$this->db->select('campus_descricao, quadro.quadro_id, atividade.atividade_id, atividade_descricao,                                           atividade.atividade_horas_min, atividade.atividade_horas_max, atividade_cat.atividade_cat_id,                               curso_descricao, atividade_descricao, atividade_cat_descricao, quadro_descricao, quadro_horas_max,');
+		$this->db->from('atividade');
+        $this->db->join('quadro', 'quadro.quadro_id = atividade.quadro_id');
         $this->db->join('campus', 'quadro.campus_id = campus.campus_id');
         $this->db->join('curso', 'quadro.curso_id = curso.curso_id');
-        $this->db->join('atividade', 'atividade.quadro_id = quadro.quadro_id');
         $this->db->join('atividade_cat', 'atividade.atividade_cat_id = atividade_cat.atividade_cat_id');
         $this->db->where('quadro.quadro_id', $this->getQuadro_id());
 		$query = $this->db->get();

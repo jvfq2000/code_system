@@ -149,7 +149,7 @@ class Atividade_aluno_model extends CI_Model {
 	}
     
     public function listar_tabela(){
-		$this->db->select('campus_descricao, curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome,                                              atividade_descricao, aluno_ati_descricao, aluno_ati_qtd_horas, aluno_ati_comprovado,                                        aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc, aluno_ati_qtd_horas_aprovadas,                    aluno_ati_visto');
+		$this->db->select('campus_descricao, usuario.usuario_id, curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome,                          atividade_descricao, aluno_ati_descricao, aluno_ati_qtd_horas, aluno_ati_comprovado,                                        aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc, aluno_ati_qtd_horas_aprovadas,                    aluno_ati_visto');
 		$this->db->from('aluno_ati');
         $this->db->join('usuario', 'aluno_ati.usuario_id = usuario.usuario_id');
         $this->db->join('pessoa', 'usuario.usuario_id = pessoa.usuario_id');
@@ -176,7 +176,7 @@ class Atividade_aluno_model extends CI_Model {
             $linhas .= "<td><a href=\"".base_url('assets/files/atividades/')."{$atv->aluno_ati_doc}\" class=\"badge badge-success\" />Documento</a></td>";
             $linhas .= "<td>{$atv->aluno_ati_qtd_horas_aprovadas}</td>";
             
-            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir/')."{$atv->aluno_ati_id}\" />";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir/')."{$atv->usuario_id}/{$atv->aluno_ati_semestre}\"/>";
             $linhas .= "<img src=\"".base_url('assets/img/icone/impressora.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
             
             $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Atividade_aluno/editar/')."{$atv->aluno_ati_id}\" />";
@@ -226,7 +226,7 @@ class Atividade_aluno_model extends CI_Model {
     }
     
     public function pesquisar(){
-		$this->db->select('campus_descricao, curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome,                                              atividade_descricao, aluno_ati_descricao, aluno_ati_qtd_horas, aluno_ati_comprovado,                                        aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc, aluno_ati_qtd_horas_aprovadas,                    aluno_ati_visto');
+		$this->db->select('campus_descricao, usuario.usuario_id, curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome,                          atividade_descricao, aluno_ati_descricao, aluno_ati_qtd_horas, aluno_ati_comprovado,                                        aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc, aluno_ati_qtd_horas_aprovadas,                    aluno_ati_visto');
 		$this->db->from('aluno_ati');
         $this->db->join('usuario', 'aluno_ati.usuario_id = usuario.usuario_id');
         $this->db->join('pessoa', 'usuario.usuario_id = pessoa.usuario_id');
@@ -254,7 +254,7 @@ class Atividade_aluno_model extends CI_Model {
             $linhas .= "<td><a href=\"".base_url('assets/files/atividades/')."{$atv->aluno_ati_doc}\" class=\"badge badge-success\" />Documento</a></td>";
             $linhas .= "<td>{$atv->aluno_ati_qtd_horas_aprovadas}</td>";
             
-            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir/')."{$atv->aluno_ati_id}\" />";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir/')."{$atv->usuario_id}/{$atv->aluno_ati_semestre}\"/>";
             $linhas .= "<img src=\"".base_url('assets/img/icone/impressora.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
             
             $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Atividade_aluno/editar/')."{$atv->aluno_ati_id}\" />";
@@ -268,7 +268,7 @@ class Atividade_aluno_model extends CI_Model {
 	}
     
      public function pegar_atividade_aluno(){
-		$this->db->select('campus_descricao, quadro.quadro_id, atividade.atividade_id, atividade_cat.atividade_cat_id,                                  curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome, atividade_descricao, aluno_ati_descricao,                      atividade_cat_descricao, quadro_descricao, aluno_ati_qtd_horas, aluno_ati_comprovado,                                        aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc, aluno_ati_qtd_horas_aprovadas,                    aluno_ati_visto');
+		$this->db->select('campus_descricao, usuario.usuario_id, quadro.quadro_id, atividade.atividade_id,                                              atividade_cat.atividade_cat_id, curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome,                                atividade_descricao, aluno_ati_descricao, atividade_cat_descricao, quadro_descricao, aluno_ati_qtd_horas,                    aluno_ati_comprovado, aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc,                            aluno_ati_qtd_horas_aprovadas, aluno_ati_visto');
 		$this->db->from('aluno_ati');
         $this->db->join('usuario', 'aluno_ati.usuario_id = usuario.usuario_id');
         $this->db->join('pessoa', 'usuario.usuario_id = pessoa.usuario_id');
@@ -297,7 +297,7 @@ class Atividade_aluno_model extends CI_Model {
             $linhas .= "<td><a href=\"".base_url('assets/files/atividades/')."{$atv->aluno_ati_doc}\" class=\"badge badge-success\" />Documento</a></td>";
             $linhas .= "<td>{$atv->aluno_ati_qtd_horas_aprovadas}</td>";
             
-            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir/')."{$atv->aluno_ati_id}\" />";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir/')."{$atv->usuario_id}/{$atv->aluno_ati_semestre}\"/>";
             $linhas .= "<img src=\"".base_url('assets/img/icone/impressora.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
             
             $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Atividade_aluno/editar/')."{$atv->aluno_ati_id}\" />";
@@ -311,7 +311,7 @@ class Atividade_aluno_model extends CI_Model {
 	}
     
     public function pegar_atividade_curso(){
-		$this->db->select('campus_descricao, quadro.quadro_id, atividade.atividade_id, atividade_cat.atividade_cat_id,                                  curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome, atividade_descricao, aluno_ati_descricao,                      atividade_cat_descricao, quadro_descricao, aluno_ati_qtd_horas, aluno_ati_comprovado,                                        aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc, aluno_ati_qtd_horas_aprovadas,                    aluno_ati_visto');
+		$this->db->select('campus_descricao, usuario.usuario_id, quadro.quadro_id, atividade.atividade_id,                                              atividade_cat.atividade_cat_id, curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome,                                atividade_descricao, aluno_ati_descricao, atividade_cat_descricao, quadro_descricao, aluno_ati_qtd_horas,                    aluno_ati_comprovado, aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc,                            aluno_ati_qtd_horas_aprovadas, aluno_ati_visto');
 		$this->db->from('aluno_ati');
         $this->db->join('usuario', 'aluno_ati.usuario_id = usuario.usuario_id');
         $this->db->join('pessoa', 'usuario.usuario_id = pessoa.usuario_id');
@@ -340,7 +340,7 @@ class Atividade_aluno_model extends CI_Model {
             $linhas .= "<td><a href=\"".base_url('assets/files/atividades/')."{$atv->aluno_ati_doc}\" class=\"badge badge-success\" />Documento</a></td>";
             $linhas .= "<td>{$atv->aluno_ati_qtd_horas_aprovadas}</td>";
             
-            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir/')."{$atv->aluno_ati_id}\" />";
+            $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Gerar_pdf/imprimir/')."{$atv->usuario_id}/{$atv->aluno_ati_semestre}\"/>";
             $linhas .= "<img src=\"".base_url('assets/img/icone/impressora.png')."\" class=\"nav-link\" width=\"55\" height=\"40\" /></a>";
             
             $linhas .= "<td><div class=\"row\"><a href=\"".base_url('Atividade_aluno/editar/')."{$atv->aluno_ati_id}\" />";
@@ -351,5 +351,21 @@ class Atividade_aluno_model extends CI_Model {
 		}
         
 		return $linhas;
+	}
+    
+    public function pegar_atividade_semestre(){
+		$this->db->select('campus_descricao, usuario.usuario_id, quadro.quadro_id, atividade.atividade_id,                                              atividade_cat.atividade_cat_id, curso_descricao, aluno_ati_id, pessoa_nome, pessoa_sobrenome,                                atividade_descricao, aluno_ati_descricao, atividade_cat_descricao, quadro_descricao, aluno_ati_qtd_horas,                    aluno_ati_comprovado, aluno_ati_justificativa, aluno_ati_semestre, aluno_ati_ano, aluno_ati_doc,                            aluno_ati_qtd_horas_aprovadas, aluno_ati_visto');
+		$this->db->from('aluno_ati');
+        $this->db->join('usuario', 'aluno_ati.usuario_id = usuario.usuario_id');
+        $this->db->join('pessoa', 'usuario.usuario_id = pessoa.usuario_id');
+        $this->db->join('campus', 'aluno_ati.campus_id = campus.campus_id');
+        $this->db->join('curso', 'aluno_ati.curso_id = curso.curso_id');
+        $this->db->join('atividade', 'aluno_ati.atividade_id = atividade.atividade_id');
+        $this->db->join('atividade_cat', 'atividade.atividade_cat_id = atividade_cat.atividade_cat_id');
+        $this->db->join('quadro', 'atividade.quadro_id = quadro.quadro_id');
+        $this->db->where('usuario.usuario_id', $this->getUsuario_id());
+        $this->db->where('aluno_ati_semestre', $this->getAluno_ati_semestre());
+		$query = $this->db->get();
+		return $query;
 	}
 }
