@@ -12,6 +12,8 @@
             $caminho = "Regulamento";
         }else if($titulo == "Atividades do aluno"){
             $caminho = "Atividade_aluno";
+        }else if($titulo == "Quadro de Atividades"){
+            $caminho = "Quadro";
         }else{
 			$caminho = "";
 		}
