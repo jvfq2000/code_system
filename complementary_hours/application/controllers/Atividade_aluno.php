@@ -152,7 +152,7 @@ class Atividade_aluno extends CI_Controller {
         $this->dados['aluno_ati_doc']                 = $atividade_result['aluno_ati_doc'];
         $this->dados['aluno_ati_qtd_horas_aprovadas'] = $atividade_result['aluno_ati_qtd_horas_aprovadas'];
         $this->dados['aluno_ati_visto']               = $atividade_result['aluno_ati_visto'];
-        $this->dados['atividade_options'] = $this->atividade->montar_options_atividade($atividade_result['quadro_id']);
+        $this->dados['atividade_options'] = $this->atividade->montar_options_atividade($atividade_result['quadro_id'], $atividade_result['atividade_cat_id']);
         $this->dados['atividade_cat_options'] = $this->atividade->montar_options_cat($atividade_result['atividade_id']);
         
         $this->load->view('include/header', $header);
